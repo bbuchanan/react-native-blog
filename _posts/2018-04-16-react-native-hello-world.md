@@ -21,13 +21,13 @@ The list of components is relatively small compared to reactjs, so later on we'l
 
 Back to our tiny React Native app. The video shows us removing the default boilerplate and putting a single `<Text>` tag in with the words Hello World. Easy enough.
 
-# Container Components
+## Container Components
 
 If you're familiar with reactjs, you know that you need a container component to house things like text and image components. In React Native, the simplest form is the `<View />` component.
 
 Later on we'll deal with more robust containers that allow us to scroll, layout and refresh.
 
-# React Native Styling
+## React Native Styling
 
 React Native is not HTML. The styling tags look remarkably similar to CSS, but it is not CSS. A great resource for React Native styling tags that are available is the <a href="https://github.com/vhpoet/react-native-styling-cheat-sheet" target="_blank">React Native Cheatsheet</a>.
 
