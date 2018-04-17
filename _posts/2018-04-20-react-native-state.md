@@ -130,6 +130,12 @@ And on a successful load, we can see the inverse is true. No error and 12 scores
 
 ![react-native-debugger-success](/images/react-native-debugger-success.png)
 
+## The code so far ...
+
+If you're stuck or just want to compare notes, here is the commit for this article.
+
+https://github.com/bbuchanan/react-native-sports-app/tree/5985a9b2098870e349f85fe201ed1ce45af197eb
+
 ## Need a Full Stack React Developer?
 
 I'm your guy! I've been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. [Yye Software](https://www.yyesoftware.com)
