@@ -44,6 +44,8 @@ Now we're going to add the DatePicker to the top of our `<View>`, just above the
 />
 ```
 
+Also note that I had to omit the `customStyles` property from this tutorial because github pages didn't like it. You can copy the `<DatePicker>` props in full from <a href="https://github.com/bbuchanan/react-native-sports-app/blob/5779968579d84006d6fb48148c1e0e076c1528a3/App.js" target="_blank">here</a>.
+
 The vast majority of these props seem pretty self explanatory, but I do want to touch on the event that we're handling, since this is a new concept. `onDateChange` is a property that takes a function. The function is called when the user confirms the picked date or time in the UI. There is some shorthand going on here. The fat arrow says to pass the function as opposed to executing it immediately. The `date` declaration is an argument passed in by the `DatePicker` and we're in turn passing this information on to a function we named `dateChangedHandler`.
 
 Before we get to the `dateChangedHandler` function, I wanted to point out another refactor that has been done. I've moved the entire contents of `componentDidMount` into a separate function named `loadScores`. `loadScores` takes no arguments because we're going to get what we need from the state. Create a function like this:
