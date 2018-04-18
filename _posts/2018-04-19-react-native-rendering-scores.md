@@ -12,7 +12,7 @@ A component is really nothing more than a class that derives from the Component 
 
 The first thing we need to do is import some things from both react and react-native.
 
-```
+```javascript
 import React, { Component } from "react";
 import { Text, View, StyleSheet } from "react-native";
 ```
@@ -25,14 +25,14 @@ The first thing to do is to create a class that extends the Component class. Eve
 
 A bare bones component would look like this:
 
-```
+```javascript
 class ScorecardItem extends Component {
   render() {
-    return (<View />)
+    return <View />;
   }
 }
 
-export default ScorecardItem
+export default ScorecardItem;
 ```
 
 You could now include this component as is within other components, including your app component. This `render()` function does nothing but return an empty view, so you wouldn't see anything exciting, so lets change that.
@@ -43,7 +43,7 @@ Our final product is going to look like the image below and I'm going to walk yo
 
 While this is duplicated over and over on the screen, this is the same component instantiated several times with hard coded values. The goal is to get it rendering dynamically from the sports score data source, but first we're going to focus on styling our scorecard. Lets start with something simple in our render function.
 
-```
+```javascript
   render() {
     return (
       <View>
@@ -74,14 +74,14 @@ Since we're imported the `StyleSheet` namespace, we can use the `create()` funct
 
 The first style I want to create is the rounded rectangle around the scorecard. The `create()` function takes an array of styles. To get started, simply call `create()` like so:
 
-```
+```javascript
 const styles = StyleSheet.create({
   cardItemContainer: {
     borderRadius: 8,
     borderColor: "black",
     borderWidth: 1,
     margin: 12,
-    alignItems: center,
+    alignItems: center
   }
 });
 ```
@@ -92,24 +92,24 @@ The next thing I want to accomplish is I want space between the border itself an
 
 To add another style, you just add to the array like so.
 
-```
+```javascript
 const styles = StyleSheet.create({
   cardItemContainer: {
     borderRadius: 8,
     borderColor: "black",
     borderWidth: 1,
     margin: 12,
-    alignItems: center,
+    alignItems: center
   },
   scoreContainer: {
-    margin: 3,
-  },
+    margin: 3
+  }
 });
 ```
 
 Finally, I simply want to set the font sizes for the score number and the team name, so my final stylesheet looks like this:
 
-```
+```javascript
 const styles = StyleSheet.create({
   cardItemContainer: {
     borderRadius: 8,
@@ -141,23 +141,23 @@ For our top level view, we wanted the `cardItemContainer` which contains our bor
 
 Now my render function looks like this:
 
-```
-  render() {
-    return (
-      <View style={styles.cardItemContainer}>
-        <View style={styles.scoreContainer}>
-          <View>
-            <Text style={styles.teamName}>Detroit</Text>
-          </View>
-          <Text style={styles.teamScore}>8</Text>
-          <View>
-            <Text style={styles.teamName}>Minnesota</Text>
-          </View>
-          <Text style={styles.teamScore}>2</Text>
+```javascript
+render() {
+  return (
+    <View style={styles.cardItemContainer}>
+      <View style={styles.scoreContainer}>
+        <View>
+          <Text style={styles.teamName}>Detroit</Text>
         </View>
+        <Text style={styles.teamScore}>8</Text>
+        <View>
+          <Text style={styles.teamName}>Minnesota</Text>
+        </View>
+        <Text style={styles.teamScore}>2</Text>
       </View>
-    );
-  }
+    </View>
+  );
+}
 ```
 
 To see this rendered inside of your application, go back to the `App.js` file and include your shiney new component like this.
@@ -166,7 +166,7 @@ To see this rendered inside of your application, go back to the `App.js` file an
 
 In your render function, create a number of them like this.
 
-```
+```javascript
   render() {
     return (
       <View style={styles.container}>

@@ -10,25 +10,25 @@ State is available in any class based component. So far, this is what we have. T
 
 Go back into the `App.js` file and have a look at the `componentDidMount` function where we have loaded our score data.
 
-```
-  componentDidMount() {
-    axios.get("scoreboard.json?fordate=20170411").then(data => {
-      let scores = data.data.scoreboard.gameScore.map(score => {
-        return {
-          awayScore: score.awayScore,
-          homeScore: score.homeScore,
-          homeTeam: `${score.game.homeTeam.City} ${score.game.homeTeam.Name}`,
-          awayTeam: `${score.game.awayTeam.City} ${score.game.awayTeam.Name}`,
-          location: score.game.location
-        };
-      });
+```javascript
+componentDidMount() {
+  axios.get("scoreboard.json?fordate=20170411").then(data => {
+    let scores = data.data.scoreboard.gameScore.map(score => {
+      return {
+        awayScore: score.awayScore,
+        homeScore: score.homeScore,
+        homeTeam: `${score.game.homeTeam.City} ${score.game.homeTeam.Name}`,
+        awayTeam: `${score.game.awayTeam.City} ${score.game.awayTeam.Name}`,
+        location: score.game.location
+      };
     });
-  }
+  });
+}
 ```
 
 We have declared a local variable named `scores` but the variable is unused. We can create and initialize state at the top of our class. Lets declare a state with a `scores` object and initialize it to `null`.
 
-```
+```javascript
 export default class App extends React.Component {
   state = {
     scores: null
@@ -37,7 +37,7 @@ export default class App extends React.Component {
 
 And now we simply call the `setState()` function upon successful load.
 
-```
+```javascript
 componentDidMount() {
   axios.get("scoreboard.json?fordate=20170411").then(data => {
     let scores = data.data.scoreboard.gameScore.map(score => {
@@ -66,17 +66,17 @@ State is also a great way to render an error state. Lets change our state declar
 
 State initialization would now look like this:
 
-```
+```javascript
 state = {
   scores: null,
   hadError: false,
-  errorMessage: '',
+  errorMessage: ""
 };
 ```
 
 and now we could change our `get` logic to include error checking in the `catch` portion of the promise.
 
-```
+```javascript
 componentDidMount() {
   axios
     .get("scoreboard.json?fordate=20170411")

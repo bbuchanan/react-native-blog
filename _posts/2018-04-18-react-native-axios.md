@@ -21,7 +21,7 @@ First, in the project, I'm going to create a new folder off of the root called '
 
 Inside of this file, I'm going to set some defaults that will save us from duplicating code and url details.
 
-```
+```javascript
 import axios from "axios";
 
 const instance = axios.create({
@@ -52,7 +52,7 @@ Go back into `App.js` and import axios.
 
 Inside of the class, add a hook for `componentDidMount` like so:
 
-```
+```javascript
   componentDidMount() {
     axios.get("scoreboard.json?fordate=20170411").then(data => {
       debugger;
