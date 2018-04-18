@@ -16,14 +16,14 @@ Flex 1 tells React Native that the parent container will consume all of the avai
 
 To help visualize this, I've created 5 `<Image />` tags on our render function. I've replaced the `<Text />` with Hello World and pasted this code 5 times.
 
+{% raw %}
+
 ```
 <Image style={styles.ourImage}
-  source={{
-    uri:
-      "https://www.clker.com/cliparts/I/a/V/A/7/A/blue-star-outline-md.png"
-    }}
-/>
+  source={{uri: "https://www.clker.com/cliparts/I/a/V/A/7/A/blue-star-outline-md.png"}} />
 ```
+
+{% endraw %}
 
 This is blue star clip art so we can visualize what the various flexbox options do.
 

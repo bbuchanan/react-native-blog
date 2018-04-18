@@ -1,13 +1,343 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-02-19T17:07:23-05:00</updated><id>http://localhost:4000/</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2018/02/19/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2018-02-19T17:06:54-05:00</published><updated>2018-02-19T17:06:54-05:00</updated><id>http://localhost:4000/jekyll/update/2018/02/19/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2018/02/19/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-04-18T16:53:11-04:00</updated><id>/</id><title type="html">React Native Sports App Tutorial</title><subtitle>React Native Tutorial. Building a small sports score application from the ground up.</subtitle><entry><title type="html">React Native Axios</title><link href="/2018/04/18/react-native-axios.html" rel="alternate" type="text/html" title="React Native Axios" /><published>2018-04-18T00:00:00-04:00</published><updated>2018-04-18T00:00:00-04:00</updated><id>/2018/04/18/react-native-axios</id><content type="html" xml:base="/2018/04/18/react-native-axios.html">&lt;h1 id=&quot;making-remote-requests-with-axios&quot;&gt;Making Remote Requests with Axios&lt;/h1&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;p&gt;Slowly we’re getting into the meat of the project. The goal is to get details of sports from a remote source. In this case, we’re going to use &lt;a href=&quot;https://www.mysportsfeeds.com&quot; target=&quot;_blank&quot;&gt;My Sports Data Feed&lt;/a&gt;. The API is free for completed seasons. So we’re going to focus on the 2017 baseball season, but this can easily be changed to suit your sport of choice.&lt;/p&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;p&gt;You will need to sign up for a free account, as each request requires your user name and password. You can see mine here, but I’m changing the password before this is published so it won’t work with my credentials.
+&lt;a href=&quot;https://github.com/bbuchanan/react-native-sports-app/commit/934320ea5512a2d123ac103c0d4bdc4d8b2a423b&quot; target=&quot;_blank&quot;&gt;Oh and here is the source code to reference should you get stuck or something isn’t clear. &lt;/a&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;installing-axios&quot;&gt;Installing Axios&lt;/h3&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry></feed>
+&lt;p&gt;Axios is a library we’re going to use to make http calls to My Sports Feed. There is a “built-in” library named &lt;code class=&quot;highlighter-rouge&quot;&gt;fetch&lt;/code&gt;, but I prefer axios for a couple of reasons. First, &lt;code class=&quot;highlighter-rouge&quot;&gt;fetch()&lt;/code&gt; has a two-step process when handing JSON data. The first is to make the actual request and then the second is to call the &lt;code class=&quot;highlighter-rouge&quot;&gt;.json()&lt;/code&gt; method on the response. Second, I like the configurability of axios, specifically the interceptors and having a global configuration that removes a lot of the duplication and verbosity. Topics for fodder some other time.&lt;/p&gt;
+
+&lt;p&gt;Back to business. To install &lt;code class=&quot;highlighter-rouge&quot;&gt;axios&lt;/code&gt; run &lt;code class=&quot;highlighter-rouge&quot;&gt;yarn add axios&lt;/code&gt; from your terminal. &lt;code class=&quot;highlighter-rouge&quot;&gt;axios&lt;/code&gt; is promise based, so we’ll be able to chain our processing code.&lt;/p&gt;
+
+&lt;h3 id=&quot;configuring-axios&quot;&gt;Configuring Axios&lt;/h3&gt;
+
+&lt;p&gt;As mentioned above, I like the flexibility and ease of use of axios. I’m going to take advantage of that right away by extending the axios instance like so.&lt;/p&gt;
+
+&lt;p&gt;First, in the project, I’m going to create a new folder off of the root called ‘src’. Inside of that folder we’ll create a file named &lt;code class=&quot;highlighter-rouge&quot;&gt;axios-sports.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/axios-sports.png&quot; alt=&quot;axios-sports&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Inside of this file, I’m going to set some defaults that will save us from duplicating code and url details.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;axios&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;baseURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://api.mysportsfeeds.com/v1.2/pull/mlb/2017-regular/&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;defaults&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;authorization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;Basic YmlsbGIyMTEyOnl5ZXl5ZSQx&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The baseURL is the 2017 Major League Baseball season. We’re going to simply pull score information.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;authorization&lt;/code&gt; bit will need to reflect your user account details. These are mine, but they’re no longer valid, so please get your own in there. The format is &lt;code class=&quot;highlighter-rouge&quot;&gt;userid:password&lt;/code&gt; encoded in base64. &lt;a href=&quot;https://www.base64encode.org/&quot; target=&quot;_blank&quot;&gt;Here is a good place to base64 encode a string.&lt;/a&gt; Replace my string with the output of this after the word “Basic “.&lt;/p&gt;
+
+&lt;p&gt;That’s probably the hardest part about getting this set up.&lt;/p&gt;
+
+&lt;h3 id=&quot;getting-data&quot;&gt;GETting data&lt;/h3&gt;
+
+&lt;p&gt;One thing we haven’t touched on yet is component life cycle events in React. This is a noteworthy topic, but we’re going to skip it for now. Just know that they exist and know they’re special methods. We’re going to use one now to get our data.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidMount&lt;/code&gt; is an event generated when the react component is mounted and ready. This is a good time to get data and that’s precisely what we’re going to do.&lt;/p&gt;
+
+&lt;p&gt;Go back into &lt;code class=&quot;highlighter-rouge&quot;&gt;App.js&lt;/code&gt; and import axios.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;import axios from &quot;./src/axios-sports&quot;;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Inside of the class, add a hook for &lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidMount&lt;/code&gt; like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;scoreboard.json?fordate=20170411&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;debugger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We’re getting the Major League scores for April 11, 2017 in json format. Assuming our promise is successful, the result is returned in &lt;code class=&quot;highlighter-rouge&quot;&gt;data&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We’re not doing anything with the data as of yet, but look at how simple and clean it is to retrieve remote data and act on it.&lt;/p&gt;
+
+&lt;h3 id=&quot;debugging-sidebar&quot;&gt;Debugging Sidebar&lt;/h3&gt;
+
+&lt;p&gt;For starters, we simply want to ensure that all of the plumbing is in place and grabbing data as expected, so the user interface does nothing at this point, but I’d like to inspect the data coming back.&lt;/p&gt;
+
+&lt;p&gt;React Native has a pretty damn good debugging tool called React Native Debugger. &lt;a href=&quot;https://github.com/jhen0409/react-native-debugger&quot;&gt;Installation instructions can be found here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You can set breakpoints and also use the &lt;code class=&quot;highlighter-rouge&quot;&gt;debugger;&lt;/code&gt; statement like I did above to pause execution. To stitch your simulator with the debugger requires two orchestrated steps. The first thing you do is start the React Native Debugger application. Next, go into your simulator and hit the hot keys to bring up the React Native. For iOS this is Ctrl+Cmd+Z. For Android it’s Ctrl+M. Once in this menu, click Debug JS Remotely.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/react-native-enable-debugging.png&quot; alt=&quot;enable-debugging&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There are more hot keys for auto refreshing and some other neat tricks that can be found on the &lt;a href=&quot;https://facebook.github.io/react-native/docs/debugging.html&quot; target=&quot;_blank&quot;&gt;official debugging section&lt;/a&gt; in the documentation.&lt;/p&gt;
+
+&lt;p&gt;I highly encourage you to set this up now and examine the output with me.&lt;/p&gt;
+
+&lt;h3 id=&quot;examining-get-results&quot;&gt;Examining GET Results&lt;/h3&gt;
+
+&lt;p&gt;With your debugger loaded, Reload the application and when it starts, you should hit the breakpoint on success.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/react-native-debugger-breakpoint.png&quot; alt=&quot;react-native-debugger-breakpoint&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once stopped at a breakpoint, we can examine the details of the request in a number of ways. For now, I’m simply going to type &lt;code class=&quot;highlighter-rouge&quot;&gt;data&lt;/code&gt; into the Console window and expand the relevant parts.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/react-native-debug-output.png&quot; alt=&quot;react-native-debug-output&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The most interesting parts here are the &lt;code class=&quot;highlighter-rouge&quot;&gt;status&lt;/code&gt; property and the &lt;code class=&quot;highlighter-rouge&quot;&gt;data&lt;/code&gt; property. Status code 200 indicates a successful call which means the &lt;code class=&quot;highlighter-rouge&quot;&gt;data&lt;/code&gt; property will be filled with whatever we requested. In this case, it’s the score data for April 11, 2017.&lt;/p&gt;
+
+&lt;p&gt;Now that we’re getting data back from our service, we can finally focus on parsing the data and making it pretty.&lt;/p&gt;
+
+&lt;h2 id=&quot;need-a-full-stack-react-developer&quot;&gt;Need a Full Stack React Developer?&lt;/h2&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Making Remote Requests with Axios</summary></entry><entry><title type="html">React Native Flexbox</title><link href="/2018/04/17/react-native-flexbox.html" rel="alternate" type="text/html" title="React Native Flexbox" /><published>2018-04-17T00:00:00-04:00</published><updated>2018-04-17T00:00:00-04:00</updated><id>/2018/04/17/react-native-flexbox</id><content type="html" xml:base="/2018/04/17/react-native-flexbox.html">&lt;h1 id=&quot;react-native-flexbox-basics&quot;&gt;React Native Flexbox Basics&lt;/h1&gt;
+
+&lt;p&gt;This is by no means an exhaustive tutorial on flexbox. That’s beyond the scope of this walkthrough. My goal is to learn just enough to get by. Lets jump in.&lt;/p&gt;
+
+&lt;p&gt;Since we’ve gotten beyond “Hello World”, I’m also going to start linking to my commits for this so that you have the source code to reference should you get stuck or something isn’t clear. &lt;a href=&quot;https://github.com/bbuchanan/react-native-sports-app/blob/84f3878714a8f0da9fa5cdcbf5ed0d16a0466424/App.js&quot; target=&quot;_blank&quot;&gt; The commit for this article can be found here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The box itself is a parent component (usually a &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;View /&amp;gt;&lt;/code&gt;) and dictates how the child elements are displayed.&lt;/p&gt;
+
+&lt;p&gt;As you probably noticed in our Hello World so far, we’re already using a flexbox. The relevant settings are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;flex: 1&lt;/li&gt;
+  &lt;li&gt;alignItems: center&lt;/li&gt;
+  &lt;li&gt;justifyContent: center&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Flex 1 tells React Native that the parent container will consume all of the available space. That’s easy enough. alignItems will tell the box how the children are aligned. We picked ‘center’ for now, so the items will be centered vertically. justifyContent determines how the content will be distributed. Here again we’re using ‘center’, so the content will be equal from top to bottom (unless we change our primary axis, more on that later).&lt;/p&gt;
+
+&lt;p&gt;To help visualize this, I’ve created 5 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Image /&amp;gt;&lt;/code&gt; tags on our render function. I’ve replaced the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Text /&amp;gt;&lt;/code&gt; with Hello World and pasted this code 5 times.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;Image style={styles.ourImage}
+  source={{uri: &quot;https://www.clker.com/cliparts/I/a/V/A/7/A/blue-star-outline-md.png&quot;}} /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is blue star clip art so we can visualize what the various flexbox options do.&lt;/p&gt;
+
+&lt;p&gt;In our stylesheet section, I added this style&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ourImage: {
+    height: 50,
+    width: 50,
+    resizeMode: &quot;contain&quot;
+  },
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will contain the image to 50x50. Don’t forget to include the &lt;code class=&quot;highlighter-rouge&quot;&gt;Image&lt;/code&gt; component.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { StyleSheet, Text, View, Image } from &quot;react-native&quot;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/react-native-flex-box-center.png&quot; alt=&quot;react-native-flex-box-center&quot; /&gt;.&lt;/p&gt;
+
+&lt;p&gt;The default axis is vertical. So our container consumes all available space, puts the children vertically and centers them. As you might guess, &lt;code class=&quot;highlighter-rouge&quot;&gt;alignItems&lt;/code&gt; can also puts things at the start or end of the container. &lt;code class=&quot;highlighter-rouge&quot;&gt;flex-start&lt;/code&gt; and flex-end are used to accomplish this. I changed my &lt;code class=&quot;highlighter-rouge&quot;&gt;alignItems&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;flex-start&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/react-native-flex-box-flex-start.png&quot; alt=&quot;react-native-flex-box-flex-start&quot; /&gt;.&lt;/p&gt;
+
+&lt;p&gt;Another big feature visually is the ability to change the axis. By default, the axis is vertical, or &lt;code class=&quot;highlighter-rouge&quot;&gt;column&lt;/code&gt;. This tells the flexbox to arrange things top to bottom. If you want to change this axis, specify &lt;code class=&quot;highlighter-rouge&quot;&gt;row&lt;/code&gt; in the &lt;code class=&quot;highlighter-rouge&quot;&gt;flexDirection&lt;/code&gt; setting.&lt;/p&gt;
+
+&lt;p&gt;I’m going to set my &lt;code class=&quot;highlighter-rouge&quot;&gt;justifyContent&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;alignItems&lt;/code&gt; back to &lt;code class=&quot;highlighter-rouge&quot;&gt;center&lt;/code&gt; and we’ll change the &lt;code class=&quot;highlighter-rouge&quot;&gt;flexDirection&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;row&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/react-native-flex-box-flexDirection.png&quot; alt=&quot;react-native-flex-box-flexDirection&quot; /&gt;.&lt;/p&gt;
+
+&lt;p&gt;Of course there’s a whole lot more to it than that, but this should be good enough for now. As usual, there is documentation and a million tutorials out there that go into great detail. This is just a crash course.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://facebook.github.io/react-native/docs/flexbox.html&quot; target=&quot;_blank&quot;&gt;Flexbox documentation&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;a-note-about-external-resources&quot;&gt;A note about external resources&lt;/h3&gt;
+
+&lt;p&gt;A bit off topic, but including items from external sources, such as images like we did in this example, will often require that resource to be servered from a secure http server (i.e. https). If it doesn’t, what can happen is that the resource will not load, the app will fail silently and you and/or your users will wonder why nothing is working. So take note that a resource on another server is serving via SSL (https).&lt;/p&gt;
+
+&lt;h2 id=&quot;need-a-full-stack-react-developer&quot;&gt;Need a Full Stack React Developer?&lt;/h2&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">React Native Flexbox Basics</summary></entry><entry><title type="html">React Native Hello World</title><link href="/2018/04/16/react-native-hello-world.html" rel="alternate" type="text/html" title="React Native Hello World" /><published>2018-04-16T00:00:00-04:00</published><updated>2018-04-16T00:00:00-04:00</updated><id>/2018/04/16/react-native-hello-world</id><content type="html" xml:base="/2018/04/16/react-native-hello-world.html">&lt;h2 id=&quot;lets-write-some-code&quot;&gt;Lets Write Some Code&lt;/h2&gt;
+
+&lt;p&gt;Finally we’re in a position to write some simple code. A picture is worth a thousand words, so a video must be worth much more. Below is all we’re going to accomplish with this post, but it’s kind of a big deal.&lt;/p&gt;
+
+&lt;video width=&quot;320&quot; height=&quot;240&quot; controls=&quot;&quot;&gt;
+  &lt;source src=&quot;videos/react-native-hello-world.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;p&gt;We’re getting exposure to simple tags. React Native is not React and does not use HTML, but the concepts are similar. To display text, we use the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Text /&amp;gt;&lt;/code&gt; tag. For a complete list of components, see.&lt;/p&gt;
+
+&lt;p&gt;https://facebook.github.io/react-native/docs/components-and-apis.html&lt;/p&gt;
+
+&lt;p&gt;Some of the more common tags that we’ll be usings are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;View&lt;/li&gt;
+  &lt;li&gt;Image&lt;/li&gt;
+  &lt;li&gt;FlatList&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The list of components is relatively small compared to reactjs, so later on we’ll be utilizing another external library called &lt;a href=&quot;https://nativebase.io/&quot; target=&quot;_blank&quot;&gt;NativeBase&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Back to our tiny React Native app. The video shows us removing the default boilerplate and putting a single &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Text&amp;gt;&lt;/code&gt; tag in with the words Hello World. Easy enough.&lt;/p&gt;
+
+&lt;h2 id=&quot;container-components&quot;&gt;Container Components&lt;/h2&gt;
+
+&lt;p&gt;If you’re familiar with reactjs, you know that you need a container component to house things like text and image components. In React Native, the simplest form is the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;View /&amp;gt;&lt;/code&gt; component.&lt;/p&gt;
+
+&lt;p&gt;Later on we’ll deal with more robust containers that allow us to scroll, layout and refresh.&lt;/p&gt;
+
+&lt;h2 id=&quot;react-native-styling&quot;&gt;React Native Styling&lt;/h2&gt;
+
+&lt;p&gt;React Native is not HTML. The styling tags look remarkably similar to CSS, but it is not CSS. A great resource for React Native styling tags that are available is the &lt;a href=&quot;https://github.com/vhpoet/react-native-styling-cheat-sheet&quot; target=&quot;_blank&quot;&gt;React Native Cheatsheet&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;layout-with-flexbox&quot;&gt;Layout with Flexbox&lt;/h2&gt;
+
+&lt;p&gt;React Native uses flexbox to arrange items within a container. This is functionally similar to CSS flexbox. It’s beyond the scope of this tutorial to teach all of the concepts of flexbox, but we’ll go over some basics in the next tutorial and touch on particulars when they’re relevant to the application that we’re building.&lt;/p&gt;
+
+&lt;h2 id=&quot;need-a-full-stack-react-developer&quot;&gt;Need a Full Stack React Developer?&lt;/h2&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Lets Write Some Code</summary></entry><entry><title type="html">React Native Eject</title><link href="/2018/03/10/react-native-eject.html" rel="alternate" type="text/html" title="React Native Eject" /><published>2018-03-10T00:00:00-05:00</published><updated>2018-03-10T00:00:00-05:00</updated><id>/2018/03/10/react-native-eject</id><content type="html" xml:base="/2018/03/10/react-native-eject.html">&lt;h1 id=&quot;eject-eject-eject&quot;&gt;EJECT! EJECT! EJECT&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/tenor.gif&quot; alt=&quot;EJECT&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The ejection process is necessary for our application for a few reasons, but the immediate reason is that we want to include two native libraries. The first is &lt;a href=&quot;https://github.com/oblador/react-native-vector-icons&quot; target=&quot;_blank&quot;&gt;react-native-vector-icons&lt;/a&gt; and the second is &lt;a href=&quot;https://github.com/wix/react-native-navigation&quot; target=&quot;_blank&quot;&gt;react-native-navigation&lt;/a&gt;. Ejection essentially allows you to take complete control of the build process. It will allow us to add these native libraries from XCode and Android Studio.&lt;/p&gt;
+
+&lt;h2 id=&quot;post-ejection-pain&quot;&gt;Post Ejection Pain&lt;/h2&gt;
+
+&lt;p&gt;If there is one thing I’ve learned, managing the build and running the software becomes a much more painful process after ejecting. So when you get bogged down with errors (red screen of death), just remember you’re not alone. It sucks, there’s no way to sugar coat it.&lt;/p&gt;
+
+&lt;p&gt;From the command line in the root of your sports-app directory run&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yarn run eject
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You’ll be asked a few questions, below are my answers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/react-native-eject.png&quot; alt=&quot;react-native-eject-output&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The second question, “What should your app appear as on a user’s home screen”, I typed in Sports App. For the rest of the questions, I accepted the defaults. It will crank away for a couple of minutes and you’re back at a command prompt.&lt;/p&gt;
+
+&lt;h2 id=&quot;setting-up-native-environments&quot;&gt;Setting Up Native Environments&lt;/h2&gt;
+
+&lt;p&gt;Running the eject command was the easy part. The hard part is getting the native development environments up and running. For iOS, you need XCode. This can be obtained via the App Store. For Android, we’re going to use &lt;a href=&quot;https://developer.android.com/studio/install.html&quot; target=&quot;_blank&quot;&gt;Android Studio.&lt;/a&gt; The installations will probably take about an hour of your time.&lt;/p&gt;
+
+&lt;h2 id=&quot;building-in-native-environments&quot;&gt;Building in Native Environments&lt;/h2&gt;
+
+&lt;p&gt;The eject process has created two new directories off of the app root aptly named ios and android. Respective project files are located within those folders.&lt;/p&gt;
+
+&lt;h2 id=&quot;building-and-running-in-android-studio&quot;&gt;Building and Running in Android Studio&lt;/h2&gt;
+
+&lt;p&gt;Fire up Android Studio and navigate to the android folder within the project. You’ll likely be prompted numerous times for things such as this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/android-studio-react-native-1.png&quot; alt=&quot;android-studio-output&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I usually perform the updates it suggests. The next step is to build. Select &lt;code class=&quot;highlighter-rouge&quot;&gt;Build-&amp;gt;Make Project&lt;/code&gt;. If you’re lucky, the build will succeed. If not, see my sympathy section at the end of this article.&lt;/p&gt;
+
+&lt;p&gt;The emulator setup is what we’re really after though. Navigate to &lt;code class=&quot;highlighter-rouge&quot;&gt;Tools-&amp;gt;AVD Manager&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/android-studio-avd-virtual-devices.png&quot; alt=&quot;android-studio-virtual-devices&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For my purposes, I set up the Pixel 1 (the last one in the list). I’m using API 26 (Oreo). You may have to download that version if you don’t have it. After you create your virtual device, have a look at the details. This is done by clicking the down arrow at the far right of your emulator and selecting &lt;em&gt;View Details&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/android-studio-avd-emulator-details.png&quot; alt=&quot;android-studio-virtual-devices&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Please note the &lt;em&gt;Name&lt;/em&gt; with underscores and all. One of the downsides of Android is the emulator must be running when you start the application or it will fail to run. This is different from iOS where the emulator is started for you. For this, I’ve created a quick command.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;emulator -avd Pixel_API_26 -dns-server 8.8.8.8 -verbose -no-snapshot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Replace the &lt;em&gt;Pixel_API_26&lt;/em&gt; with the name in your emulator details. I also specified a DNS address because the emulator wasn’t picking up the DNS details from my DHCP server.&lt;/p&gt;
+
+&lt;p&gt;The &lt;em&gt;-no-snapshot&lt;/em&gt; option is optional but based on previous pain where the emulator or app would misbehave and all too many times clearing the snapshot and/or cold booting were the solutions, so I simply just do that every time.&lt;/p&gt;
+
+&lt;h2 id=&quot;building-and-running-in-xcode&quot;&gt;Building and Running in XCode&lt;/h2&gt;
+
+&lt;p&gt;This process seemed a lot simpler than Android Studio. Fire up XCode and navigate to the &lt;code class=&quot;highlighter-rouge&quot;&gt;~/projects/sports-app/ios&lt;/code&gt; folder and open the xcodeproj.&lt;/p&gt;
+
+&lt;p&gt;It’s pretty likely the app will not build because of this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ios-build-failed-1.png&quot; alt=&quot;ios-build-failed&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Select the top level node in your project and select the sportsapp in your targets.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ios-build-failed-2.png&quot; alt=&quot;ios-build-failed&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You’ll see the red exclamation mark under the &lt;em&gt;General&lt;/em&gt; tab as shown. Click the &lt;em&gt;Team&lt;/em&gt; dropdown and select a certificate. Also make sure &lt;em&gt;Automatically manage signing&lt;/em&gt; is checked.&lt;/p&gt;
+
+&lt;p&gt;After getting things right, your &lt;em&gt;Signing&lt;/em&gt; settings should resemble this. Note: you will probably also have to change the &lt;em&gt;Bundle Identifier&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ios-build-failed-3.png&quot; alt=&quot;ios-build-failed&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Oh, but it will still fail to build. The reason why is that you also need to make the same change on the sportsappTests target. Fortunately here, you’ll just need to pick your “Team” from the dropdown.&lt;/p&gt;
+
+&lt;p&gt;Now run &lt;code class=&quot;highlighter-rouge&quot;&gt;Product-&amp;gt;Build&lt;/code&gt; and it should succeed.&lt;/p&gt;
+
+&lt;h2 id=&quot;running-ejected-app&quot;&gt;Running Ejected App&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;yarn start&lt;/code&gt; will no longer work since Expo cannot be used. We’re left with either &lt;code class=&quot;highlighter-rouge&quot;&gt;yarn run ios&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;yarn run android&lt;/code&gt;. For Android, you must first start the emulator as described above.&lt;/p&gt;
+
+&lt;p&gt;If you have successfully built the product in Android Studio and XCode, this part should just work. For most of this, I’ll be focusing on iOS, but we’ll go back and run Android and tidy things up as well.&lt;/p&gt;
+
+&lt;p&gt;So lets give it a go. If this succeeds, you’ve done fantastic and have lived through half of the pain. I’m going to deliver the other half in the next article when we incorporate the icon and navigation libraries.&lt;/p&gt;
+
+&lt;h2 id=&quot;parting-sympathy&quot;&gt;Parting Sympathy&lt;/h2&gt;
+
+&lt;p&gt;In my limited experience, this is the most difficult part. All the members of my team, including me, have had some hair pulling moments and I’m not always going to know the answers. Your best bet is to google it, but if you have any problems or questions, I’ll try to answer/help, but no guarantees.&lt;/p&gt;
+
+&lt;h2 id=&quot;need-a-full-stack-react-developer&quot;&gt;Need a Full Stack React Developer?&lt;/h2&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">EJECT! EJECT! EJECT</summary></entry><entry><title type="html">React Native Environment Setup</title><link href="/2018/03/08/react-native-environment-setup.html" rel="alternate" type="text/html" title="React Native Environment Setup" /><published>2018-03-08T00:00:00-05:00</published><updated>2018-03-08T00:00:00-05:00</updated><id>/2018/03/08/react-native-environment-setup</id><content type="html" xml:base="/2018/03/08/react-native-environment-setup.html">&lt;h1 id=&quot;setting-up-the-react-native-environment&quot;&gt;Setting Up the React Native Environment&lt;/h1&gt;
+
+&lt;p&gt;I was first tasked with setting up a simple, proof of concept, “Hello World” application that ran on both iOS and Android.&lt;/p&gt;
+
+&lt;h2 id=&quot;environment-particulars&quot;&gt;Environment Particulars&lt;/h2&gt;
+
+&lt;p&gt;I’m on a Macbook Pro. I’m using &lt;a href=&quot;https://code.visualstudio.com/&quot; target=&quot;_blank&quot;&gt;Visual Studio Code&lt;/a&gt; as my IDE, but I’m not too religious about editors. I’ve choosen &lt;a href=&quot;https://yarnpkg.com&quot; target=&quot;_blank&quot;&gt;yarn&lt;/a&gt; over npm for package management. And of course, git for source control. That’s really all you need.&lt;/p&gt;
+
+&lt;h3 id=&quot;create-react-native-app&quot;&gt;create-react-native-app&lt;/h3&gt;
+
+&lt;p&gt;or &lt;em&gt;crna&lt;/em&gt; for short. If you’re familiar with React, this is more or less equivalent to that. It quickly creates a React Native application with sensible defaults. To get started, I loaded it via yarn.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yarn add create-react-native-app global
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Navigate to the root directory of where you hold your apps/repos. For me, this is my &lt;code class=&quot;highlighter-rouge&quot;&gt;~/projects&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd ~/projects
+create-react-native-app sports-app
+cd sports-app
+yarn start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Out of the box, you can use an app called Expo. Install &lt;a href=&quot;https://expo.io/&quot; target=&quot;_blank&quot;&gt;Expo&lt;/a&gt; on your mobile device. Now open your editor and load &lt;code class=&quot;highlighter-rouge&quot;&gt;App.js&lt;/code&gt;. With Expo running on your device, make some changes to the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Text&amp;gt;&lt;/code&gt; areas and save them. The application on your phone will update with those changes in near real time. Super awesome!&lt;/p&gt;
+
+&lt;p&gt;Congratulations! You now have a functioning mobile application that runs on iOS and Android.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, I have some bad news. All of the goodness we get from &lt;em&gt;crna&lt;/em&gt; and Expo is going away almost immediately. I’ll explain why and go through the steps next.&lt;/p&gt;
+
+&lt;h2 id=&quot;need-a-full-stack-react-developer&quot;&gt;Need a Full Stack React Developer?&lt;/h2&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Setting Up the React Native Environment</summary></entry><entry><title type="html">Welcome To React Native</title><link href="/2018/02/20/welcome-to-react-native.html" rel="alternate" type="text/html" title="Welcome To React Native" /><published>2018-02-20T00:00:00-05:00</published><updated>2018-02-20T00:00:00-05:00</updated><id>/2018/02/20/welcome-to-react-native</id><content type="html" xml:base="/2018/02/20/welcome-to-react-native.html">&lt;h1 id=&quot;welcome&quot;&gt;Welcome&lt;/h1&gt;
+
+&lt;p&gt;The purpose of this blog is to outline my first real world project done in React Native. This app will be published on the app store for both Android and iPhone. I’m going to keep client intellectual property private, but it isn’t relevant to the progression of this project. This is for my benefit, largely. I’ve been a largely inconsistent blogger largely due to it being inconvenient. With the discovery of github pages and Visual Studio code (thank you markdown preview!), I found it a lot more convenient to fire things up and do a little writing.&lt;/p&gt;
+
+&lt;h2 id=&quot;some-background&quot;&gt;Some Background&lt;/h2&gt;
+
+&lt;p&gt;I hadn’t yet produced a React application (web or native), but have been studying it for the last 6 months. I leaned heavily on the tutorials produced by Max Schwarzmüller of udemy.com. Both his React 16 and Redux course and his React Native course are worth every penny. I believe they fast tracked me to success. I had not written much beyond a few screens in his tutorial before I took on the project and my client is beyond pleased with the result and it’s ahead of schedule!&lt;/p&gt;
+
+&lt;h2 id=&quot;a-little-about-me&quot;&gt;A Little About Me&lt;/h2&gt;
+
+&lt;p&gt;I’ve been a principal architect for a software consulting firm in Atlanta for the last 14 years. I’ve been developing software for over 20 years, starting with C. Then I ‘graduated’ to C++ and later C#. I’ve been developing business applications in .NET for the last 12 years with a smattering of Javascript. In the last 2 years, I’ve really gotten into client side development and dabbling in the various Javascript frameworks. I abanoned Angular for Vue. However, I was drawn to React because of React Native and decided to jump over into that in late 2017. And here we are today …&lt;/p&gt;
+
+&lt;h2 id=&quot;the-application-developed&quot;&gt;The Application Developed&lt;/h2&gt;
+
+&lt;p&gt;The app will be a content delivery method for sports teams. The client currently has a website and a RESTful API that can serve up their exclusive content in the form of text and podcasts.&lt;/p&gt;
+
+&lt;p&gt;Without further delay, lets have a sneak look at the application in action.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/react-native-sports-app-preview.png&quot; alt=&quot;React Native Sports App&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is the focal point of the app and getting to this point involved a lot of steps, which we’ll go through. Step 1 is setting up our environment which will cover in the next post. Navigation, HTTP requests, and Redux are all a part of this and will also be detailed.&lt;/p&gt;
+
+&lt;h2 id=&quot;need-a-full-stack-react-developer&quot;&gt;Need a Full Stack React Developer?&lt;/h2&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Welcome</summary></entry></feed>
