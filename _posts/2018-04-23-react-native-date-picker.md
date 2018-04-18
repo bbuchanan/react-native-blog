@@ -29,7 +29,7 @@ which is what our current hard coded date value is.
 
 Now we're going to add the DatePicker to the top of our `<View>`, just above the FlatList. I've taken their example and tweaked the props to suit my purposes.
 
-```
+```javascript
 <DatePicker
   style={{ width: 200 }}
   date={this.state.date}
@@ -40,17 +40,6 @@ Now we're going to add the DatePicker to the top of our `<View>`, just above the
   maxDate="2017-11-01"
   confirmBtnText="Confirm"
   cancelBtnText="Cancel"
-  customStyles={{
-    dateIcon: {
-      position: "absolute",
-      left: 0,
-      top: 4,
-      marginLeft: 0
-    },
-    dateInput: {
-      marginLeft: 36
-    }
-  }}
   onDateChange={date => this.dateChangedHandler(date)}
 />
 ```
