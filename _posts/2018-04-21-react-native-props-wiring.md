@@ -61,10 +61,8 @@ The last thing we need to do is actually output the contents of the `scoreItems`
 
 The output looks like this:
 
-![react-native-scorecard-output](/images/react-native-scorecard-output.png)
+![react-native-scorecard-output]({{ site.imageurl }}/react-native-scorecard-output.png)
 
 Well that's kind of ugly, isn't it? In the next article we'll go about making this a little more aesthetically pleasing. We'll also address the warning that was produced at the bottom.
 
-## Need a Full Stack React Developer?
-
-I'm your guy! I've been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. [Yye Software](https://www.yyesoftware.com)
+{% include footer.html %}

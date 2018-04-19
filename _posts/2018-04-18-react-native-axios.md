@@ -17,7 +17,7 @@ As mentioned above, I like the flexibility and ease of use of axios. I'm going t
 
 First, in the project, I'm going to create a new folder off of the root called 'src'. Inside of that folder we'll create a file named `axios-sports.js`.
 
-![axios-sports](/images/axios-sports.png)
+![axios-sports]({{ site.imageurl }}/axios-sports.png)
 
 Inside of this file, I'm going to set some defaults that will save us from duplicating code and url details.
 
@@ -72,7 +72,7 @@ React Native has a pretty damn good debugging tool called React Native Debugger.
 
 You can set breakpoints and also use the `debugger;` statement like I did above to pause execution. To stitch your simulator with the debugger requires two orchestrated steps. The first thing you do is start the React Native Debugger application. Next, go into your simulator and hit the hot keys to bring up the React Native. For iOS this is Ctrl+Cmd+Z. For Android it's Ctrl+M. Once in this menu, click Debug JS Remotely.
 
-![enable-debugging](/images/react-native-enable-debugging.png)
+![enable-debugging]({{ site.imageurl }}/react-native-enable-debugging.png)
 
 There are more hot keys for auto refreshing and some other neat tricks that can be found on the <a href="https://facebook.github.io/react-native/docs/debugging.html" target="_blank">official debugging section</a> in the documentation.
 
@@ -82,16 +82,14 @@ I highly encourage you to set this up now and examine the output with me.
 
 With your debugger loaded, Reload the application and when it starts, you should hit the breakpoint on success.
 
-![react-native-debugger-breakpoint](/images/react-native-debugger-breakpoint.png)
+![react-native-debugger-breakpoint]({{ site.imageurl }}/react-native-debugger-breakpoint.png)
 
 Once stopped at a breakpoint, we can examine the details of the request in a number of ways. For now, I'm simply going to type `data` into the Console window and expand the relevant parts.
 
-![react-native-debug-output](/images/react-native-debug-output.png)
+![react-native-debug-output]({{ site.imageurl }}/react-native-debug-output.png)
 
 The most interesting parts here are the `status` property and the `data` property. Status code 200 indicates a successful call which means the `data` property will be filled with whatever we requested. In this case, it's the score data for April 11, 2017.
 
 Now that we're getting data back from our service, we can finally focus on parsing the data and making it pretty.
 
-## Need a Full Stack React Developer?
-
-I'm your guy! I've been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. [Yye Software](https://www.yyesoftware.com)
+{% include footer.html %}

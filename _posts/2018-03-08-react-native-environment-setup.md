@@ -29,6 +29,4 @@ Congratulations! You now have a functioning mobile application that runs on iOS 
 
 Unfortunately, I have some bad news. All of the goodness we get from _crna_ and Expo is going away almost immediately. I'll explain why and go through the steps next.
 
-## Need a Full Stack React Developer?
-
-I'm your guy! I've been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. [Yye Software](https://www.yyesoftware.com)
+{% include footer.html %}

@@ -3,7 +3,7 @@
 Finally we're in a position to write some simple code. A picture is worth a thousand words, so a video must be worth much more. Below is all we're going to accomplish with this post, but it's kind of a big deal.
 
 <video width="320" height="240" controls>
-  <source src="videos/react-native-hello-world.mp4" type="video/mp4">
+  <source src="{{ site.videourl }}/react-native-hello-world.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -35,6 +35,4 @@ React Native is not HTML. The styling tags look remarkably similar to CSS, but i
 
 React Native uses flexbox to arrange items within a container. This is functionally similar to CSS flexbox. It's beyond the scope of this tutorial to teach all of the concepts of flexbox, but we'll go over some basics in the next tutorial and touch on particulars when they're relevant to the application that we're building.
 
-## Need a Full Stack React Developer?
-
-I'm your guy! I've been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. [Yye Software](https://www.yyesoftware.com)
+{% include footer.html %}

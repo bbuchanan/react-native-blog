@@ -118,17 +118,17 @@ We can actually prove that the error state was triggered to ourselves by firing 
 
 You can set breakpoints and also use the `debugger;` statement like I did above to pause execution. To stitch your simulator with the debugger requires two orchestrated steps. The first thing you do is start the React Native Debugger application. Next, go into your simulator and hit the hot keys to bring up the React Native. For iOS this is Ctrl+Cmd+Z. For Android it's Ctrl+M. Once in this menu, click Debug JS Remotely.
 
-![enable-debugging](/images/react-native-enable-debugging.png)
+![enable-debugging]({{ site.imageurl }}/react-native-enable-debugging.png)
 
 But even better for us, we can analyze state as it happens. The only minor pain is that you have to drill down to the component in the Inspector that has the state you want to analyze. Components can get pretty deeply embedded pretty fast.
 
 For me, I removed a digit from the last portion of the url request. So the endpoint address was correct, but I made an invalid request to them. You can see in the debugger that I got an error and that my state was set accordingly.
 
-![react-native-debugger-state](/images/react-native-debugger-state.png)
+![react-native-debugger-state]({{ site.imageurl }}/react-native-debugger-state.png)
 
 And on a successful load, we can see the inverse is true. No error and 12 scores.
 
-![react-native-debugger-success](/images/react-native-debugger-success.png)
+![react-native-debugger-success]({{ site.imageurl }}/react-native-debugger-success.png)
 
 ## The code so far ...
 
@@ -136,6 +136,4 @@ If you're stuck or just want to compare notes, here is the commit for this artic
 
 https://github.com/bbuchanan/react-native-sports-app/tree/5985a9b2098870e349f85fe201ed1ce45af197eb
 
-## Need a Full Stack React Developer?
-
-I'm your guy! I've been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. [Yye Software](https://www.yyesoftware.com)
+{% include footer.html %}

@@ -43,17 +43,17 @@ This will contain the image to 50x50. Don't forget to include the `Image` compon
 import { StyleSheet, Text, View, Image } from "react-native";
 ```
 
-![react-native-flex-box-center](/images/react-native-flex-box-center.png).
+![react-native-flex-box-center]({{ site.imageurl }}/react-native-flex-box-center.png).
 
 The default axis is vertical. So our container consumes all available space, puts the children vertically and centers them. As you might guess, `alignItems` can also puts things at the start or end of the container. `flex-start` and flex-end are used to accomplish this. I changed my `alignItems` to `flex-start`.
 
-![react-native-flex-box-flex-start](/images/react-native-flex-box-flex-start.png).
+![react-native-flex-box-flex-start]({{ site.imageurl }}/react-native-flex-box-flex-start.png).
 
 Another big feature visually is the ability to change the axis. By default, the axis is vertical, or `column`. This tells the flexbox to arrange things top to bottom. If you want to change this axis, specify `row` in the `flexDirection` setting.
 
 I'm going to set my `justifyContent` and `alignItems` back to `center` and we'll change the `flexDirection` to `row`.
 
-![react-native-flex-box-flexDirection](/images/react-native-flex-box-flexDirection.png).
+![react-native-flex-box-flexDirection]({{ site.imageurl }}/react-native-flex-box-flexDirection.png).
 
 Of course there's a whole lot more to it than that, but this should be good enough for now. As usual, there is documentation and a million tutorials out there that go into great detail. This is just a crash course.
 
@@ -63,6 +63,4 @@ Of course there's a whole lot more to it than that, but this should be good enou
 
 A bit off topic, but including items from external sources, such as images like we did in this example, will often require that resource to be servered from a secure http server (i.e. https). If it doesn't, what can happen is that the resource will not load, the app will fail silently and you and/or your users will wonder why nothing is working. So take note that a resource on another server is serving via SSL (https).
 
-## Need a Full Stack React Developer?
-
-I'm your guy! I've been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. [Yye Software](https://www.yyesoftware.com)
+{% include footer.html %}

@@ -4,7 +4,7 @@ In the previous article, our React Native app finally got to a point where we co
 
 After all of that, we were left with annoying warning, 'Warning: Each child in an array or iterator should have a unique "key" prop.' and a less than polished scorecard.
 
-![react-native-scorecard-output](/images/react-native-scorecard-output.png)
+![react-native-scorecard-output]({{ site.imageurl }}/react-native-scorecard-output.png)
 
 The goal of this article is to get rid of the warning and make the scorecard look just a little bit better.
 
@@ -12,7 +12,7 @@ The goal of this article is to get rid of the warning and make the scorecard loo
 
 Most of the time when dealing with remote data, you'll receive some sort of unique identifier. Fortunately for us, there seems to be an ID given for each game.
 
-![react-native-sports-game-output](/images/react-native-sports-game-output.png)
+![react-native-sports-game-output]({{ site.imageurl }}/react-native-sports-game-output.png)
 
 We're going to pluck that ID and add that element to our scores array.
 
@@ -82,7 +82,7 @@ cardItemContainer: {
 },
 ```
 
-![react-native-scorecard-fixed-output](/images/react-native-scorecard-fixed-output.png)
+![react-native-scorecard-fixed-output]({{ site.imageurl }}/react-native-scorecard-fixed-output.png)
 
 We can see the text truncation is working and now my scorecards are symmetrical but I've introduced two more problems. First, my opinion is that truncating the team name isn't very useful. This name is needed in its entirety. For that, I'm going to remove the truncation and make the card even wider to accommodate the long team names. I'll set the width of the card to 150 and call it a day.
 
@@ -92,7 +92,7 @@ Which leads us to our second problem. If you're playing with this on the simulat
 
 We have two choices for scrollable lists. The FlatList and SectionList. The FlatList component does not try and do anything to the data other than add scrolling and it's a performant scroll (as opposed to the ScrollView component). The SectionList component, the name implies, adds sectioning to the FlatList. A SectionList would be useful for something like a contact list. Usually contact lists are sorted alphabetically and each letter is represented by a section.
 
-![react-native-sectionlist-component](/images/react-native-sectionlist-component.png)
+![react-native-sectionlist-component]({{ site.imageurl }}/react-native-sectionlist-component.png)
 
 For our purposes, the FlatList will do. The FlatList requires a datasource, which effectively moves our previous `map` work directly into the FlatList `renderItem` property.
 
@@ -138,7 +138,7 @@ to map our game id as the key.
 Take a look at our now scrollable list.
 
 <video width="320" height="240" controls>
-  <source src="videos/react-native-flatlist.mp4" type="video/mp4">
+  <source src="{{ site.videourl }}/react-native-flatlist.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -162,6 +162,4 @@ If your output isn't matching mine, please pull this commit from my repository a
 
 https://github.com/bbuchanan/react-native-sports-app/tree/3e29a52dca8717b0b0038b962c3fe836f8e62d4e
 
-## Need a Full Stack React Developer?
-
-I'm your guy! I've been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. [Yye Software](https://www.yyesoftware.com)
+{% include footer.html %}

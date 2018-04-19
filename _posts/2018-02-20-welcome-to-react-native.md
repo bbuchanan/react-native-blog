@@ -16,10 +16,8 @@ The app will be a content delivery method for sports teams. The client currently
 
 Without further delay, lets have a sneak look at the application in action.
 
-![React Native Sports App](/images/react-native-sports-app-preview.png)
+![React Native Sports App]({{ site.imageurl }}/react-native-sports-app-preview.png)
 
 This is the focal point of the app and getting to this point involved a lot of steps, which we'll go through. Step 1 is setting up our environment which will cover in the next post. Navigation, HTTP requests, and Redux are all a part of this and will also be detailed.
 
-## Need a Full Stack React Developer?
-
-I'm your guy! I've been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. [Yye Software](https://www.yyesoftware.com)
+{% include footer.html %}

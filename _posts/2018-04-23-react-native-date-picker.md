@@ -5,7 +5,7 @@ After that bit of clean up, I'd like to allow the user to pick dates for scores 
 Here is the goal of this section.
 
 <video width="320" height="240" controls>
-  <source src="videos/react-native-date-picker.mp4" type="video/mp4">
+  <source src="{{ site.videourl }}/react-native-date-picker.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -83,6 +83,4 @@ https://github.com/bbuchanan/react-native-sports-app/tree/5779968579d84006d6fb48
 
 Compare my code against yours to see where we're different.
 
-## Need a Full Stack React Developer?
-
-I'm your guy! I've been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. [Yye Software](https://www.yyesoftware.com)
+{% include footer.html %}
