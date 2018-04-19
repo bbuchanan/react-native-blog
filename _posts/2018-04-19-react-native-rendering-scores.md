@@ -186,3 +186,5 @@ https://github.com/bbuchanan/react-native-sports-app/tree/91fb39024126be0b3ba380
 ## Need a Full Stack React Developer?
 
 I'm your guy! I've been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. [Yye Software](https://www.yyesoftware.com)
+
+{% include footer.html %}
