@@ -1,3 +1,5 @@
+{% include post-nav.html %}
+
 # Wiring up Data via Props
 
 We have written a lot of boilerplate for sure, but hopefully you can see the flexibility and power in this.

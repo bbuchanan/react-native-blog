@@ -5,18 +5,18 @@
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,maximum-scale=2">
-  <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=a5e176b863985bd5dfb8bbf491e8448680089988"> <!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>React Native Sports App Tutorial | React Native Tutorial. Building a small sports score application from the ground up.</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="/react-native-blog/assets/css/style.css?v=036548f869c3ebf3c25875a666aa16941b5a4c61"> <!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>React Native Sports App Tutorial | Building a small sports score React Native application from the ground up.</title>
 <meta name="generator" content="Jekyll v3.7.3" />
 <meta property="og:title" content="React Native Sports App Tutorial" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="React Native Tutorial. Building a small sports score application from the ground up." />
-<meta property="og:description" content="React Native Tutorial. Building a small sports score application from the ground up." />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<meta name="description" content="Building a small sports score React Native application from the ground up." />
+<meta property="og:description" content="Building a small sports score React Native application from the ground up." />
+<link rel="canonical" href="http://localhost:4000/react-native-blog/" />
+<meta property="og:url" content="http://localhost:4000/react-native-blog/" />
 <meta property="og:site_name" content="React Native Sports App Tutorial" />
 <script type="application/ld+json">
-{"headline":"React Native Sports App Tutorial","description":"React Native Tutorial. Building a small sports score application from the ground up.","name":"React Native Sports App Tutorial","@type":"WebSite","url":"http://localhost:4000/","@context":"http://schema.org"}</script>
+{"headline":"React Native Sports App Tutorial","description":"Building a small sports score React Native application from the ground up.","name":"React Native Sports App Tutorial","@type":"WebSite","url":"http://localhost:4000/react-native-blog/","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -26,10 +26,10 @@
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
     <header class="inner">
-      <a id="forkme_banner" href="http://github.com/bbuchanan/react-native-blog">View on GitHub</a>
+      <a id="forkme_banner" href="https://github.com/bbuchanan/react-native-sports-app">View on GitHub</a>
 
       <h1 id="project_title">React Native Sports App Tutorial</h1>
-      <h2 id="project_tagline">React Native Tutorial. Building a small sports score application from the ground up.</h2>
+      <h2 id="project_tagline">Building a small sports score React Native application from the ground up.</h2>
 
       
     </header>
@@ -38,170 +38,201 @@
   <!-- MAIN CONTENT -->
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
-      <p>Text can be <strong>bold</strong>, <em>italic</em>, or <del>strikethrough</del>.</p>
+      
+<h1 class="entry-title">
+   
+  <a href="/2018/04/19/react-native-rendering-scores.html">React Native Rendering Scores</a>
+  
+</h1>
+<div class="entry-content"><div class="PageNavigation">
+  
+  <a class="prev" href="/react-native-blog/2018/04/18/react-native-axios.html">&laquo; React Native Axios</a>
+   
+</div>
 
-<p><a href="./another-page.html">Link to another page</a>.
-<a href="./2018/04/19/react-native-rendering-scores.html">Rendering Scores</a></p>
+<h1 id="rendering-scores-using-react-components">Rendering Scores Using React Components</h1>
 
-<p>There should be whitespace between paragraphs.</p>
+<p>For this article, we’re simply going to get an introduction to styles and pull together some of the knowledge we have about flexbox in React Native. We’re going to make a little scorecard with hardcoded data for now. Subsequent articles will wire up the downloaded data and introduce you to <a href="https://reactjs.org/docs/components-and-props.html" target="_blank">React props</a>.</p>
 
-<p>There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.</p>
+<p>If you get stuck, <a href="https://github.com/bbuchanan/react-native-sports-app/tree/91fb39024126be0b3ba3809d0b3360ff025f4e3d" target="_blank">the commit up until this point can be found here</a>.</p>
 
-<h1 id="header-1">Header 1</h1>
+<h3 id="create-react-native-components">Create React Native Components</h3>
 
-<p>This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.</p>
+<p>A component is really nothing more than a class that derives from the Component object within React. This is an essential building block of both React JS and React Native. We’re going to create a component by creating a folder named <code class="highlighter-rouge">Components</code> underneath our <code class="highlighter-rouge">src</code> directory. After that, we’re going to create a Javascript file named <code class="highlighter-rouge">ScorecardItem.js</code>.</p>
 
-<h2 id="header-2">Header 2</h2>
+<p><img src="/react-native-blog/assets/images/react-native-scorecard-component.png" alt="react-native-component-scorecard" /></p>
 
-<blockquote>
-  <p>This is a blockquote following a header.</p>
+<p>The first thing we need to do is import some things from both react and react-native.</p>
 
-  <p>When something is important enough, you do it even if the odds are not in your favor.</p>
-</blockquote>
-
-<h3 id="header-3">Header 3</h3>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Javascript code with syntax highlighting.</span>
-<span class="kd">var</span> <span class="nx">fun</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">lang</span><span class="p">(</span><span class="nx">l</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">dateformat</span><span class="p">.</span><span class="nx">i18n</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./lang/"</span> <span class="o">+</span> <span class="nx">l</span><span class="p">);</span>
-  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-<span class="p">};</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">View</span><span class="p">,</span> <span class="nx">StyleSheet</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native"</span><span class="p">;</span>
 </code></pre></div></div>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ruby code with syntax highlighting</span>
-<span class="no">GitHubPages</span><span class="o">::</span><span class="no">Dependencies</span><span class="p">.</span><span class="nf">gems</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">gem</span><span class="p">,</span> <span class="n">version</span><span class="o">|</span>
-  <span class="n">s</span><span class="p">.</span><span class="nf">add_dependency</span><span class="p">(</span><span class="n">gem</span><span class="p">,</span> <span class="s2">"= </span><span class="si">#{</span><span class="n">version</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="k">end</span>
+<p>We always need React, but in addition to this, since we’re creating our own component, we’ll have to import the Component class using the curly braces.</p>
+
+<p>We’re going to use a <code class="highlighter-rouge">&lt;Text /&gt;</code>, a <code class="highlighter-rouge">&lt;View /&gt;</code> and a <code class="highlighter-rouge">&lt;StyleSheet /&gt;</code> to get our layout started.</p>
+
+<p>The first thing to do is to create a class that extends the Component class. Every single component must implement the <code class="highlighter-rouge">render()</code> function and return jsx. Don’t worry if you’re not too familiar with jsx yet, we won’t need to know too much about it. For our purposes, this is HTML-like with some bindings.</p>
+
+<p>A bare bones component would look like this:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">ScorecardItem</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">View</span> <span class="o">/&gt;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">ScorecardItem</span><span class="p">;</span>
 </code></pre></div></div>
 
-<h4 id="header-4">Header 4</h4>
+<p>You could now include this component as is within other components, including your app component. This <code class="highlighter-rouge">render()</code> function does nothing but return an empty view, so you wouldn’t see anything exciting, so lets change that.</p>
 
-<ul>
-  <li>This is an unordered list following a header.</li>
-  <li>This is an unordered list following a header.</li>
-  <li>This is an unordered list following a header.</li>
-</ul>
+<p>Our final product is going to look like the image below and I’m going to walk you through step-by-step how this happens.</p>
 
-<h5 id="header-5">Header 5</h5>
+<p><img src="/react-native-blog/assets/images/react-native-component-render.png" alt="react-native-component-render" /></p>
 
-<ol>
-  <li>This is an ordered list following a header.</li>
-  <li>This is an ordered list following a header.</li>
-  <li>This is an ordered list following a header.</li>
-</ol>
+<p>While this is duplicated over and over on the screen, this is the same component instantiated several times with hard coded values. The goal is to get it rendering dynamically from the sports score data source, but first we’re going to focus on styling our scorecard. Lets start with something simple in our render function.</p>
 
-<h6 id="header-6">Header 6</h6>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">head1</th>
-      <th style="text-align: left">head two</th>
-      <th style="text-align: left">three</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good swedish fish</td>
-      <td style="text-align: left">nice</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">out of stock</td>
-      <td style="text-align: left">good and plenty</td>
-      <td style="text-align: left">nice</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good <code class="highlighter-rouge">oreos</code></td>
-      <td style="text-align: left">hmm</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good <code class="highlighter-rouge">zoute</code> drop</td>
-      <td style="text-align: left">yumm</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="theres-a-horizontal-rule-below-this">There’s a horizontal rule below this.</h3>
-
-<hr />
-
-<h3 id="here-is-an-unordered-list">Here is an unordered list:</h3>
-
-<ul>
-  <li>Item foo</li>
-  <li>Item bar</li>
-  <li>Item baz</li>
-  <li>Item zip</li>
-</ul>
-
-<h3 id="and-an-ordered-list">And an ordered list:</h3>
-
-<ol>
-  <li>Item one</li>
-  <li>Item two</li>
-  <li>Item three</li>
-  <li>Item four</li>
-</ol>
-
-<h3 id="and-a-nested-list">And a nested list:</h3>
-
-<ul>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item</li>
-      <li>level 2 item
-        <ul>
-          <li>level 3 item</li>
-          <li>level 3 item</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-    </ul>
-  </li>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-    </ul>
-  </li>
-  <li>level 1 item</li>
-</ul>
-
-<h3 id="small-image">Small image</h3>
-
-<p><img src="https://assets-cdn.github.com/images/icons/emoji/octocat.png" alt="Octocat" /></p>
-
-<h3 id="large-image">Large image</h3>
-
-<p><img src="https://guides.github.com/activities/hello-world/branching.png" alt="Branching" /></p>
-
-<h3 id="definition-lists-can-be-used-with-html-syntax">Definition lists can be used with HTML syntax.</h3>
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">View</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">View</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">View</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="nx">Detroit</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="mi">8</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">View</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="nx">Minnesota</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>    <span class="p">);</span>
+  <span class="p">}</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The final element.
+<p>There are a lot of <code class="highlighter-rouge">&lt;View /&gt;</code> tags for sure, but I’m going to use those containers to apply styling. Here is how we look without styles (the code above).</p>
+
+<p><img src="/react-native-blog/assets/images/react-native-component-no-styles.png" alt="react-native-component-no-styles" /></p>
+
+<h3 id="creating-and-applying-react-native-styles">Creating and Applying React Native Styles</h3>
+
+<p>As mentioned in a previous post, styles in React Native resemble css a little bit, but they’re not full blown css styles and the syntax is slightly different. For example, there are no dashes in React Native styles, the names are camel case.</p>
+
+<p>Since we’re imported the <code class="highlighter-rouge">StyleSheet</code> namespace, we can use the <code class="highlighter-rouge">create()</code> function to register our styles within this component. I like to put my styles on top, before the component class declaration so that designer types don’t have to dig through anything to find the styles. They’re always on top.</p>
+
+<p>The first style I want to create is the rounded rectangle around the scorecard. The <code class="highlighter-rouge">create()</code> function takes an array of styles. To get started, simply call <code class="highlighter-rouge">create()</code> like so:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">styles</span> <span class="o">=</span> <span class="nx">StyleSheet</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+  <span class="na">cardItemContainer</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">borderRadius</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="na">borderColor</span><span class="p">:</span> <span class="s2">"black"</span><span class="p">,</span>
+    <span class="na">borderWidth</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">margin</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="na">alignItems</span><span class="p">:</span> <span class="nx">center</span>
+  <span class="p">}</span>
+<span class="p">});</span>
 </code></pre></div></div>
+
+<p>Phew, that’s a lot. This is sitting around the entire score. The first three items, <code class="highlighter-rouge">borderRadius</code>, <code class="highlighter-rouge">borderColor</code> and <code class="highlighter-rouge">borderWidth</code> are all responsible for drawing the rounded rectangle around the scorecard. I’ve set a <code class="highlighter-rouge">margin</code> of 12 to give some space in between each card. And finally, since this is all in a flexbox, I’m asking for the child items to be centrally aligned.</p>
+
+<p>The next thing I want to accomplish is I want space between the border itself and the text that’s going to be rendered inside of each scorecard. I’m going to add another style called <code class="highlighter-rouge">scoreContainer</code> and set a margin of 3.</p>
+
+<p>To add another style, you just add to the array like so.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">styles</span> <span class="o">=</span> <span class="nx">StyleSheet</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+  <span class="na">cardItemContainer</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">borderRadius</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="na">borderColor</span><span class="p">:</span> <span class="s2">"black"</span><span class="p">,</span>
+    <span class="na">borderWidth</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">margin</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="na">alignItems</span><span class="p">:</span> <span class="nx">center</span>
+  <span class="p">},</span>
+  <span class="na">scoreContainer</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">margin</span><span class="p">:</span> <span class="mi">3</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Finally, I simply want to set the font sizes for the score number and the team name, so my final stylesheet looks like this:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">styles</span> <span class="o">=</span> <span class="nx">StyleSheet</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+  <span class="na">cardItemContainer</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">borderRadius</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="na">borderColor</span><span class="p">:</span> <span class="s2">"black"</span><span class="p">,</span>
+    <span class="na">borderWidth</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">margin</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="na">alignItems</span><span class="p">:</span> <span class="s2">"center"</span>
+  <span class="p">},</span>
+  <span class="na">scoreContainer</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">margin</span><span class="p">:</span> <span class="mi">3</span>
+  <span class="p">},</span>
+  <span class="na">teamName</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">fontSize</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="na">textAlign</span><span class="p">:</span> <span class="s2">"center"</span>
+  <span class="p">},</span>
+  <span class="na">teamScore</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">fontSize</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
+    <span class="na">textAlign</span><span class="p">:</span> <span class="s2">"center"</span><span class="p">,</span>
+    <span class="na">fontWeight</span><span class="p">:</span> <span class="s2">"bold"</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="applying-styles">Applying styles</h3>
+
+<p>Creating the stylesheet allows you to reuse styles, of course, but it also makes them apply cleanly within the code, just as it does with HTML and css. To apply a style we attach the style name to the style attribute.</p>
+
+<p>For our top level view, we wanted the <code class="highlighter-rouge">cardItemContainer</code> which contains our border and margin. I want the area housing the actual score to have some space (margin: 3) between the border and text and then I want to apply some font styling for the team name and the score.</p>
+
+<p>Now my render function looks like this:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">cardItemContainer</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">scoreContainer</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">View</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">teamName</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Detroit</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">teamScore</span><span class="p">}</span><span class="o">&gt;</span><span class="mi">8</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">View</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">teamName</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Minnesota</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">teamScore</span><span class="p">}</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To see this rendered inside of your application, go back to the <code class="highlighter-rouge">App.js</code> file and include your shiney new component like this.</p>
+
+<p><code class="highlighter-rouge">import ScorecardItem from "./src/components/ScorecardItem";</code></p>
+
+<p>In your render function, create a number of them like this.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">container</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">ScorecardItem</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">ScorecardItem</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">ScorecardItem</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">ScorecardItem</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>    <span class="p">);</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Your output should match mine shown at the beginning of the article. If you’re having trouble, you can always pull this commit from here.</p>
+
+<p>https://github.com/bbuchanan/react-native-sports-app/tree/91fb39024126be0b3ba3809d0b3360ff025f4e3d</p>
+
+<h1> Need a Full Stack React Developer?</h1>
+
+<p>I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
+way to contact me is via our company page.
+<a href="https://www.yyesoftware.com" target="_blank">Yye Software</a></p>
+</div>
 
     </section>
   </div>

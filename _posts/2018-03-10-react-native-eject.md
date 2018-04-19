@@ -1,3 +1,5 @@
+{% include post-nav.html %}
+
 # EJECT! EJECT! EJECT
 
 ![EJECT]({{ site.imageurl }}/tenor.gif)

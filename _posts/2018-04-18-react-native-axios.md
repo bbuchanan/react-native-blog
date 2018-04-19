@@ -1,3 +1,5 @@
+{% include post-nav.html %}
+
 # Making Remote Requests with Axios
 
 Slowly we're getting into the meat of the project. The goal is to get details of sports from a remote source. In this case, we're going to use <a href="https://www.mysportsfeeds.com" target="_blank">My Sports Data Feed</a>. The API is free for completed seasons. So we're going to focus on the 2017 baseball season, but this can easily be changed to suit your sport of choice.

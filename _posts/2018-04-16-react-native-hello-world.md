@@ -1,3 +1,5 @@
+{% include post-nav.html %}
+
 ## Lets Write Some Code
 
 Finally we're in a position to write some simple code. A picture is worth a thousand words, so a video must be worth much more. Below is all we're going to accomplish with this post, but it's kind of a big deal.

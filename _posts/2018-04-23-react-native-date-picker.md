@@ -1,3 +1,5 @@
+{% include post-nav.html %}
+
 # Responding to User Feedback - React Native Events
 
 After that bit of clean up, I'd like to allow the user to pick dates for scores they'd like to see. We're going to go through installing a third party component package and show how to handle user events.

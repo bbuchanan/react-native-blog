@@ -1,3 +1,5 @@
+{% include post-nav.html %}
+
 # Component State
 
 Lets do a quick recap of what we have and what we need.

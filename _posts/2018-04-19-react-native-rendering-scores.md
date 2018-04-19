@@ -1,3 +1,5 @@
+{% include post-nav.html %}
+
 # Rendering Scores Using React Components
 
 For this article, we're simply going to get an introduction to styles and pull together some of the knowledge we have about flexbox in React Native. We're going to make a little scorecard with hardcoded data for now. Subsequent articles will wire up the downloaded data and introduce you to <a href="https://reactjs.org/docs/components-and-props.html" target="_blank">React props</a>.

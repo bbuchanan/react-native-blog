@@ -1,3 +1,5 @@
+{% include post-nav.html %}
+
 # Sports App Cleanup
 
 In the previous article, our React Native app finally got to a point where we could load data from a remote source, put that data into our component's state, iterate over each javascript array item using the `map` function and finally pass the relevant portion of each element to our child component via React props.

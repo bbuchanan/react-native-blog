@@ -1,3 +1,5 @@
+{% include post-nav.html %}
+
 # React Native Flexbox Basics
 
 This is by no means an exhaustive tutorial on flexbox. That's beyond the scope of this walkthrough. My goal is to learn just enough to get by. Lets jump in.

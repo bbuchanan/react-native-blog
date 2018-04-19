@@ -1,9 +1,4 @@
----
-layout: post
-title: Welcome to the React Native Sports App Tutorial
-date: 2018-03-17T20:20:46.000Z
-categories: react react-native
----
+{% include post-nav.html %}
 
 # Welcome
 

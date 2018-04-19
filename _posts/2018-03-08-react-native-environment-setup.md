@@ -1,3 +1,5 @@
+{% include post-nav.html %}
+
 # Setting Up the React Native Environment
 
 I was first tasked with setting up a simple, proof of concept, "Hello World" application that ran on both iOS and Android.
