@@ -6,7 +6,7 @@ After that bit of clean up, I'd like to allow the user to pick dates for scores 
 
 Here is the goal of this section.
 
-<video width="320" height="240" controls>
+<video width="640" height="480" controls>
   <source src="{{ site.videourl }}/react-native-date-picker.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>

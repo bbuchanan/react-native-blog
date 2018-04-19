@@ -4,7 +4,7 @@
 
 Finally we're in a position to write some simple code. A picture is worth a thousand words, so a video must be worth much more. Below is all we're going to accomplish with this post, but it's kind of a big deal.
 
-<video width="320" height="240" controls>
+<video width="640" height="480" controls>
   <source src="{{ site.videourl }}/react-native-hello-world.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>

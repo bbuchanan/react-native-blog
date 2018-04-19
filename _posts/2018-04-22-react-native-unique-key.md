@@ -139,7 +139,7 @@ to map our game id as the key.
 
 Take a look at our now scrollable list.
 
-<video width="320" height="240" controls>
+<video width="640" height="480" controls>
   <source src="{{ site.videourl }}/react-native-flatlist.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
