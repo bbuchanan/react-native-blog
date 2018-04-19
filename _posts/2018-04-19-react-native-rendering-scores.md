@@ -8,7 +8,7 @@ If you get stuck, <a href="https://github.com/bbuchanan/react-native-sports-app/
 
 A component is really nothing more than a class that derives from the Component object within React. This is an essential building block of both React JS and React Native. We're going to create a component by creating a folder named `Components` underneath our `src` directory. After that, we're going to create a Javascript file named `ScorecardItem.js`.
 
-![react-native-component-scorecard]({{ imageurl }}/react-native-scorecard-component.png)
+![react-native-component-scorecard]({{ site.imageurl }}/react-native-scorecard-component.png)
 
 The first thing we need to do is import some things from both react and react-native.
 
@@ -39,7 +39,7 @@ You could now include this component as is within other components, including yo
 
 Our final product is going to look like the image below and I'm going to walk you through step-by-step how this happens.
 
-![react-native-component-render]({{ imageurl }}/react-native-component-render.png)
+![react-native-component-render]({{ site.imageurl }}/react-native-component-render.png)
 
 While this is duplicated over and over on the screen, this is the same component instantiated several times with hard coded values. The goal is to get it rendering dynamically from the sports score data source, but first we're going to focus on styling our scorecard. Lets start with something simple in our render function.
 
@@ -64,7 +64,7 @@ While this is duplicated over and over on the screen, this is the same component
 
 There are a lot of `<View />` tags for sure, but I'm going to use those containers to apply styling. Here is how we look without styles (the code above).
 
-![react-native-component-no-styles]({{ imageurl }}/react-native-component-no-styles.png)
+![react-native-component-no-styles]({{ site.imageurl }}/react-native-component-no-styles.png)
 
 ### Creating and Applying React Native Styles
 
