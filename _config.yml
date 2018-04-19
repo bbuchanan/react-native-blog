@@ -28,9 +28,9 @@ theme: jekyll-theme-slate
 plugins:
   - jekyll-feed
 
-  sass:
+sass:
   style: compact # possible values: nested expanded compact compressed
-  
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
