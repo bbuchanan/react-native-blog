@@ -1,4 +1,183 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-04-18T17:10:10-04:00</updated><id>/</id><title type="html">React Native Sports App Tutorial</title><subtitle>React Native Tutorial. Building a small sports score application from the ground up.</subtitle><entry><title type="html">React Native Axios</title><link href="/2018/04/18/react-native-axios.html" rel="alternate" type="text/html" title="React Native Axios" /><published>2018-04-18T00:00:00-04:00</published><updated>2018-04-18T00:00:00-04:00</updated><id>/2018/04/18/react-native-axios</id><content type="html" xml:base="/2018/04/18/react-native-axios.html">&lt;h1 id=&quot;making-remote-requests-with-axios&quot;&gt;Making Remote Requests with Axios&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-19T09:24:38-04:00</updated><id>http://localhost:4000/</id><title type="html">React Native Sports App Tutorial</title><subtitle>React Native Tutorial. Building a small sports score application from the ground up.</subtitle><entry><title type="html">React Native Rendering Scores</title><link href="http://localhost:4000/2018/04/19/react-native-rendering-scores.html" rel="alternate" type="text/html" title="React Native Rendering Scores" /><published>2018-04-19T00:00:00-04:00</published><updated>2018-04-19T00:00:00-04:00</updated><id>http://localhost:4000/2018/04/19/react-native-rendering-scores</id><content type="html" xml:base="http://localhost:4000/2018/04/19/react-native-rendering-scores.html">&lt;h1 id=&quot;rendering-scores-using-react-components&quot;&gt;Rendering Scores Using React Components&lt;/h1&gt;
+
+&lt;p&gt;For this article, we’re simply going to get an introduction to styles and pull together some of the knowledge we have about flexbox in React Native. We’re going to make a little scorecard with hardcoded data for now. Subsequent articles will wire up the downloaded data and introduce you to &lt;a href=&quot;https://reactjs.org/docs/components-and-props.html&quot; target=&quot;_blank&quot;&gt;React props&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you get stuck, &lt;a href=&quot;https://github.com/bbuchanan/react-native-sports-app/tree/91fb39024126be0b3ba3809d0b3360ff025f4e3d&quot; target=&quot;_blank&quot;&gt;the commit up until this point can be found here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;create-react-native-components&quot;&gt;Create React Native Components&lt;/h3&gt;
+
+&lt;p&gt;A component is really nothing more than a class that derives from the Component object within React. This is an essential building block of both React JS and React Native. We’re going to create a component by creating a folder named &lt;code class=&quot;highlighter-rouge&quot;&gt;Components&lt;/code&gt; underneath our &lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt; directory. After that, we’re going to create a Javascript file named &lt;code class=&quot;highlighter-rouge&quot;&gt;ScorecardItem.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/react-native-scorecard-component.png&quot; alt=&quot;react-native-component-scorecard&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first thing we need to do is import some things from both react and react-native.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;react&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;StyleSheet&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;react-native&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We always need React, but in addition to this, since we’re creating our own component, we’ll have to import the Component class using the curly braces.&lt;/p&gt;
+
+&lt;p&gt;We’re going to use a &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Text /&amp;gt;&lt;/code&gt;, a &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;View /&amp;gt;&lt;/code&gt; and a &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;StyleSheet /&amp;gt;&lt;/code&gt; to get our layout started.&lt;/p&gt;
+
+&lt;p&gt;The first thing to do is to create a class that extends the Component class. Every single component must implement the &lt;code class=&quot;highlighter-rouge&quot;&gt;render()&lt;/code&gt; function and return jsx. Don’t worry if you’re not too familiar with jsx yet, we won’t need to know too much about it. For our purposes, this is HTML-like with some bindings.&lt;/p&gt;
+
+&lt;p&gt;A bare bones component would look like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ScorecardItem&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ScorecardItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You could now include this component as is within other components, including your app component. This &lt;code class=&quot;highlighter-rouge&quot;&gt;render()&lt;/code&gt; function does nothing but return an empty view, so you wouldn’t see anything exciting, so lets change that.&lt;/p&gt;
+
+&lt;p&gt;Our final product is going to look like the image below and I’m going to walk you through step-by-step how this happens.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/react-native-component-render.png&quot; alt=&quot;react-native-component-render&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;While this is duplicated over and over on the screen, this is the same component instantiated several times with hard coded values. The goal is to get it rendering dynamically from the sports score data source, but first we’re going to focus on styling our scorecard. Lets start with something simple in our render function.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Detroit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Minnesota&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There are a lot of &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;View /&amp;gt;&lt;/code&gt; tags for sure, but I’m going to use those containers to apply styling. Here is how we look without styles (the code above).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/react-native-component-no-styles.png&quot; alt=&quot;react-native-component-no-styles&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-and-applying-react-native-styles&quot;&gt;Creating and Applying React Native Styles&lt;/h3&gt;
+
+&lt;p&gt;As mentioned in a previous post, styles in React Native resemble css a little bit, but they’re not full blown css styles and the syntax is slightly different. For example, there are no dashes in React Native styles, the names are camel case.&lt;/p&gt;
+
+&lt;p&gt;Since we’re imported the &lt;code class=&quot;highlighter-rouge&quot;&gt;StyleSheet&lt;/code&gt; namespace, we can use the &lt;code class=&quot;highlighter-rouge&quot;&gt;create()&lt;/code&gt; function to register our styles within this component. I like to put my styles on top, before the component class declaration so that designer types don’t have to dig through anything to find the styles. They’re always on top.&lt;/p&gt;
+
+&lt;p&gt;The first style I want to create is the rounded rectangle around the scorecard. The &lt;code class=&quot;highlighter-rouge&quot;&gt;create()&lt;/code&gt; function takes an array of styles. To get started, simply call &lt;code class=&quot;highlighter-rouge&quot;&gt;create()&lt;/code&gt; like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;StyleSheet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;cardItemContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderRadius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;black&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;alignItems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;center&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Phew, that’s a lot. This is sitting around the entire score. The first three items, &lt;code class=&quot;highlighter-rouge&quot;&gt;borderRadius&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;borderColor&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;borderWidth&lt;/code&gt; are all responsible for drawing the rounded rectangle around the scorecard. I’ve set a &lt;code class=&quot;highlighter-rouge&quot;&gt;margin&lt;/code&gt; of 12 to give some space in between each card. And finally, since this is all in a flexbox, I’m asking for the child items to be centrally aligned.&lt;/p&gt;
+
+&lt;p&gt;The next thing I want to accomplish is I want space between the border itself and the text that’s going to be rendered inside of each scorecard. I’m going to add another style called &lt;code class=&quot;highlighter-rouge&quot;&gt;scoreContainer&lt;/code&gt; and set a margin of 3.&lt;/p&gt;
+
+&lt;p&gt;To add another style, you just add to the array like so.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;StyleSheet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;cardItemContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderRadius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;black&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;alignItems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;center&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;scoreContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, I simply want to set the font sizes for the score number and the team name, so my final stylesheet looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;StyleSheet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;cardItemContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderRadius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;black&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;alignItems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;center&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;scoreContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;teamName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;fontSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;textAlign&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;center&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;teamScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;fontSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;textAlign&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;center&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;fontWeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bold&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;applying-styles&quot;&gt;Applying styles&lt;/h3&gt;
+
+&lt;p&gt;Creating the stylesheet allows you to reuse styles, of course, but it also makes them apply cleanly within the code, just as it does with HTML and css. To apply a style we attach the style name to the style attribute.&lt;/p&gt;
+
+&lt;p&gt;For our top level view, we wanted the &lt;code class=&quot;highlighter-rouge&quot;&gt;cardItemContainer&lt;/code&gt; which contains our border and margin. I want the area housing the actual score to have some space (margin: 3) between the border and text and then I want to apply some font styling for the team name and the score.&lt;/p&gt;
+
+&lt;p&gt;Now my render function looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cardItemContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scoreContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Detroit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Minnesota&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To see this rendered inside of your application, go back to the &lt;code class=&quot;highlighter-rouge&quot;&gt;App.js&lt;/code&gt; file and include your shiney new component like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;import ScorecardItem from &quot;./src/components/ScorecardItem&quot;;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In your render function, create a number of them like this.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ScorecardItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ScorecardItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ScorecardItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ScorecardItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Your output should match mine shown at the beginning of the article. If you’re having trouble, you can always pull this commit from here.&lt;/p&gt;
+
+&lt;p&gt;https://github.com/bbuchanan/react-native-sports-app/tree/91fb39024126be0b3ba3809d0b3360ff025f4e3d&lt;/p&gt;
+
+&lt;h2 id=&quot;need-a-full-stack-react-developer&quot;&gt;Need a Full Stack React Developer?&lt;/h2&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Rendering Scores Using React Components</summary></entry><entry><title type="html">React Native Axios</title><link href="http://localhost:4000/2018/04/18/react-native-axios.html" rel="alternate" type="text/html" title="React Native Axios" /><published>2018-04-18T00:00:00-04:00</published><updated>2018-04-18T00:00:00-04:00</updated><id>http://localhost:4000/2018/04/18/react-native-axios</id><content type="html" xml:base="http://localhost:4000/2018/04/18/react-native-axios.html">&lt;h1 id=&quot;making-remote-requests-with-axios&quot;&gt;Making Remote Requests with Axios&lt;/h1&gt;
 
 &lt;p&gt;Slowly we’re getting into the meat of the project. The goal is to get details of sports from a remote source. In this case, we’re going to use &lt;a href=&quot;https://www.mysportsfeeds.com&quot; target=&quot;_blank&quot;&gt;My Sports Data Feed&lt;/a&gt;. The API is free for completed seasons. So we’re going to focus on the 2017 baseball season, but this can easily be changed to suit your sport of choice.&lt;/p&gt;
 
@@ -92,7 +271,7 @@
 
 &lt;h2 id=&quot;need-a-full-stack-react-developer&quot;&gt;Need a Full Stack React Developer?&lt;/h2&gt;
 
-&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Making Remote Requests with Axios</summary></entry><entry><title type="html">React Native Flexbox</title><link href="/2018/04/17/react-native-flexbox.html" rel="alternate" type="text/html" title="React Native Flexbox" /><published>2018-04-17T00:00:00-04:00</published><updated>2018-04-17T00:00:00-04:00</updated><id>/2018/04/17/react-native-flexbox</id><content type="html" xml:base="/2018/04/17/react-native-flexbox.html">&lt;h1 id=&quot;react-native-flexbox-basics&quot;&gt;React Native Flexbox Basics&lt;/h1&gt;
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Making Remote Requests with Axios</summary></entry><entry><title type="html">React Native Flexbox</title><link href="http://localhost:4000/2018/04/17/react-native-flexbox.html" rel="alternate" type="text/html" title="React Native Flexbox" /><published>2018-04-17T00:00:00-04:00</published><updated>2018-04-17T00:00:00-04:00</updated><id>http://localhost:4000/2018/04/17/react-native-flexbox</id><content type="html" xml:base="http://localhost:4000/2018/04/17/react-native-flexbox.html">&lt;h1 id=&quot;react-native-flexbox-basics&quot;&gt;React Native Flexbox Basics&lt;/h1&gt;
 
 &lt;p&gt;This is by no means an exhaustive tutorial on flexbox. That’s beyond the scope of this walkthrough. My goal is to learn just enough to get by. Lets jump in.&lt;/p&gt;
 
@@ -154,7 +333,7 @@
 
 &lt;h2 id=&quot;need-a-full-stack-react-developer&quot;&gt;Need a Full Stack React Developer?&lt;/h2&gt;
 
-&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">React Native Flexbox Basics</summary></entry><entry><title type="html">React Native Hello World</title><link href="/2018/04/16/react-native-hello-world.html" rel="alternate" type="text/html" title="React Native Hello World" /><published>2018-04-16T00:00:00-04:00</published><updated>2018-04-16T00:00:00-04:00</updated><id>/2018/04/16/react-native-hello-world</id><content type="html" xml:base="/2018/04/16/react-native-hello-world.html">&lt;h2 id=&quot;lets-write-some-code&quot;&gt;Lets Write Some Code&lt;/h2&gt;
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">React Native Flexbox Basics</summary></entry><entry><title type="html">React Native Hello World</title><link href="http://localhost:4000/2018/04/16/react-native-hello-world.html" rel="alternate" type="text/html" title="React Native Hello World" /><published>2018-04-16T00:00:00-04:00</published><updated>2018-04-16T00:00:00-04:00</updated><id>http://localhost:4000/2018/04/16/react-native-hello-world</id><content type="html" xml:base="http://localhost:4000/2018/04/16/react-native-hello-world.html">&lt;h2 id=&quot;lets-write-some-code&quot;&gt;Lets Write Some Code&lt;/h2&gt;
 
 &lt;p&gt;Finally we’re in a position to write some simple code. A picture is worth a thousand words, so a video must be worth much more. Below is all we’re going to accomplish with this post, but it’s kind of a big deal.&lt;/p&gt;
 
@@ -195,7 +374,7 @@ Your browser does not support the video tag.
 
 &lt;h2 id=&quot;need-a-full-stack-react-developer&quot;&gt;Need a Full Stack React Developer?&lt;/h2&gt;
 
-&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Lets Write Some Code</summary></entry><entry><title type="html">React Native Eject</title><link href="/2018/03/10/react-native-eject.html" rel="alternate" type="text/html" title="React Native Eject" /><published>2018-03-10T00:00:00-05:00</published><updated>2018-03-10T00:00:00-05:00</updated><id>/2018/03/10/react-native-eject</id><content type="html" xml:base="/2018/03/10/react-native-eject.html">&lt;h1 id=&quot;eject-eject-eject&quot;&gt;EJECT! EJECT! EJECT&lt;/h1&gt;
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Lets Write Some Code</summary></entry><entry><title type="html">React Native Eject</title><link href="http://localhost:4000/2018/03/10/react-native-eject.html" rel="alternate" type="text/html" title="React Native Eject" /><published>2018-03-10T00:00:00-05:00</published><updated>2018-03-10T00:00:00-05:00</updated><id>http://localhost:4000/2018/03/10/react-native-eject</id><content type="html" xml:base="http://localhost:4000/2018/03/10/react-native-eject.html">&lt;h1 id=&quot;eject-eject-eject&quot;&gt;EJECT! EJECT! EJECT&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/tenor.gif&quot; alt=&quot;EJECT&quot; /&gt;&lt;/p&gt;
 
@@ -285,7 +464,7 @@ Your browser does not support the video tag.
 
 &lt;h2 id=&quot;need-a-full-stack-react-developer&quot;&gt;Need a Full Stack React Developer?&lt;/h2&gt;
 
-&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">EJECT! EJECT! EJECT</summary></entry><entry><title type="html">React Native Environment Setup</title><link href="/2018/03/08/react-native-environment-setup.html" rel="alternate" type="text/html" title="React Native Environment Setup" /><published>2018-03-08T00:00:00-05:00</published><updated>2018-03-08T00:00:00-05:00</updated><id>/2018/03/08/react-native-environment-setup</id><content type="html" xml:base="/2018/03/08/react-native-environment-setup.html">&lt;h1 id=&quot;setting-up-the-react-native-environment&quot;&gt;Setting Up the React Native Environment&lt;/h1&gt;
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">EJECT! EJECT! EJECT</summary></entry><entry><title type="html">React Native Environment Setup</title><link href="http://localhost:4000/2018/03/08/react-native-environment-setup.html" rel="alternate" type="text/html" title="React Native Environment Setup" /><published>2018-03-08T00:00:00-05:00</published><updated>2018-03-08T00:00:00-05:00</updated><id>http://localhost:4000/2018/03/08/react-native-environment-setup</id><content type="html" xml:base="http://localhost:4000/2018/03/08/react-native-environment-setup.html">&lt;h1 id=&quot;setting-up-the-react-native-environment&quot;&gt;Setting Up the React Native Environment&lt;/h1&gt;
 
 &lt;p&gt;I was first tasked with setting up a simple, proof of concept, “Hello World” application that ran on both iOS and Android.&lt;/p&gt;
 
@@ -316,7 +495,7 @@ yarn start
 
 &lt;h2 id=&quot;need-a-full-stack-react-developer&quot;&gt;Need a Full Stack React Developer?&lt;/h2&gt;
 
-&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Setting Up the React Native Environment</summary></entry><entry><title type="html">Welcome To React Native</title><link href="/2018/02/20/welcome-to-react-native.html" rel="alternate" type="text/html" title="Welcome To React Native" /><published>2018-02-20T00:00:00-05:00</published><updated>2018-02-20T00:00:00-05:00</updated><id>/2018/02/20/welcome-to-react-native</id><content type="html" xml:base="/2018/02/20/welcome-to-react-native.html">&lt;h1 id=&quot;welcome&quot;&gt;Welcome&lt;/h1&gt;
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best way to contact me is via our company page. &lt;a href=&quot;https://www.yyesoftware.com&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Setting Up the React Native Environment</summary></entry><entry><title type="html">Welcome To React Native</title><link href="http://localhost:4000/2018/02/20/welcome-to-react-native.html" rel="alternate" type="text/html" title="Welcome To React Native" /><published>2018-02-20T00:00:00-05:00</published><updated>2018-02-20T00:00:00-05:00</updated><id>http://localhost:4000/2018/02/20/welcome-to-react-native</id><content type="html" xml:base="http://localhost:4000/2018/02/20/welcome-to-react-native.html">&lt;h1 id=&quot;welcome&quot;&gt;Welcome&lt;/h1&gt;
 
 &lt;p&gt;The purpose of this blog is to outline my first real world project done in React Native. This app will be published on the app store for both Android and iPhone. I’m going to keep client intellectual property private, but it isn’t relevant to the progression of this project. This is for my benefit, largely. I’ve been a largely inconsistent blogger largely due to it being inconvenient. With the discovery of github pages and Visual Studio code (thank you markdown preview!), I found it a lot more convenient to fire things up and do a little writing.&lt;/p&gt;
 
