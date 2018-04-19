@@ -1,3 +1,10 @@
+---
+layout: post
+title: Welcome to the React Native Sports App Tutorial
+date: 2018-03-17T20:20:46.000Z
+categories: react react-native
+---
+
 # Welcome
 
 The purpose of this blog is to outline my first real world project done in React Native. This app will be published on the app store for both Android and iPhone. I'm going to keep client intellectual property private, but it isn't relevant to the progression of this project. This is for my benefit, largely. I've been a largely inconsistent blogger largely due to it being inconvenient. With the discovery of github pages and Visual Studio code (thank you markdown preview!), I found it a lot more convenient to fire things up and do a little writing.
