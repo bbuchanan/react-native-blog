@@ -79,9 +79,8 @@ dateChangedHandler = date => {
 
 It's as simple as I explained earlier. We're setting the state and using moment to format the date appropriately and then calling `this.loadScores()`.
 
-As usual, if you're stuck you can find my commit for this tutorial here.
-
-https://github.com/bbuchanan/react-native-sports-app/tree/5779968579d84006d6fb48148c1e0e076c1528a3
+As usual, if you're stuck you can find my commit for this <a href="https://github.com/bbuchanan/react-native-sports-app/blob/5779968579d84006d6fb48148c1e0e076c1528a3/App.js" target="_blank">react native tutorial
+here</a>.
 
 Compare my code against yours to see where we're different.
 

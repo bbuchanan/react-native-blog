@@ -1,8 +1,326 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/react-native-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/react-native-blog/" rel="alternate" type="text/html" /><updated>2018-04-19T12:45:30-04:00</updated><id>http://localhost:4000/react-native-blog/</id><title type="html">React Native Sports App Tutorial</title><subtitle>Building a small sports score React Native application from the ground up.</subtitle><entry><title type="html">React Native Rendering Scores</title><link href="http://localhost:4000/react-native-blog/2018/04/19/react-native-rendering-scores.html" rel="alternate" type="text/html" title="React Native Rendering Scores" /><published>2018-04-19T00:00:00-04:00</published><updated>2018-04-19T00:00:00-04:00</updated><id>http://localhost:4000/react-native-blog/2018/04/19/react-native-rendering-scores</id><content type="html" xml:base="http://localhost:4000/react-native-blog/2018/04/19/react-native-rendering-scores.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/react-native-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/react-native-blog/" rel="alternate" type="text/html" /><updated>2018-04-23T11:59:50-04:00</updated><id>/react-native-blog/</id><title type="html">React Native Sports App Tutorial</title><subtitle>Building a small sports score React Native application from the ground up.</subtitle><entry><title type="html">React Native Unique Key</title><link href="/react-native-blog/2018/04/23/react-native-unique-key.html" rel="alternate" type="text/html" title="React Native Unique Key" /><published>2018-04-23T00:00:00-04:00</published><updated>2018-04-23T00:00:00-04:00</updated><id>/react-native-blog/2018/04/23/react-native-unique-key</id><content type="html" xml:base="/react-native-blog/2018/04/23/react-native-unique-key.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+  
+  &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/04/20/react-native-state.html&quot;&gt;&amp;laquo; React Native State&lt;/a&gt;
+   
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;sports-app-cleanup&quot;&gt;Sports App Cleanup&lt;/h1&gt;
+
+&lt;p&gt;In the previous article, our React Native app finally got to a point where we could load data from a remote source, put that data into our component’s state, iterate over each javascript array item using the &lt;code class=&quot;highlighter-rouge&quot;&gt;map&lt;/code&gt; function and finally pass the relevant portion of each element to our child component via React props.&lt;/p&gt;
+
+&lt;p&gt;After all of that, we were left with annoying warning, ‘Warning: Each child in an array or iterator should have a unique “key” prop.’ and a less than polished scorecard.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-scorecard-output.png&quot; alt=&quot;react-native-scorecard-output&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The goal of this article is to get rid of the warning and make the scorecard look just a little bit better.&lt;/p&gt;
+
+&lt;h3 id=&quot;unique-key&quot;&gt;Unique “key”&lt;/h3&gt;
+
+&lt;p&gt;Most of the time when dealing with remote data, you’ll receive some sort of unique identifier. Fortunately for us, there seems to be an ID given for each game.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-sports-game-output.png&quot; alt=&quot;react-native-sports-game-output&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We’re going to pluck that ID and add that element to our scores array.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scoreboard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gameScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;City&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;City&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;gameId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And now in the &lt;code class=&quot;highlighter-rouge&quot;&gt;map()&lt;/code&gt; function call in the &lt;code class=&quot;highlighter-rouge&quot;&gt;render()&lt;/code&gt; function, we assign our &lt;code class=&quot;highlighter-rouge&quot;&gt;gameId&lt;/code&gt; to a special property called &lt;code class=&quot;highlighter-rouge&quot;&gt;key&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scoreItems&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ScorecardItem&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gameId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;      &lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you save this file, you should notice that the warning has disappeared.&lt;/p&gt;
+
+&lt;h3 id=&quot;making-it-prettier&quot;&gt;Making it prettier&lt;/h3&gt;
+
+&lt;p&gt;A designer I am not, but I can at least make this symmetrical so we don’t have different sized scorecards. There are a couple of ways to go about this. The first method is to explore the &lt;a href=&quot;https://facebook.github.io/react-native/docs/text.html#numberoflines&quot; target=&quot;_blank&quot;&gt;numberOfLines&lt;/a&gt; prop on the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Text&amp;gt;&lt;/code&gt; component. By specifying &lt;code class=&quot;highlighter-rouge&quot;&gt;numberOfLines&lt;/code&gt; we’re telling React Native to truncate text with an ellipsis should the text get too long.&lt;/p&gt;
+
+&lt;p&gt;Since my team names seem to be the main culprit, I’m going to add the &lt;code class=&quot;highlighter-rouge&quot;&gt;numberOfLines&lt;/code&gt; prop to both the home team and the away team like this.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numberOfLines&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and the same to the home team.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numberOfLines&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, I’m going to modify the &lt;code class=&quot;highlighter-rouge&quot;&gt;cardItemContainer&lt;/code&gt; style which wraps the outermost portion of the component and explicitly set the height and width.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;cardItemContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;borderRadius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;borderColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;black&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;borderWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;alignItems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;center&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;120&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-scorecard-fixed-output.png&quot; alt=&quot;react-native-scorecard-fixed-output&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can see the text truncation is working and now my scorecards are symmetrical but I’ve introduced two more problems. First, my opinion is that truncating the team name isn’t very useful. This name is needed in its entirety. For that, I’m going to remove the truncation and make the card even wider to accommodate the long team names. I’ll set the width of the card to 150 and call it a day.&lt;/p&gt;
+
+&lt;p&gt;Which leads us to our second problem. If you’re playing with this on the simulator, you’ll notice that your scores are being clipped at the bottom and that there is no way to scroll down to see them.&lt;/p&gt;
+
+&lt;h2 id=&quot;react-native-list-views&quot;&gt;React Native List Views&lt;/h2&gt;
+
+&lt;p&gt;We have two choices for scrollable lists. The FlatList and SectionList. The FlatList component does not try and do anything to the data other than add scrolling and it’s a performant scroll (as opposed to the ScrollView component). The SectionList component, the name implies, adds sectioning to the FlatList. A SectionList would be useful for something like a contact list. Usually contact lists are sorted alphabetically and each letter is represented by a section.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-sectionlist-component.png&quot; alt=&quot;react-native-sectionlist-component&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For our purposes, the FlatList will do. The FlatList requires a datasource, which effectively moves our previous &lt;code class=&quot;highlighter-rouge&quot;&gt;map&lt;/code&gt; work directly into the FlatList &lt;code class=&quot;highlighter-rouge&quot;&gt;renderItem&lt;/code&gt; property.&lt;/p&gt;
+
+&lt;p&gt;Our render now looks like this.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;FlatList&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;keyExtractor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gameId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;renderItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{({&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ScorecardItem&lt;/span&gt;
+              &lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+              &lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+              &lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+              &lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;          &lt;span class=&quot;p&quot;&gt;)}&lt;/span&gt;
+        &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;      &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We move the scores null check into the container itself. If the scores are not null, we render a FlatList. We specify the scores from our state in the &lt;code class=&quot;highlighter-rouge&quot;&gt;data&lt;/code&gt; property. Our previous map logic is in the &lt;code class=&quot;highlighter-rouge&quot;&gt;renderItem&lt;/code&gt; property. One thing to note, the name of the argument must be called &lt;code class=&quot;highlighter-rouge&quot;&gt;item&lt;/code&gt;. If you want to get the index of the item, you could change the &lt;code class=&quot;highlighter-rouge&quot;&gt;renderItem&lt;/code&gt; function signature to look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;renderItem={(item, index) =&amp;gt; }&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;a-different-way-to-do-keys&quot;&gt;A different way to do keys&lt;/h3&gt;
+
+&lt;p&gt;As with our previous list rendering where we specified a key, we must do the same or risk the dreaded ‘VirtualizedList: missing keys for items, make sure to specify a key property on each item or provide a custom keyExtractor.’.&lt;/p&gt;
+
+&lt;p&gt;This is done a little differently for FlatList. Either you have a field named ‘id’, which we don’t, or you tell React Native where to find the id via a function. We can do this inline.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;keyExtractor={item =&amp;gt; item.gameId}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;to map our game id as the key.&lt;/p&gt;
+
+&lt;p&gt;Take a look at our now scrollable list.&lt;/p&gt;
+
+&lt;video width=&quot;640&quot; height=&quot;480&quot; controls=&quot;&quot;&gt;
+  &lt;source src=&quot;/react-native-blog/assets/videos/react-native-flatlist.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;p&gt;We have now introduced another small issue. The list is not tiled as it was previously. This is due to the fact that the FlatList component is now our container. A little nuance here, the FlatList doesn’t want the &lt;code class=&quot;highlighter-rouge&quot;&gt;style&lt;/code&gt; property set, but rather something called &lt;code class=&quot;highlighter-rouge&quot;&gt;contentContainerStyle&lt;/code&gt;. Here we’ll set the style previously set on the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;View&amp;gt;&lt;/code&gt; like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;contentContainerStyle={styles.container}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;After saving this however, you’ll get a warning that states, &lt;code class=&quot;highlighter-rouge&quot;&gt;flexWrap:&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;wrap&lt;/code&gt; is not supported with the &lt;code class=&quot;highlighter-rouge&quot;&gt;VirtualizedList&lt;/code&gt; components. Consider using &lt;code class=&quot;highlighter-rouge&quot;&gt;numColumns&lt;/code&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;FlatList&lt;/code&gt; instead.&lt;/p&gt;
+
+&lt;p&gt;The warning is fairly clear and we know on this particular display in portrait mode that this will fit cleanly in two columns, however, this isn’t very device friendly. Smaller or larger screen or if someone flips to landscape mode, we have a problem.&lt;/p&gt;
+
+&lt;p&gt;For now, we’ll hard code &lt;code class=&quot;highlighter-rouge&quot;&gt;numColumns&lt;/code&gt; on the &lt;code class=&quot;highlighter-rouge&quot;&gt;FlatList&lt;/code&gt; to 2, remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;flexWrap&lt;/code&gt; style from &lt;code class=&quot;highlighter-rouge&quot;&gt;conatiner&lt;/code&gt; and change &lt;code class=&quot;highlighter-rouge&quot;&gt;flexDirection&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;column&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the future, we’ll go into how to make device orientation and screen size decisions so that this behaves in a responsive way.&lt;/p&gt;
+
+&lt;h3 id=&quot;parting-notes&quot;&gt;Parting Notes&lt;/h3&gt;
+
+&lt;p&gt;As you can see from this clean up, it isn’t uncommon to play whack-a-mole with React Native sometimes. Fixing a problem, particularly a visual problem, can create more problems.&lt;/p&gt;
+
+&lt;p&gt;If your output isn’t matching mine, please pull this commit from my repository and compare your code to mine.&lt;/p&gt;
+
+&lt;p&gt;https://github.com/bbuchanan/react-native-sports-app/tree/3e29a52dca8717b0b0038b962c3fe836f8e62d4e&lt;/p&gt;
+
+&lt;h1&gt; Need a Full Stack React Developer?&lt;/h1&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
+way to contact me is via our company page.
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native State All Posts</summary></entry><entry><title type="html">React Native State</title><link href="/react-native-blog/2018/04/20/react-native-state.html" rel="alternate" type="text/html" title="React Native State" /><published>2018-04-20T00:00:00-04:00</published><updated>2018-04-20T00:00:00-04:00</updated><id>/react-native-blog/2018/04/20/react-native-state</id><content type="html" xml:base="/react-native-blog/2018/04/20/react-native-state.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+  
+  &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/04/19/react-native-rendering-scores.html&quot;&gt;&amp;laquo; React Native Rendering Scores&lt;/a&gt;
+   
+  &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/04/23/react-native-unique-key.html&quot;&gt;React Native Unique Key &amp;raquo;&lt;/a&gt;
+  
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;component-state&quot;&gt;Component State&lt;/h1&gt;
+
+&lt;p&gt;Lets do a quick recap of what we have and what we need.&lt;/p&gt;
+
+&lt;p&gt;We are loading data, we have written our component view to render that data. We have the data inside of the &lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidMount&lt;/code&gt; function. We have the scorecard component rendering in the &lt;code class=&quot;highlighter-rouge&quot;&gt;render()&lt;/code&gt; function. How do we tie these things together?&lt;/p&gt;
+
+&lt;p&gt;Most importantly, for now, we need to get the data or anything else from wherever it is loaded, into the &lt;code class=&quot;highlighter-rouge&quot;&gt;render()&lt;/code&gt; method. For this case, we’re going to utilize &lt;code class=&quot;highlighter-rouge&quot;&gt;state&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;State is available in any class based component. So far, this is what we have. There are stateless or functional components and we’ll touch on those later, but for now we have a stateful component so lets set the state.&lt;/p&gt;
+
+&lt;p&gt;Go back into the &lt;code class=&quot;highlighter-rouge&quot;&gt;App.js&lt;/code&gt; file and have a look at the &lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidMount&lt;/code&gt; function where we have loaded our score data.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;scoreboard.json?fordate=20170411&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scoreboard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gameScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;City&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;City&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We have declared a local variable named &lt;code class=&quot;highlighter-rouge&quot;&gt;scores&lt;/code&gt; but the variable is unused. We can create and initialize state at the top of our class. Lets declare a state with a &lt;code class=&quot;highlighter-rouge&quot;&gt;scores&lt;/code&gt; object and initialize it to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And now we simply call the &lt;code class=&quot;highlighter-rouge&quot;&gt;setState()&lt;/code&gt; function upon successful load.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;scoreboard.json?fordate=20170411&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scoreboard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gameScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;City&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;City&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Note&lt;/em&gt;&lt;/strong&gt; We used some ES6 shorthand. Since our variable is the same name as the one in the state, we can just say &lt;code class=&quot;highlighter-rouge&quot;&gt;scores&lt;/code&gt; instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;scores: scores&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;State variables are accessed throughout the component now by using &lt;code class=&quot;highlighter-rouge&quot;&gt;this.state&lt;/code&gt;. So in our case, to gain access to the scores, we’d reference &lt;code class=&quot;highlighter-rouge&quot;&gt;this.state.scores&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-about-some-error-handling&quot;&gt;How about some error handling?&lt;/h2&gt;
+
+&lt;p&gt;State is also a great way to render an error state. Lets change our state declaration to include an error flag and an error message if we have one.&lt;/p&gt;
+
+&lt;p&gt;State initialization would now look like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hadError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;errorMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and now we could change our &lt;code class=&quot;highlighter-rouge&quot;&gt;get&lt;/code&gt; logic to include error checking in the &lt;code class=&quot;highlighter-rouge&quot;&gt;catch&lt;/code&gt; portion of the promise.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;scoreboard.json?fordate=20170411&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scoreboard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gameScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;City&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;City&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;hadError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;errorMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;hadError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;errorMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;On success (the &lt;code class=&quot;highlighter-rouge&quot;&gt;then&lt;/code&gt; block), we map the result to our scores and call &lt;code class=&quot;highlighter-rouge&quot;&gt;setState&lt;/code&gt; where we set &lt;code class=&quot;highlighter-rouge&quot;&gt;hadError&lt;/code&gt; to false and the &lt;code class=&quot;highlighter-rouge&quot;&gt;errorMessage&lt;/code&gt; to blank.&lt;/p&gt;
+
+&lt;p&gt;On failure (the &lt;code class=&quot;highlighter-rouge&quot;&gt;catch&lt;/code&gt; block), we set the &lt;code class=&quot;highlighter-rouge&quot;&gt;scores&lt;/code&gt; to null and flip our error flag to true and set the message return from the http request as our error message.&lt;/p&gt;
+
+&lt;p&gt;This is easy enough to test. Remove a character from your URL and you will trigger the &lt;code class=&quot;highlighter-rouge&quot;&gt;catch&lt;/code&gt; block and your state should reflect that.&lt;/p&gt;
+
+&lt;h2 id=&quot;analyzing-state-in-the-debugger&quot;&gt;Analyzing State in the Debugger&lt;/h2&gt;
+
+&lt;p&gt;We can actually prove that the error state was triggered to ourselves by firing up the React Native Debugger. I referenced this tool in a previous post, but briefly, the debugging tool is called React Native Debugger. &lt;a href=&quot;https://github.com/jhen0409/react-native-debugger&quot;&gt;Installation instructions can be found here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You can set breakpoints and also use the &lt;code class=&quot;highlighter-rouge&quot;&gt;debugger;&lt;/code&gt; statement like I did above to pause execution. To stitch your simulator with the debugger requires two orchestrated steps. The first thing you do is start the React Native Debugger application. Next, go into your simulator and hit the hot keys to bring up the React Native. For iOS this is Ctrl+Cmd+Z. For Android it’s Ctrl+M. Once in this menu, click Debug JS Remotely.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-enable-debugging.png&quot; alt=&quot;enable-debugging&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But even better for us, we can analyze state as it happens. The only minor pain is that you have to drill down to the component in the Inspector that has the state you want to analyze. Components can get pretty deeply embedded pretty fast.&lt;/p&gt;
+
+&lt;p&gt;For me, I removed a digit from the last portion of the url request. So the endpoint address was correct, but I made an invalid request to them. You can see in the debugger that I got an error and that my state was set accordingly.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-debugger-state.png&quot; alt=&quot;react-native-debugger-state&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And on a successful load, we can see the inverse is true. No error and 12 scores.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-debugger-success.png&quot; alt=&quot;react-native-debugger-success&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-code-so-far-&quot;&gt;The code so far …&lt;/h2&gt;
+
+&lt;p&gt;If you’re stuck or just want to compare notes, here is the commit for this article.&lt;/p&gt;
+
+&lt;p&gt;https://github.com/bbuchanan/react-native-sports-app/tree/5985a9b2098870e349f85fe201ed1ce45af197eb&lt;/p&gt;
+
+&lt;h1&gt; Need a Full Stack React Developer?&lt;/h1&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
+way to contact me is via our company page.
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Rendering Scores React Native Unique Key &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Rendering Scores</title><link href="/react-native-blog/2018/04/19/react-native-rendering-scores.html" rel="alternate" type="text/html" title="React Native Rendering Scores" /><published>2018-04-19T00:00:00-04:00</published><updated>2018-04-19T00:00:00-04:00</updated><id>/react-native-blog/2018/04/19/react-native-rendering-scores</id><content type="html" xml:base="/react-native-blog/2018/04/19/react-native-rendering-scores.html">&lt;div class=&quot;PageNavigation&quot;&gt;
   
   &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/04/18/react-native-axios.html&quot;&gt;&amp;laquo; React Native Axios&lt;/a&gt;
    
+  &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/04/20/react-native-state.html&quot;&gt;React Native State &amp;raquo;&lt;/a&gt;
+  
 &lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;rendering-scores-using-react-components&quot;&gt;Rendering Scores Using React Components&lt;/h1&gt;
 
@@ -185,13 +503,14 @@
 
 &lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
 way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Axios</summary></entry><entry><title type="html">React Native Axios</title><link href="http://localhost:4000/react-native-blog/2018/04/18/react-native-axios.html" rel="alternate" type="text/html" title="React Native Axios" /><published>2018-04-18T00:00:00-04:00</published><updated>2018-04-18T00:00:00-04:00</updated><id>http://localhost:4000/react-native-blog/2018/04/18/react-native-axios</id><content type="html" xml:base="http://localhost:4000/react-native-blog/2018/04/18/react-native-axios.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Axios React Native State &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Axios</title><link href="/react-native-blog/2018/04/18/react-native-axios.html" rel="alternate" type="text/html" title="React Native Axios" /><published>2018-04-18T00:00:00-04:00</published><updated>2018-04-18T00:00:00-04:00</updated><id>/react-native-blog/2018/04/18/react-native-axios</id><content type="html" xml:base="/react-native-blog/2018/04/18/react-native-axios.html">&lt;div class=&quot;PageNavigation&quot;&gt;
   
   &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/04/17/react-native-flexbox.html&quot;&gt;&amp;laquo; React Native Flexbox&lt;/a&gt;
    
   &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/04/19/react-native-rendering-scores.html&quot;&gt;React Native Rendering Scores &amp;raquo;&lt;/a&gt;
   
 &lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;making-remote-requests-with-axios&quot;&gt;Making Remote Requests with Axios&lt;/h1&gt;
 
@@ -289,13 +608,14 @@ way to contact me is via our company page.
 
 &lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
 way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Flexbox React Native Rendering Scores &amp;raquo;</summary></entry><entry><title type="html">React Native Flexbox</title><link href="http://localhost:4000/react-native-blog/2018/04/17/react-native-flexbox.html" rel="alternate" type="text/html" title="React Native Flexbox" /><published>2018-04-17T00:00:00-04:00</published><updated>2018-04-17T00:00:00-04:00</updated><id>http://localhost:4000/react-native-blog/2018/04/17/react-native-flexbox</id><content type="html" xml:base="http://localhost:4000/react-native-blog/2018/04/17/react-native-flexbox.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Flexbox React Native Rendering Scores &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Flexbox</title><link href="/react-native-blog/2018/04/17/react-native-flexbox.html" rel="alternate" type="text/html" title="React Native Flexbox" /><published>2018-04-17T00:00:00-04:00</published><updated>2018-04-17T00:00:00-04:00</updated><id>/react-native-blog/2018/04/17/react-native-flexbox</id><content type="html" xml:base="/react-native-blog/2018/04/17/react-native-flexbox.html">&lt;div class=&quot;PageNavigation&quot;&gt;
   
   &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/04/16/react-native-hello-world.html&quot;&gt;&amp;laquo; React Native Hello World&lt;/a&gt;
    
   &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/04/18/react-native-axios.html&quot;&gt;React Native Axios &amp;raquo;&lt;/a&gt;
   
 &lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;react-native-flexbox-basics&quot;&gt;React Native Flexbox Basics&lt;/h1&gt;
 
@@ -361,13 +681,14 @@ way to contact me is via our company page.
 
 &lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
 way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Hello World React Native Axios &amp;raquo;</summary></entry><entry><title type="html">React Native Hello World</title><link href="http://localhost:4000/react-native-blog/2018/04/16/react-native-hello-world.html" rel="alternate" type="text/html" title="React Native Hello World" /><published>2018-04-16T00:00:00-04:00</published><updated>2018-04-16T00:00:00-04:00</updated><id>http://localhost:4000/react-native-blog/2018/04/16/react-native-hello-world</id><content type="html" xml:base="http://localhost:4000/react-native-blog/2018/04/16/react-native-hello-world.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Hello World React Native Axios &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Hello World</title><link href="/react-native-blog/2018/04/16/react-native-hello-world.html" rel="alternate" type="text/html" title="React Native Hello World" /><published>2018-04-16T00:00:00-04:00</published><updated>2018-04-16T00:00:00-04:00</updated><id>/react-native-blog/2018/04/16/react-native-hello-world</id><content type="html" xml:base="/react-native-blog/2018/04/16/react-native-hello-world.html">&lt;div class=&quot;PageNavigation&quot;&gt;
   
   &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/03/10/react-native-eject.html&quot;&gt;&amp;laquo; React Native Eject&lt;/a&gt;
    
   &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/04/17/react-native-flexbox.html&quot;&gt;React Native Flexbox &amp;raquo;&lt;/a&gt;
   
 &lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;lets-write-some-code&quot;&gt;Lets Write Some Code&lt;/h2&gt;
 
@@ -412,13 +733,14 @@ Your browser does not support the video tag.
 
 &lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
 way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Eject React Native Flexbox &amp;raquo;</summary></entry><entry><title type="html">React Native Eject</title><link href="http://localhost:4000/react-native-blog/2018/03/10/react-native-eject.html" rel="alternate" type="text/html" title="React Native Eject" /><published>2018-03-10T00:00:00-05:00</published><updated>2018-03-10T00:00:00-05:00</updated><id>http://localhost:4000/react-native-blog/2018/03/10/react-native-eject</id><content type="html" xml:base="http://localhost:4000/react-native-blog/2018/03/10/react-native-eject.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Eject React Native Flexbox &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Eject</title><link href="/react-native-blog/2018/03/10/react-native-eject.html" rel="alternate" type="text/html" title="React Native Eject" /><published>2018-03-10T00:00:00-05:00</published><updated>2018-03-10T00:00:00-05:00</updated><id>/react-native-blog/2018/03/10/react-native-eject</id><content type="html" xml:base="/react-native-blog/2018/03/10/react-native-eject.html">&lt;div class=&quot;PageNavigation&quot;&gt;
   
   &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/03/08/react-native-environment-setup.html&quot;&gt;&amp;laquo; React Native Environment Setup&lt;/a&gt;
    
   &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/04/16/react-native-hello-world.html&quot;&gt;React Native Hello World &amp;raquo;&lt;/a&gt;
   
 &lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;eject-eject-eject&quot;&gt;EJECT! EJECT! EJECT&lt;/h1&gt;
 
@@ -512,13 +834,14 @@ way to contact me is via our company page.
 
 &lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
 way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Environment Setup React Native Hello World &amp;raquo;</summary></entry><entry><title type="html">React Native Environment Setup</title><link href="http://localhost:4000/react-native-blog/2018/03/08/react-native-environment-setup.html" rel="alternate" type="text/html" title="React Native Environment Setup" /><published>2018-03-08T00:00:00-05:00</published><updated>2018-03-08T00:00:00-05:00</updated><id>http://localhost:4000/react-native-blog/2018/03/08/react-native-environment-setup</id><content type="html" xml:base="http://localhost:4000/react-native-blog/2018/03/08/react-native-environment-setup.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Environment Setup React Native Hello World &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Environment Setup</title><link href="/react-native-blog/2018/03/08/react-native-environment-setup.html" rel="alternate" type="text/html" title="React Native Environment Setup" /><published>2018-03-08T00:00:00-05:00</published><updated>2018-03-08T00:00:00-05:00</updated><id>/react-native-blog/2018/03/08/react-native-environment-setup</id><content type="html" xml:base="/react-native-blog/2018/03/08/react-native-environment-setup.html">&lt;div class=&quot;PageNavigation&quot;&gt;
   
   &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/03/07/welcome-to-react-native.html&quot;&gt;&amp;laquo; Welcome To React Native&lt;/a&gt;
    
   &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/03/10/react-native-eject.html&quot;&gt;React Native Eject &amp;raquo;&lt;/a&gt;
   
 &lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;setting-up-the-react-native-environment&quot;&gt;Setting Up the React Native Environment&lt;/h1&gt;
 
@@ -553,11 +876,12 @@ yarn start
 
 &lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
 way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; Welcome To React Native React Native Eject &amp;raquo;</summary></entry><entry><title type="html">Welcome To React Native</title><link href="http://localhost:4000/react-native-blog/2018/03/07/welcome-to-react-native.html" rel="alternate" type="text/html" title="Welcome To React Native" /><published>2018-03-07T00:00:00-05:00</published><updated>2018-03-07T00:00:00-05:00</updated><id>http://localhost:4000/react-native-blog/2018/03/07/welcome-to-react-native</id><content type="html" xml:base="http://localhost:4000/react-native-blog/2018/03/07/welcome-to-react-native.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; Welcome To React Native React Native Eject &amp;raquo; All Posts</summary></entry><entry><title type="html">Welcome To React Native</title><link href="/react-native-blog/2018/03/07/welcome-to-react-native.html" rel="alternate" type="text/html" title="Welcome To React Native" /><published>2018-03-07T00:00:00-05:00</published><updated>2018-03-07T00:00:00-05:00</updated><id>/react-native-blog/2018/03/07/welcome-to-react-native</id><content type="html" xml:base="/react-native-blog/2018/03/07/welcome-to-react-native.html">&lt;div class=&quot;PageNavigation&quot;&gt;
    
   &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/03/08/react-native-environment-setup.html&quot;&gt;React Native Environment Setup &amp;raquo;&lt;/a&gt;
   
 &lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;welcome&quot;&gt;Welcome&lt;/h1&gt;
 
@@ -585,4 +909,4 @@ way to contact me is via our company page.
 
 &lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
 way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">React Native Environment Setup &amp;raquo;</summary></entry></feed>
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">React Native Environment Setup &amp;raquo; All Posts</summary></entry></feed>

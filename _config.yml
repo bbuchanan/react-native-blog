@@ -21,7 +21,8 @@ baseurl: "/react-native-blog" # the subpath of your site, e.g. /blog
 imageurl: "/react-native-blog/assets/images"
 videourl: "/react-native-blog/assets/videos"
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-#twitter_username: jekyllrb
+twitter_username: yyesoftware
+google_analytics: UA-101201-1
 #github_username:  jekyll
 
 # Build settings
