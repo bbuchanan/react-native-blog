@@ -5,7 +5,7 @@
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,maximum-scale=2">
-  <link rel="stylesheet" type="text/css" media="screen" href="/react-native-blog/assets/css/style.css?v=d02d5aaec7aac33ca9fb0c41e6dd3c6712b320e1"> <!-- Begin Jekyll SEO tag v2.4.0 -->
+  <link rel="stylesheet" type="text/css" media="screen" href="/react-native-blog/assets/css/style.css?v=c277199aa1b7ddee85383c0212a608c81e460043"> <!-- Begin Jekyll SEO tag v2.4.0 -->
 <title>React Native Sports App Tutorial | Building a small sports score React Native application from the ground up.</title>
 <meta name="generator" content="Jekyll v3.7.3" />
 <meta property="og:title" content="React Native Sports App Tutorial" />
@@ -42,173 +42,37 @@
 
 <h1 class="entry-title">
    
-  <a href="/2018/04/23/react-native-unique-key.html">React Native Unique Key</a>
+  <a href="/2018/04/27/react-native-vector-icons.html">React Native Vector Icons</a>
   
 </h1>
 <div class="entry-content"><div class="PageNavigation">
   
-  <a class="prev" href="/react-native-blog/2018/04/20/react-native-state.html">&laquo; React Native State</a>
+  <a class="prev" href="/react-native-blog/2018/04/26/react-native-toast.html">&laquo; React Native Toast</a>
    
 </div>
 <p><a href="/react-native-blog/posts.html">All Posts</a></p>
 
-<h1 id="sports-app-cleanup">Sports App Cleanup</h1>
+<h1 id="adding-native-libraries">Adding Native Libraries</h1>
 
-<p>In the previous article, our React Native app finally got to a point where we could load data from a remote source, put that data into our component’s state, iterate over each javascript array item using the <code class="highlighter-rouge">map</code> function and finally pass the relevant portion of each element to our child component via React props.</p>
+<p>Undoubtedly one of the most frustrating experiences is adding 3rd party native libraries. You’re going to get all kinds of weird error messages, build issues in both Android Studio and XCode, but stick with it. I’ll offer some tips and tricks to force things to work again and provide some guidance around pitfalls.</p>
 
-<p>After all of that, we were left with annoying warning, ‘Warning: Each child in an array or iterator should have a unique “key” prop.’ and a less than polished scorecard.</p>
+<p>The goal of the next few articles is to demonstrate basic navigation features in an app. It’s typical for a mobile app to have more than one screen and normal for a mobile app to have several top level components that the user can jump to with one press.</p>
 
-<p><img src="/react-native-blog/assets/images/react-native-scorecard-output.png" alt="react-native-scorecard-output" /></p>
+<p>First things first, lets fix our app to remove the intentional error that forced the toast notification to pop up. Do this and verify that your app displays scores again.</p>
 
-<p>The goal of this article is to get rid of the warning and make the scorecard look just a little bit better.</p>
+<h1 id="adding-react-native-vector-icons">Adding react-native-vector-icons</h1>
 
-<h3 id="unique-key">Unique “key”</h3>
+<p>This package is handy because it contains nicely polished icons that are typical for applications. They provide icons for both Android (material design) and iOS.</p>
 
-<p>Most of the time when dealing with remote data, you’ll receive some sort of unique identifier. Fortunately for us, there seems to be an ID given for each game.</p>
+<p><a href="https://github.com/oblador/react-native-vector-icons">React Native Vector Icons</a> is the github home of this project. As usual, we’re going to use yarn add to begin adding support for this project. Unfortunately, that’s the easy part. We’ll also need to add support to both iOS and Android via the respective native project files. This will be tough the first few times you do it, but it gets easier.</p>
 
-<p><img src="/react-native-blog/assets/images/react-native-sports-game-output.png" alt="react-native-sports-game-output" /></p>
+<p>Lets get started.</p>
 
-<p>We’re going to pluck that ID and add that element to our scores array.</p>
+<p><code class="highlighter-rouge">yarn add react-native-vector-icons</code></p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">scores</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">scoreboard</span><span class="p">.</span><span class="nx">gameScore</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">score</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">{</span>
-    <span class="na">awayScore</span><span class="p">:</span> <span class="nx">score</span><span class="p">.</span><span class="nx">awayScore</span><span class="p">,</span>
-    <span class="na">homeScore</span><span class="p">:</span> <span class="nx">score</span><span class="p">.</span><span class="nx">homeScore</span><span class="p">,</span>
-    <span class="na">homeTeam</span><span class="p">:</span> <span class="s2">`</span><span class="p">${</span><span class="nx">score</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">homeTeam</span><span class="p">.</span><span class="nx">City</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="nx">score</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">homeTeam</span><span class="p">.</span><span class="nx">Name</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
-    <span class="na">awayTeam</span><span class="p">:</span> <span class="s2">`</span><span class="p">${</span><span class="nx">score</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">awayTeam</span><span class="p">.</span><span class="nx">City</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="nx">score</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">awayTeam</span><span class="p">.</span><span class="nx">Name</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
-    <span class="na">gameId</span><span class="p">:</span> <span class="nx">score</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">ID</span><span class="p">,</span>
-    <span class="na">location</span><span class="p">:</span> <span class="nx">score</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">location</span>
-  <span class="p">};</span>
-<span class="p">});</span>
-</code></pre></div></div>
+<h1 id="getting-your-native-tools-setup">Getting Your Native Tools Setup</h1>
 
-<p>And now in the <code class="highlighter-rouge">map()</code> function call in the <code class="highlighter-rouge">render()</code> function, we assign our <code class="highlighter-rouge">gameId</code> to a special property called <code class="highlighter-rouge">key</code>.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">scoreItems</span> <span class="o">=</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">scores</span> <span class="o">!=</span> <span class="kc">null</span>
-    <span class="p">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">scores</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">score</span> <span class="o">=&gt;</span> <span class="p">(</span>
-        <span class="o">&lt;</span><span class="nx">ScorecardItem</span>
-          <span class="nx">awayTeam</span><span class="o">=</span><span class="p">{</span><span class="nx">score</span><span class="p">.</span><span class="nx">awayTeam</span><span class="p">}</span>
-          <span class="nx">awayScore</span><span class="o">=</span><span class="p">{</span><span class="nx">score</span><span class="p">.</span><span class="nx">awayScore</span><span class="p">}</span>
-          <span class="nx">homeTeam</span><span class="o">=</span><span class="p">{</span><span class="nx">score</span><span class="p">.</span><span class="nx">homeTeam</span><span class="p">}</span>
-          <span class="nx">homeScore</span><span class="o">=</span><span class="p">{</span><span class="nx">score</span><span class="p">.</span><span class="nx">homeScore</span><span class="p">}</span>
-          <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">score</span><span class="p">.</span><span class="nx">gameId</span><span class="p">}</span>
-        <span class="sr">/</span><span class="err">&gt;
-</span>      <span class="p">))</span>
-    <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>If you save this file, you should notice that the warning has disappeared.</p>
-
-<h3 id="making-it-prettier">Making it prettier</h3>
-
-<p>A designer I am not, but I can at least make this symmetrical so we don’t have different sized scorecards. There are a couple of ways to go about this. The first method is to explore the <a href="https://facebook.github.io/react-native/docs/text.html#numberoflines" target="_blank">numberOfLines</a> prop on the <code class="highlighter-rouge">&lt;Text&gt;</code> component. By specifying <code class="highlighter-rouge">numberOfLines</code> we’re telling React Native to truncate text with an ellipsis should the text get too long.</p>
-
-<p>Since my team names seem to be the main culprit, I’m going to add the <code class="highlighter-rouge">numberOfLines</code> prop to both the home team and the away team like this.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">numberOfLines</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">teamName</span><span class="p">}</span><span class="o">&gt;</span>
-  <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">awayTeam</span><span class="p">}</span>
-<span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<p>and the same to the home team.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">numberOfLines</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">teamName</span><span class="p">}</span><span class="o">&gt;</span>
-  <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">homeTeam</span><span class="p">}</span>
-<span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<p>Next, I’m going to modify the <code class="highlighter-rouge">cardItemContainer</code> style which wraps the outermost portion of the component and explicitly set the height and width.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">cardItemContainer</span><span class="p">:</span> <span class="p">{</span>
-  <span class="nl">borderRadius</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
-  <span class="nx">borderColor</span><span class="p">:</span> <span class="s2">"black"</span><span class="p">,</span>
-  <span class="nx">borderWidth</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nx">margin</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-  <span class="nx">alignItems</span><span class="p">:</span> <span class="s2">"center"</span><span class="p">,</span>
-  <span class="nx">width</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
-  <span class="nx">height</span><span class="p">:</span> <span class="mi">100</span>
-<span class="p">},</span>
-</code></pre></div></div>
-
-<p><img src="/react-native-blog/assets/images/react-native-scorecard-fixed-output.png" alt="react-native-scorecard-fixed-output" /></p>
-
-<p>We can see the text truncation is working and now my scorecards are symmetrical but I’ve introduced two more problems. First, my opinion is that truncating the team name isn’t very useful. This name is needed in its entirety. For that, I’m going to remove the truncation and make the card even wider to accommodate the long team names. I’ll set the width of the card to 150 and call it a day.</p>
-
-<p>Which leads us to our second problem. If you’re playing with this on the simulator, you’ll notice that your scores are being clipped at the bottom and that there is no way to scroll down to see them.</p>
-
-<h2 id="react-native-list-views">React Native List Views</h2>
-
-<p>We have two choices for scrollable lists. The FlatList and SectionList. The FlatList component does not try and do anything to the data other than add scrolling and it’s a performant scroll (as opposed to the ScrollView component). The SectionList component, the name implies, adds sectioning to the FlatList. A SectionList would be useful for something like a contact list. Usually contact lists are sorted alphabetically and each letter is represented by a section.</p>
-
-<p><img src="/react-native-blog/assets/images/react-native-sectionlist-component.png" alt="react-native-sectionlist-component" /></p>
-
-<p>For our purposes, the FlatList will do. The FlatList requires a datasource, which effectively moves our previous <code class="highlighter-rouge">map</code> work directly into the FlatList <code class="highlighter-rouge">renderItem</code> property.</p>
-
-<p>Our render now looks like this.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">container</span><span class="p">}</span><span class="o">&gt;</span>
-      <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">scores</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="p">(</span>
-        <span class="o">&lt;</span><span class="nx">FlatList</span>
-          <span class="nx">data</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">scores</span><span class="p">}</span>
-          <span class="nx">keyExtractor</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">gameId</span><span class="p">}</span>
-          <span class="nx">renderItem</span><span class="o">=</span><span class="p">{({</span> <span class="nx">item</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
-            <span class="o">&lt;</span><span class="nx">ScorecardItem</span>
-              <span class="nx">awayTeam</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">awayTeam</span><span class="p">}</span>
-              <span class="nx">awayScore</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">awayScore</span><span class="p">}</span>
-              <span class="nx">homeTeam</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">homeTeam</span><span class="p">}</span>
-              <span class="nx">homeScore</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">homeScore</span><span class="p">}</span>
-            <span class="sr">/</span><span class="err">&gt;
-</span>          <span class="p">)}</span>
-        <span class="sr">/</span><span class="err">&gt;
-</span>      <span class="p">)</span> <span class="p">:</span> <span class="kc">null</span><span class="p">}</span>
-    <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
-</span>  <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>We move the scores null check into the container itself. If the scores are not null, we render a FlatList. We specify the scores from our state in the <code class="highlighter-rouge">data</code> property. Our previous map logic is in the <code class="highlighter-rouge">renderItem</code> property. One thing to note, the name of the argument must be called <code class="highlighter-rouge">item</code>. If you want to get the index of the item, you could change the <code class="highlighter-rouge">renderItem</code> function signature to look like this:</p>
-
-<p><code class="highlighter-rouge">renderItem={(item, index) =&gt; }</code></p>
-
-<h3 id="a-different-way-to-do-keys">A different way to do keys</h3>
-
-<p>As with our previous list rendering where we specified a key, we must do the same or risk the dreaded ‘VirtualizedList: missing keys for items, make sure to specify a key property on each item or provide a custom keyExtractor.’.</p>
-
-<p>This is done a little differently for FlatList. Either you have a field named ‘id’, which we don’t, or you tell React Native where to find the id via a function. We can do this inline.</p>
-
-<p><code class="highlighter-rouge">keyExtractor={item =&gt; item.gameId}</code></p>
-
-<p>to map our game id as the key.</p>
-
-<p>Take a look at our now scrollable list.</p>
-
-<video width="640" height="480" controls="">
-  <source src="/react-native-blog/assets/videos/react-native-flatlist.mp4" type="video/mp4" />
-Your browser does not support the video tag.
-</video>
-
-<p>We have now introduced another small issue. The list is not tiled as it was previously. This is due to the fact that the FlatList component is now our container. A little nuance here, the FlatList doesn’t want the <code class="highlighter-rouge">style</code> property set, but rather something called <code class="highlighter-rouge">contentContainerStyle</code>. Here we’ll set the style previously set on the <code class="highlighter-rouge">&lt;View&gt;</code> like so:</p>
-
-<p><code class="highlighter-rouge">contentContainerStyle={styles.container}</code></p>
-
-<p>After saving this however, you’ll get a warning that states, <code class="highlighter-rouge">flexWrap:</code> <code class="highlighter-rouge">wrap</code> is not supported with the <code class="highlighter-rouge">VirtualizedList</code> components. Consider using <code class="highlighter-rouge">numColumns</code> with <code class="highlighter-rouge">FlatList</code> instead.</p>
-
-<p>The warning is fairly clear and we know on this particular display in portrait mode that this will fit cleanly in two columns, however, this isn’t very device friendly. Smaller or larger screen or if someone flips to landscape mode, we have a problem.</p>
-
-<p>For now, we’ll hard code <code class="highlighter-rouge">numColumns</code> on the <code class="highlighter-rouge">FlatList</code> to 2, remove the <code class="highlighter-rouge">flexWrap</code> style from <code class="highlighter-rouge">conatiner</code> and change <code class="highlighter-rouge">flexDirection</code> to <code class="highlighter-rouge">column</code>.</p>
-
-<p>In the future, we’ll go into how to make device orientation and screen size decisions so that this behaves in a responsive way.</p>
-
-<h3 id="parting-notes">Parting Notes</h3>
-
-<p>As you can see from this clean up, it isn’t uncommon to play whack-a-mole with React Native sometimes. Fixing a problem, particularly a visual problem, can create more problems.</p>
-
-<p>If your output isn’t matching mine, please pull this commit from my repository and compare your code to mine.</p>
-
-<p>https://github.com/bbuchanan/react-native-sports-app/tree/3e29a52dca8717b0b0038b962c3fe836f8e62d4e</p>
+<p>Getting this part started was outlined in the <a href="/react-native-blog/2018-03-08-react-native-environment-setup.html">React Native Environment article</a>. If you missed it, I suggest you read that before continuing here.</p>
 
 <h1> Need a Full Stack React Developer?</h1>
 

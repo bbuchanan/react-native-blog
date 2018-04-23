@@ -1,7 +1,273 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/react-native-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/react-native-blog/" rel="alternate" type="text/html" /><updated>2018-04-23T11:59:50-04:00</updated><id>/react-native-blog/</id><title type="html">React Native Sports App Tutorial</title><subtitle>Building a small sports score React Native application from the ground up.</subtitle><entry><title type="html">React Native Unique Key</title><link href="/react-native-blog/2018/04/23/react-native-unique-key.html" rel="alternate" type="text/html" title="React Native Unique Key" /><published>2018-04-23T00:00:00-04:00</published><updated>2018-04-23T00:00:00-04:00</updated><id>/react-native-blog/2018/04/23/react-native-unique-key</id><content type="html" xml:base="/react-native-blog/2018/04/23/react-native-unique-key.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/react-native-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/react-native-blog/" rel="alternate" type="text/html" /><updated>2018-04-23T12:42:45-04:00</updated><id>/react-native-blog/</id><title type="html">React Native Sports App Tutorial</title><subtitle>Building a small sports score React Native application from the ground up.</subtitle><entry><title type="html">React Native Vector Icons</title><link href="/react-native-blog/2018/04/27/react-native-vector-icons.html" rel="alternate" type="text/html" title="React Native Vector Icons" /><published>2018-04-27T00:00:00-04:00</published><updated>2018-04-27T00:00:00-04:00</updated><id>/react-native-blog/2018/04/27/react-native-vector-icons</id><content type="html" xml:base="/react-native-blog/2018/04/27/react-native-vector-icons.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+  
+  &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/04/26/react-native-toast.html&quot;&gt;&amp;laquo; React Native Toast&lt;/a&gt;
+   
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;adding-native-libraries&quot;&gt;Adding Native Libraries&lt;/h1&gt;
+
+&lt;p&gt;Undoubtedly one of the most frustrating experiences is adding 3rd party native libraries. You’re going to get all kinds of weird error messages, build issues in both Android Studio and XCode, but stick with it. I’ll offer some tips and tricks to force things to work again and provide some guidance around pitfalls.&lt;/p&gt;
+
+&lt;p&gt;The goal of the next few articles is to demonstrate basic navigation features in an app. It’s typical for a mobile app to have more than one screen and normal for a mobile app to have several top level components that the user can jump to with one press.&lt;/p&gt;
+
+&lt;p&gt;First things first, lets fix our app to remove the intentional error that forced the toast notification to pop up. Do this and verify that your app displays scores again.&lt;/p&gt;
+
+&lt;h1 id=&quot;adding-react-native-vector-icons&quot;&gt;Adding react-native-vector-icons&lt;/h1&gt;
+
+&lt;p&gt;This package is handy because it contains nicely polished icons that are typical for applications. They provide icons for both Android (material design) and iOS.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/oblador/react-native-vector-icons&quot;&gt;React Native Vector Icons&lt;/a&gt; is the github home of this project. As usual, we’re going to use yarn add to begin adding support for this project. Unfortunately, that’s the easy part. We’ll also need to add support to both iOS and Android via the respective native project files. This will be tough the first few times you do it, but it gets easier.&lt;/p&gt;
+
+&lt;p&gt;Lets get started.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;yarn add react-native-vector-icons&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;getting-your-native-tools-setup&quot;&gt;Getting Your Native Tools Setup&lt;/h1&gt;
+
+&lt;p&gt;Getting this part started was outlined in the &lt;a href=&quot;/react-native-blog/2018-03-08-react-native-environment-setup.html&quot;&gt;React Native Environment article&lt;/a&gt;. If you missed it, I suggest you read that before continuing here.&lt;/p&gt;
+
+&lt;h1&gt; Need a Full Stack React Developer?&lt;/h1&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
+way to contact me is via our company page.
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Toast All Posts</summary></entry><entry><title type="html">React Native Toast</title><link href="/react-native-blog/2018/04/26/react-native-toast.html" rel="alternate" type="text/html" title="React Native Toast" /><published>2018-04-26T00:00:00-04:00</published><updated>2018-04-26T00:00:00-04:00</updated><id>/react-native-blog/2018/04/26/react-native-toast</id><content type="html" xml:base="/react-native-blog/2018/04/26/react-native-toast.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+  
+  &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/04/25/react-native-date-picker.html&quot;&gt;&amp;laquo; React Native Date Picker&lt;/a&gt;
+   
+  &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/04/27/react-native-vector-icons.html&quot;&gt;React Native Vector Icons &amp;raquo;&lt;/a&gt;
+  
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;error-reporting-using-toast-component&quot;&gt;Error Reporting Using Toast Component&lt;/h1&gt;
+
+&lt;p&gt;In this article, we’re going to throw in some quick error reporting to the user. This will occur when the &lt;code class=&quot;highlighter-rouge&quot;&gt;catch()&lt;/code&gt; block is executed due to one or more errors. Since we already have a vast majority of the building blocks in place, this should be fairly straightforward.&lt;/p&gt;
+
+&lt;p&gt;The first thing to note is that React Native does not have a toast component. In fact, out of the box react native components are a bit sparse, so we’ll find ourselves going to third parties more often than a reactjs app.&lt;/p&gt;
+
+&lt;p&gt;I’ve tried a few toast components, with mixed success. I’ve settled on one that’s simple enough for our purposes. It’s called &lt;code class=&quot;highlighter-rouge&quot;&gt;react-native-root-toast&lt;/code&gt;. To get started, install the component:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;yarn add react-native-root-toast&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Strangely, there is a dependency that isn’t installed by default called &lt;code class=&quot;highlighter-rouge&quot;&gt;redux&lt;/code&gt;. Redux is an extremely popular library that you have probably stumbled across. If not, don’t worry about it for now, it’s nothing more than a depedency for us at this stage. We’ll go into redux at a later time as it is more of an advanced topic. Back to the task at hand, install redux.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;yarn add redux&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;wiring-up-your-toast-component&quot;&gt;Wiring Up Your Toast Component&lt;/h3&gt;
+
+&lt;p&gt;We have everything we need to simply wire this up. First, import the toast component. At the top of App.js probably below where you imported the DatePicker component, add:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;import Toast from &quot;react-native-root-toast&quot;;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Then at the top of the &lt;code class=&quot;highlighter-rouge&quot;&gt;render()&lt;/code&gt; function, we’ll conditionally create the toast component if there is an error set in our state.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;toast&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hadError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;toast&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Toast&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;visible&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;errorMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Toast&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then at nearly the bottom of the &lt;code class=&quot;highlighter-rouge&quot;&gt;return&lt;/code&gt; statement in the render function, we’ll add our toast variable just before we close off the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;/View&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toast&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We could inline this if we wanted to, but I think my render function is getting big enough.&lt;/p&gt;
+
+&lt;p&gt;Finally, lets create an error condition in the request so that it will fail and display the toast component. I’ve added a bogus 1 to the beginning of the query string in the url.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`scoreboard.json?1fordate=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-toast-notification.png&quot; alt=&quot;react-native-toast-notification&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As usual, if you’re stuck you can find my commit for this &lt;a href=&quot;https://github.com/bbuchanan/react-native-sports-app/tree/4de613eab6d94aee74f3ea9b8f407decb1586c4e&quot; target=&quot;_blank&quot;&gt;react native tutorial
+here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1&gt; Need a Full Stack React Developer?&lt;/h1&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
+way to contact me is via our company page.
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Date Picker React Native Vector Icons &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Date Picker</title><link href="/react-native-blog/2018/04/25/react-native-date-picker.html" rel="alternate" type="text/html" title="React Native Date Picker" /><published>2018-04-25T00:00:00-04:00</published><updated>2018-04-25T00:00:00-04:00</updated><id>/react-native-blog/2018/04/25/react-native-date-picker</id><content type="html" xml:base="/react-native-blog/2018/04/25/react-native-date-picker.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+  
+  &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/04/24/react-native-props-wiring.html&quot;&gt;&amp;laquo; React Native Props Wiring&lt;/a&gt;
+   
+  &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/04/26/react-native-toast.html&quot;&gt;React Native Toast &amp;raquo;&lt;/a&gt;
+  
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;responding-to-user-feedback---react-native-events&quot;&gt;Responding to User Feedback - React Native Events&lt;/h1&gt;
+
+&lt;p&gt;After that bit of clean up, I’d like to allow the user to pick dates for scores they’d like to see. We’re going to go through installing a third party component package and show how to handle user events.&lt;/p&gt;
+
+&lt;p&gt;Here is the goal of this section.&lt;/p&gt;
+
+&lt;video width=&quot;640&quot; height=&quot;480&quot; controls=&quot;&quot;&gt;
+  &lt;source src=&quot;/react-native-blog/assets/videos/react-native-date-picker.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;p&gt;React Native provides separate components for date picking in iOS and date picking on Android which is not ideal. For this, I’m electing to download a package that handles both platforms with a single control.&lt;/p&gt;
+
+&lt;p&gt;Run&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;yarn add react-native-datepicker&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;to get this component installed.&lt;/p&gt;
+
+&lt;p&gt;To begin using this component, we’ll need to &lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt; it. At the upper portion where the other import statements live add a new line.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;import DatePicker from &quot;react-native-datepicker&quot;;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We’re going to hold the selected date in our component’s state, so in your state initializer, add the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;date: &quot;20170411&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;which is what our current hard coded date value is.&lt;/p&gt;
+
+&lt;p&gt;Now we’re going to add the DatePicker to the top of our &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;View&amp;gt;&lt;/code&gt;, just above the FlatList. I’ve taken their example and tweaked the props to suit my purposes.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DatePicker&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;date&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;select date&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;YYYY-MM-DD&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;minDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2016-05-01&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;maxDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2017-11-01&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;confirmBtnText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Confirm&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;cancelBtnText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Cancel&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;onDateChange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dateChangedHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)}&lt;/span&gt;
+&lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Also note that I had to omit the &lt;code class=&quot;highlighter-rouge&quot;&gt;customStyles&lt;/code&gt; property from this tutorial because github pages didn’t like it. You can copy the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;DatePicker&amp;gt;&lt;/code&gt; props in full from &lt;a href=&quot;https://github.com/bbuchanan/react-native-sports-app/blob/5779968579d84006d6fb48148c1e0e076c1528a3/App.js&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The vast majority of these props seem pretty self explanatory, but I do want to touch on the event that we’re handling, since this is a new concept. &lt;code class=&quot;highlighter-rouge&quot;&gt;onDateChange&lt;/code&gt; is a property that takes a function. The function is called when the user confirms the picked date or time in the UI. There is some shorthand going on here. The fat arrow says to pass the function as opposed to executing it immediately. The &lt;code class=&quot;highlighter-rouge&quot;&gt;date&lt;/code&gt; declaration is an argument passed in by the &lt;code class=&quot;highlighter-rouge&quot;&gt;DatePicker&lt;/code&gt; and we’re in turn passing this information on to a function we named &lt;code class=&quot;highlighter-rouge&quot;&gt;dateChangedHandler&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Before we get to the &lt;code class=&quot;highlighter-rouge&quot;&gt;dateChangedHandler&lt;/code&gt; function, I wanted to point out another refactor that has been done. I’ve moved the entire contents of &lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidMount&lt;/code&gt; into a separate function named &lt;code class=&quot;highlighter-rouge&quot;&gt;loadScores&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;loadScores&lt;/code&gt; takes no arguments because we’re going to get what we need from the state. Create a function like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;loadScores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and take everything from &lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidMount&lt;/code&gt; and put it in here. After that’s done and your &lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidMount&lt;/code&gt; function is empty, add this single line to &lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidMount&lt;/code&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;this.loadScores();&lt;/code&gt;. So now we’re still going to have some scores loaded when the app starts, but now the function can be called from other events as well.&lt;/p&gt;
+
+&lt;p&gt;Oh, one other thing, make sure you change the http get call from the hard coded value to the date that’s in our state.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.get(`scoreboard.json?fordate=${this.state.date}`)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This takes us back to our &lt;code class=&quot;highlighter-rouge&quot;&gt;dateChangedHandler&lt;/code&gt; function that we’re calling when the selection on the &lt;code class=&quot;highlighter-rouge&quot;&gt;DatePicker&lt;/code&gt; changes, but have yet to write. I want to accomplish two things. I need to update the state with the new date and I want the scores to reload reflecting the date selected.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;DatePicker&lt;/code&gt; formats the date in a visually appealing manner, however, our API requires the date in &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYYMMDD&lt;/code&gt;, so we’re going to use &lt;code class=&quot;highlighter-rouge&quot;&gt;moment.js&lt;/code&gt; to take the visually appealing version and make it suitable for the sports API.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Moment.js&lt;/code&gt; likely already installed, but if it isn’t &lt;code class=&quot;highlighter-rouge&quot;&gt;yarn add moment&lt;/code&gt; will get that straight. We’ll want to import it at the top of our file as well. Where you added the &lt;code class=&quot;highlighter-rouge&quot;&gt;DatePicker&lt;/code&gt; import, add &lt;code class=&quot;highlighter-rouge&quot;&gt;import moment from &quot;moment&quot;;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally, we can get to writing our &lt;code class=&quot;highlighter-rouge&quot;&gt;dateChangedHandler&lt;/code&gt; event handler function.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;dateChangedHandler&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;YYYYMMDD&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadScores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It’s as simple as I explained earlier. We’re setting the state and using moment to format the date appropriately and then calling &lt;code class=&quot;highlighter-rouge&quot;&gt;this.loadScores()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;As usual, if you’re stuck you can find my commit for this &lt;a href=&quot;https://github.com/bbuchanan/react-native-sports-app/blob/5779968579d84006d6fb48148c1e0e076c1528a3/App.js&quot; target=&quot;_blank&quot;&gt;react native tutorial
+here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Compare my code against yours to see where we’re different.&lt;/p&gt;
+
+&lt;h1&gt; Need a Full Stack React Developer?&lt;/h1&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
+way to contact me is via our company page.
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Props Wiring React Native Toast &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Props Wiring</title><link href="/react-native-blog/2018/04/24/react-native-props-wiring.html" rel="alternate" type="text/html" title="React Native Props Wiring" /><published>2018-04-24T00:00:00-04:00</published><updated>2018-04-24T00:00:00-04:00</updated><id>/react-native-blog/2018/04/24/react-native-props-wiring</id><content type="html" xml:base="/react-native-blog/2018/04/24/react-native-props-wiring.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+  
+  &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/04/23/react-native-unique-key.html&quot;&gt;&amp;laquo; React Native Unique Key&lt;/a&gt;
+   
+  &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/04/25/react-native-date-picker.html&quot;&gt;React Native Date Picker &amp;raquo;&lt;/a&gt;
+  
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;wiring-up-data-via-props&quot;&gt;Wiring up Data via Props&lt;/h1&gt;
+
+&lt;p&gt;We have written a lot of boilerplate for sure, but hopefully you can see the flexibility and power in this.&lt;/p&gt;
+
+&lt;p&gt;Now is the time for us to take the remote data and apply it to our component. &lt;a href=&quot;https://reactjs.org/docs/components-and-props.html&quot; target=&quot;_blank&quot;&gt;React props&lt;/a&gt; are a handy way to pass data from parent to child. To go the other way requires a completely different technique using what is called a store. Redux is the package commonly used to handle this scenario. Redux is a huge subject and is out of scope for now.&lt;/p&gt;
+
+&lt;p&gt;If you get stuck, &lt;a href=&quot;https://github.com/bbuchanan/react-native-sports-app/tree/9019a38813f7e8cd7c7edc31944c6e43fab49440&quot; target=&quot;_blank&quot;&gt;the commit up until this point can be found here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;props-are-dynamic&quot;&gt;Props Are Dynamic&lt;/h3&gt;
+
+&lt;p&gt;Like Javascript itself, props are a “nod and a handshake” between parent and child components. It takes a tool lke Typescript to enforce some typing. We’ll do some Typescript basics later on. For now, we’re just going to take the data we’ve received and render it in our ScorecardItem component.&lt;/p&gt;
+
+&lt;p&gt;The first thing we’re going to do is modify the ScorecardItem component to render these props. All of the hard coded values in this component are going to be changed to render props.&lt;/p&gt;
+
+&lt;p&gt;We are a stateful component, so props are accessed via &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; just like we did with &lt;code class=&quot;highlighter-rouge&quot;&gt;state&lt;/code&gt; in the last article. I’m going to keep the prop names similar to what I already have defined in my &lt;code class=&quot;highlighter-rouge&quot;&gt;scores&lt;/code&gt; object in &lt;code class=&quot;highlighter-rouge&quot;&gt;App.js&lt;/code&gt;. My &lt;code class=&quot;highlighter-rouge&quot;&gt;render()&lt;/code&gt; function now looks like this.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cardItemContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scoreContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The component is ready to accept these props, now it’s time to deliver them from the parent component. Recall that we already have the data we need loaded into the state. We want to now iterate over the array of scores and create a ScorecardItem for each score.&lt;/p&gt;
+
+&lt;h2 id=&quot;map&quot;&gt;Map&lt;/h2&gt;
+
+&lt;p&gt;If you’re not familiar with &lt;code class=&quot;highlighter-rouge&quot;&gt;map()&lt;/code&gt;, it’s function available on a Javascript array that iterates over every element and provides a new array. If you’re a C# developer, think of &lt;code class=&quot;highlighter-rouge&quot;&gt;map()&lt;/code&gt; as roughly equivalent to &lt;code class=&quot;highlighter-rouge&quot;&gt;Select()&lt;/code&gt; in Linq. For our purposes, we’re going to transform this array from data to a component with props.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scoreItems&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ScorecardItem&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;      &lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scoreItems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There is a lot happening for a single statement. This first thing we’re checking is for &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;. If the scores haven’t been loaded yet, don’t iterate, but rather assign &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt; to the scoreItems variable. If we’re not null, we’re going to invoke &lt;code class=&quot;highlighter-rouge&quot;&gt;map()&lt;/code&gt; which will iterate over every score. Each element in the array will be assigned to a variable named &lt;code class=&quot;highlighter-rouge&quot;&gt;score&lt;/code&gt; which is the name immediately before the fat arrow. We assign each score element to our props for the ScorecardItem component.&lt;/p&gt;
+
+&lt;p&gt;The last thing we need to do is actually output the contents of the &lt;code class=&quot;highlighter-rouge&quot;&gt;scoreItems&lt;/code&gt; variable. Since we’re producing proper jsx, we can simply output the value as is, but it has to wrapped in a &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;View&amp;gt;&lt;/code&gt; tag as shown in the return statement.&lt;/p&gt;
+
+&lt;h3 id=&quot;drumroll-please-&quot;&gt;Drumroll please …&lt;/h3&gt;
+
+&lt;p&gt;The output looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-scorecard-output.png&quot; alt=&quot;react-native-scorecard-output&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Well that’s kind of ugly, isn’t it? In the next article we’ll go about making this a little more aesthetically pleasing. We’ll also address the warning that was produced at the bottom.&lt;/p&gt;
+
+&lt;h1&gt; Need a Full Stack React Developer?&lt;/h1&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
+way to contact me is via our company page.
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Unique Key React Native Date Picker &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Unique Key</title><link href="/react-native-blog/2018/04/23/react-native-unique-key.html" rel="alternate" type="text/html" title="React Native Unique Key" /><published>2018-04-23T00:00:00-04:00</published><updated>2018-04-23T00:00:00-04:00</updated><id>/react-native-blog/2018/04/23/react-native-unique-key</id><content type="html" xml:base="/react-native-blog/2018/04/23/react-native-unique-key.html">&lt;div class=&quot;PageNavigation&quot;&gt;
   
   &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/04/20/react-native-state.html&quot;&gt;&amp;laquo; React Native State&lt;/a&gt;
    
+  &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/04/24/react-native-props-wiring.html&quot;&gt;React Native Props Wiring &amp;raquo;&lt;/a&gt;
+  
 &lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
 
@@ -167,7 +433,7 @@ Your browser does not support the video tag.
 
 &lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
 way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native State All Posts</summary></entry><entry><title type="html">React Native State</title><link href="/react-native-blog/2018/04/20/react-native-state.html" rel="alternate" type="text/html" title="React Native State" /><published>2018-04-20T00:00:00-04:00</published><updated>2018-04-20T00:00:00-04:00</updated><id>/react-native-blog/2018/04/20/react-native-state</id><content type="html" xml:base="/react-native-blog/2018/04/20/react-native-state.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native State React Native Props Wiring &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native State</title><link href="/react-native-blog/2018/04/20/react-native-state.html" rel="alternate" type="text/html" title="React Native State" /><published>2018-04-20T00:00:00-04:00</published><updated>2018-04-20T00:00:00-04:00</updated><id>/react-native-blog/2018/04/20/react-native-state</id><content type="html" xml:base="/react-native-blog/2018/04/20/react-native-state.html">&lt;div class=&quot;PageNavigation&quot;&gt;
   
   &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/04/19/react-native-rendering-scores.html&quot;&gt;&amp;laquo; React Native Rendering Scores&lt;/a&gt;
    
@@ -733,180 +999,4 @@ Your browser does not support the video tag.
 
 &lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
 way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Eject React Native Flexbox &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Eject</title><link href="/react-native-blog/2018/03/10/react-native-eject.html" rel="alternate" type="text/html" title="React Native Eject" /><published>2018-03-10T00:00:00-05:00</published><updated>2018-03-10T00:00:00-05:00</updated><id>/react-native-blog/2018/03/10/react-native-eject</id><content type="html" xml:base="/react-native-blog/2018/03/10/react-native-eject.html">&lt;div class=&quot;PageNavigation&quot;&gt;
-  
-  &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/03/08/react-native-environment-setup.html&quot;&gt;&amp;laquo; React Native Environment Setup&lt;/a&gt;
-   
-  &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/04/16/react-native-hello-world.html&quot;&gt;React Native Hello World &amp;raquo;&lt;/a&gt;
-  
-&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;eject-eject-eject&quot;&gt;EJECT! EJECT! EJECT&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/tenor.gif&quot; alt=&quot;EJECT&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The ejection process is necessary for our application for a few reasons, but the immediate reason is that we want to include two native libraries. The first is &lt;a href=&quot;https://github.com/oblador/react-native-vector-icons&quot; target=&quot;_blank&quot;&gt;react-native-vector-icons&lt;/a&gt; and the second is &lt;a href=&quot;https://github.com/wix/react-native-navigation&quot; target=&quot;_blank&quot;&gt;react-native-navigation&lt;/a&gt;. Ejection essentially allows you to take complete control of the build process. It will allow us to add these native libraries from XCode and Android Studio.&lt;/p&gt;
-
-&lt;h2 id=&quot;post-ejection-pain&quot;&gt;Post Ejection Pain&lt;/h2&gt;
-
-&lt;p&gt;If there is one thing I’ve learned, managing the build and running the software becomes a much more painful process after ejecting. So when you get bogged down with errors (red screen of death), just remember you’re not alone. It sucks, there’s no way to sugar coat it.&lt;/p&gt;
-
-&lt;p&gt;From the command line in the root of your sports-app directory run&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yarn run eject
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You’ll be asked a few questions, below are my answers.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-eject.png&quot; alt=&quot;react-native-eject-output&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The second question, “What should your app appear as on a user’s home screen”, I typed in Sports App. For the rest of the questions, I accepted the defaults. It will crank away for a couple of minutes and you’re back at a command prompt.&lt;/p&gt;
-
-&lt;h2 id=&quot;setting-up-native-environments&quot;&gt;Setting Up Native Environments&lt;/h2&gt;
-
-&lt;p&gt;Running the eject command was the easy part. The hard part is getting the native development environments up and running. For iOS, you need XCode. This can be obtained via the App Store. For Android, we’re going to use &lt;a href=&quot;https://developer.android.com/studio/install.html&quot; target=&quot;_blank&quot;&gt;Android Studio.&lt;/a&gt; The installations will probably take about an hour of your time.&lt;/p&gt;
-
-&lt;h2 id=&quot;building-in-native-environments&quot;&gt;Building in Native Environments&lt;/h2&gt;
-
-&lt;p&gt;The eject process has created two new directories off of the app root aptly named ios and android. Respective project files are located within those folders.&lt;/p&gt;
-
-&lt;h2 id=&quot;building-and-running-in-android-studio&quot;&gt;Building and Running in Android Studio&lt;/h2&gt;
-
-&lt;p&gt;Fire up Android Studio and navigate to the android folder within the project. You’ll likely be prompted numerous times for things such as this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/android-studio-react-native-1.png&quot; alt=&quot;android-studio-output&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I usually perform the updates it suggests. The next step is to build. Select &lt;code class=&quot;highlighter-rouge&quot;&gt;Build-&amp;gt;Make Project&lt;/code&gt;. If you’re lucky, the build will succeed. If not, see my sympathy section at the end of this article.&lt;/p&gt;
-
-&lt;p&gt;The emulator setup is what we’re really after though. Navigate to &lt;code class=&quot;highlighter-rouge&quot;&gt;Tools-&amp;gt;AVD Manager&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/android-studio-avd-virtual-devices.png&quot; alt=&quot;android-studio-virtual-devices&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;For my purposes, I set up the Pixel 1 (the last one in the list). I’m using API 26 (Oreo). You may have to download that version if you don’t have it. After you create your virtual device, have a look at the details. This is done by clicking the down arrow at the far right of your emulator and selecting &lt;em&gt;View Details&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;//react-native-blog/assets/images/android-studio-avd-emulator-details.png&quot; alt=&quot;android-studio-virtual-devices&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Please note the &lt;em&gt;Name&lt;/em&gt; with underscores and all. One of the downsides of Android is the emulator must be running when you start the application or it will fail to run. This is different from iOS where the emulator is started for you. For this, I’ve created a quick command.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;emulator -avd Pixel_API_26 -dns-server 8.8.8.8 -verbose -no-snapshot
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Replace the &lt;em&gt;Pixel_API_26&lt;/em&gt; with the name in your emulator details. I also specified a DNS address because the emulator wasn’t picking up the DNS details from my DHCP server.&lt;/p&gt;
-
-&lt;p&gt;The &lt;em&gt;-no-snapshot&lt;/em&gt; option is optional but based on previous pain where the emulator or app would misbehave and all too many times clearing the snapshot and/or cold booting were the solutions, so I simply just do that every time.&lt;/p&gt;
-
-&lt;h2 id=&quot;building-and-running-in-xcode&quot;&gt;Building and Running in XCode&lt;/h2&gt;
-
-&lt;p&gt;This process seemed a lot simpler than Android Studio. Fire up XCode and navigate to the &lt;code class=&quot;highlighter-rouge&quot;&gt;~/projects/sports-app/ios&lt;/code&gt; folder and open the xcodeproj.&lt;/p&gt;
-
-&lt;p&gt;It’s pretty likely the app will not build because of this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/ios-build-failed-1.png&quot; alt=&quot;ios-build-failed&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Select the top level node in your project and select the sportsapp in your targets.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/ios-build-failed-2.png&quot; alt=&quot;ios-build-failed&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You’ll see the red exclamation mark under the &lt;em&gt;General&lt;/em&gt; tab as shown. Click the &lt;em&gt;Team&lt;/em&gt; dropdown and select a certificate. Also make sure &lt;em&gt;Automatically manage signing&lt;/em&gt; is checked.&lt;/p&gt;
-
-&lt;p&gt;After getting things right, your &lt;em&gt;Signing&lt;/em&gt; settings should resemble this. Note: you will probably also have to change the &lt;em&gt;Bundle Identifier&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;//react-native-blog/assets/images/ios-build-failed-3.png&quot; alt=&quot;ios-build-failed&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Oh, but it will still fail to build. The reason why is that you also need to make the same change on the sportsappTests target. Fortunately here, you’ll just need to pick your “Team” from the dropdown.&lt;/p&gt;
-
-&lt;p&gt;Now run &lt;code class=&quot;highlighter-rouge&quot;&gt;Product-&amp;gt;Build&lt;/code&gt; and it should succeed.&lt;/p&gt;
-
-&lt;h2 id=&quot;running-ejected-app&quot;&gt;Running Ejected App&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;yarn start&lt;/code&gt; will no longer work since Expo cannot be used. We’re left with either &lt;code class=&quot;highlighter-rouge&quot;&gt;yarn run ios&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;yarn run android&lt;/code&gt;. For Android, you must first start the emulator as described above.&lt;/p&gt;
-
-&lt;p&gt;If you have successfully built the product in Android Studio and XCode, this part should just work. For most of this, I’ll be focusing on iOS, but we’ll go back and run Android and tidy things up as well.&lt;/p&gt;
-
-&lt;p&gt;So lets give it a go. If this succeeds, you’ve done fantastic and have lived through half of the pain. I’m going to deliver the other half in the next article when we incorporate the icon and navigation libraries.&lt;/p&gt;
-
-&lt;h2 id=&quot;parting-sympathy&quot;&gt;Parting Sympathy&lt;/h2&gt;
-
-&lt;p&gt;In my limited experience, this is the most difficult part. All the members of my team, including me, have had some hair pulling moments and I’m not always going to know the answers. Your best bet is to google it, but if you have any problems or questions, I’ll try to answer/help, but no guarantees.&lt;/p&gt;
-
-&lt;h1&gt; Need a Full Stack React Developer?&lt;/h1&gt;
-
-&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
-way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Environment Setup React Native Hello World &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Environment Setup</title><link href="/react-native-blog/2018/03/08/react-native-environment-setup.html" rel="alternate" type="text/html" title="React Native Environment Setup" /><published>2018-03-08T00:00:00-05:00</published><updated>2018-03-08T00:00:00-05:00</updated><id>/react-native-blog/2018/03/08/react-native-environment-setup</id><content type="html" xml:base="/react-native-blog/2018/03/08/react-native-environment-setup.html">&lt;div class=&quot;PageNavigation&quot;&gt;
-  
-  &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/2018/03/07/welcome-to-react-native.html&quot;&gt;&amp;laquo; Welcome To React Native&lt;/a&gt;
-   
-  &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/03/10/react-native-eject.html&quot;&gt;React Native Eject &amp;raquo;&lt;/a&gt;
-  
-&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;setting-up-the-react-native-environment&quot;&gt;Setting Up the React Native Environment&lt;/h1&gt;
-
-&lt;p&gt;I was first tasked with setting up a simple, proof of concept, “Hello World” application that ran on both iOS and Android.&lt;/p&gt;
-
-&lt;h2 id=&quot;environment-particulars&quot;&gt;Environment Particulars&lt;/h2&gt;
-
-&lt;p&gt;I’m on a Macbook Pro. I’m using &lt;a href=&quot;https://code.visualstudio.com/&quot; target=&quot;_blank&quot;&gt;Visual Studio Code&lt;/a&gt; as my IDE, but I’m not too religious about editors. I’ve choosen &lt;a href=&quot;https://yarnpkg.com&quot; target=&quot;_blank&quot;&gt;yarn&lt;/a&gt; over npm for package management. And of course, git for source control. That’s really all you need.&lt;/p&gt;
-
-&lt;h3 id=&quot;create-react-native-app&quot;&gt;create-react-native-app&lt;/h3&gt;
-
-&lt;p&gt;or &lt;em&gt;crna&lt;/em&gt; for short. If you’re familiar with React, this is more or less equivalent to that. It quickly creates a React Native application with sensible defaults. To get started, I loaded it via yarn.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yarn add create-react-native-app global
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Navigate to the root directory of where you hold your apps/repos. For me, this is my &lt;code class=&quot;highlighter-rouge&quot;&gt;~/projects&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd ~/projects
-create-react-native-app sports-app
-cd sports-app
-yarn start
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Out of the box, you can use an app called Expo. Install &lt;a href=&quot;https://expo.io/&quot; target=&quot;_blank&quot;&gt;Expo&lt;/a&gt; on your mobile device. Now open your editor and load &lt;code class=&quot;highlighter-rouge&quot;&gt;App.js&lt;/code&gt;. With Expo running on your device, make some changes to the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Text&amp;gt;&lt;/code&gt; areas and save them. The application on your phone will update with those changes in near real time. Super awesome!&lt;/p&gt;
-
-&lt;p&gt;Congratulations! You now have a functioning mobile application that runs on iOS and Android.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, I have some bad news. All of the goodness we get from &lt;em&gt;crna&lt;/em&gt; and Expo is going away almost immediately. I’ll explain why and go through the steps next.&lt;/p&gt;
-
-&lt;h1&gt; Need a Full Stack React Developer?&lt;/h1&gt;
-
-&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
-way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; Welcome To React Native React Native Eject &amp;raquo; All Posts</summary></entry><entry><title type="html">Welcome To React Native</title><link href="/react-native-blog/2018/03/07/welcome-to-react-native.html" rel="alternate" type="text/html" title="Welcome To React Native" /><published>2018-03-07T00:00:00-05:00</published><updated>2018-03-07T00:00:00-05:00</updated><id>/react-native-blog/2018/03/07/welcome-to-react-native</id><content type="html" xml:base="/react-native-blog/2018/03/07/welcome-to-react-native.html">&lt;div class=&quot;PageNavigation&quot;&gt;
-   
-  &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/2018/03/08/react-native-environment-setup.html&quot;&gt;React Native Environment Setup &amp;raquo;&lt;/a&gt;
-  
-&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;welcome&quot;&gt;Welcome&lt;/h1&gt;
-
-&lt;p&gt;The purpose of this blog is to outline my first real world project done in React Native. This app will be published on the app store for both Android and iPhone. I’m going to keep client intellectual property private, but it isn’t relevant to the progression of this project. This is for my benefit, largely. I’ve been a largely inconsistent blogger largely due to it being inconvenient. With the discovery of github pages and Visual Studio code (thank you markdown preview!), I found it a lot more convenient to fire things up and do a little writing.&lt;/p&gt;
-
-&lt;h2 id=&quot;some-background&quot;&gt;Some Background&lt;/h2&gt;
-
-&lt;p&gt;I hadn’t yet produced a React application (web or native), but have been studying it for the last 6 months. I leaned heavily on the tutorials produced by Max Schwarzmüller of udemy.com. Both his React 16 and Redux course and his React Native course are worth every penny. I believe they fast tracked me to success. I had not written much beyond a few screens in his tutorial before I took on the project and my client is beyond pleased with the result and it’s ahead of schedule!&lt;/p&gt;
-
-&lt;h2 id=&quot;a-little-about-me&quot;&gt;A Little About Me&lt;/h2&gt;
-
-&lt;p&gt;I’ve been a principal architect for a software consulting firm in Atlanta for the last 14 years. I’ve been developing software for over 20 years, starting with C. Then I ‘graduated’ to C++ and later C#. I’ve been developing business applications in .NET for the last 12 years with a smattering of Javascript. In the last 2 years, I’ve really gotten into client side development and dabbling in the various Javascript frameworks. I abanoned Angular for Vue. However, I was drawn to React because of React Native and decided to jump over into that in late 2017. And here we are today …&lt;/p&gt;
-
-&lt;h2 id=&quot;the-application-developed&quot;&gt;The Application Developed&lt;/h2&gt;
-
-&lt;p&gt;The app will be a content delivery method for sports teams. The client currently has a website and a RESTful API that can serve up their exclusive content in the form of text and podcasts.&lt;/p&gt;
-
-&lt;p&gt;Without further delay, lets have a sneak look at the application in action.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-sports-app-preview.png&quot; alt=&quot;React Native Sports App&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This is the focal point of the app and getting to this point involved a lot of steps, which we’ll go through. Step 1 is setting up our environment which will cover in the next post. Navigation, HTTP requests, and Redux are all a part of this and will also be detailed.&lt;/p&gt;
-
-&lt;h1&gt; Need a Full Stack React Developer?&lt;/h1&gt;
-
-&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
-way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">React Native Environment Setup &amp;raquo; All Posts</summary></entry></feed>
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Eject React Native Flexbox &amp;raquo; All Posts</summary></entry></feed>

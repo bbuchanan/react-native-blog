@@ -31,6 +31,8 @@ which is what our current hard coded date value is.
 
 Now we're going to add the DatePicker to the top of our `<View>`, just above the FlatList. I've taken their example and tweaked the props to suit my purposes.
 
+{% raw %}
+
 ```javascript
 <DatePicker
   style={{ width: 200 }}
@@ -46,6 +48,7 @@ Now we're going to add the DatePicker to the top of our `<View>`, just above the
 />
 ```
 
+{% endraw %}
 Also note that I had to omit the `customStyles` property from this tutorial because github pages didn't like it. You can copy the `<DatePicker>` props in full from <a href="https://github.com/bbuchanan/react-native-sports-app/blob/5779968579d84006d6fb48148c1e0e076c1528a3/App.js" target="_blank">here</a>.
 
 The vast majority of these props seem pretty self explanatory, but I do want to touch on the event that we're handling, since this is a new concept. `onDateChange` is a property that takes a function. The function is called when the user confirms the picked date or time in the UI. There is some shorthand going on here. The fat arrow says to pass the function as opposed to executing it immediately. The `date` declaration is an argument passed in by the `DatePicker` and we're in turn passing this information on to a function we named `dateChangedHandler`.
