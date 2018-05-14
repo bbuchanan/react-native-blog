@@ -5,7 +5,7 @@
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,maximum-scale=2">
-  <link rel="stylesheet" type="text/css" media="screen" href="/react-native-blog/assets/css/style.css?v=c277199aa1b7ddee85383c0212a608c81e460043"> <!-- Begin Jekyll SEO tag v2.4.0 -->
+  <link rel="stylesheet" type="text/css" media="screen" href="/react-native-blog/assets/css/style.css?v=4553c24159b2992c24e86a2cb1c42b87b35a2ab3"> <!-- Begin Jekyll SEO tag v2.4.0 -->
 <title>React Native Sports App Tutorial | Building a small sports score React Native application from the ground up.</title>
 <meta name="generator" content="Jekyll v3.7.3" />
 <meta property="og:title" content="React Native Sports App Tutorial" />
@@ -42,43 +42,82 @@
 
 <h1 class="entry-title">
    
-  <a href="/2018/04/27/react-native-vector-icons.html">React Native Vector Icons</a>
+  <a href="/react-native-navigation-introduction.html">React Native Navigation Introduction</a>
   
 </h1>
 <div class="entry-content"><div class="PageNavigation">
   
-  <a class="prev" href="/react-native-blog/2018/04/26/react-native-toast.html">&laquo; React Native Toast</a>
+  <a class="prev" href="/react-native-blog/react-native-vector-icons-android.html">&laquo; React Native Vector Icons Android</a>
    
 </div>
 <p><a href="/react-native-blog/posts.html">All Posts</a></p>
 
-<h1 id="adding-native-libraries">Adding Native Libraries</h1>
+<h1 id="introducing-navigation-to-our-react-native-app">Introducing Navigation to our React Native App</h1>
 
-<p>Undoubtedly one of the most frustrating experiences is adding 3rd party native libraries. You’re going to get all kinds of weird error messages, build issues in both Android Studio and XCode, but stick with it. I’ll offer some tips and tricks to force things to work again and provide some guidance around pitfalls.</p>
+<p>Navigation is a bit of a political subject at the moment. I believe the general consensus is that there are pitfalls and cons to whatever you choose. At the time of this writing, there are really 3 choices (several attempts at nav have been abandoned).</p>
 
-<p>The goal of the next few articles is to demonstrate basic navigation features in an app. It’s typical for a mobile app to have more than one screen and normal for a mobile app to have several top level components that the user can jump to with one press.</p>
+<ul>
+  <li>react-native-navigation</li>
+  <li>react-navigation</li>
+  <li>react-native-navigation v2</li>
+</ul>
 
-<p>First things first, lets fix our app to remove the intentional error that forced the toast notification to pop up. Do this and verify that your app displays scores again.</p>
+<p>Lets start with react-navigation. It’s big attractions to me are:</p>
 
-<h1 id="adding-react-native-vector-icons">Adding react-native-vector-icons</h1>
+<ul>
+  <li>Simple to get installed. It’s Javascript based, so no monkeying around with Android Studio and/or Xcode to get started.</li>
+  <li>Community Supported. Commits seem to be frequent and as I’m writing this, there was a commit as recent as 3 days ago.</li>
+  <li>Platform specific components.</li>
+</ul>
 
-<p>This package is handy because it contains nicely polished icons that are typical for applications. They provide icons for both Android (material design) and iOS.</p>
+<p>Cons</p>
 
-<p><a href="https://github.com/oblador/react-native-vector-icons">React Native Vector Icons</a> is the github home of this project. As usual, we’re going to use yarn add to begin adding support for this project. Unfortunately, that’s the easy part. We’ll also need to add support to both iOS and Android via the respective native project files. This will be tough the first few times you do it, but it gets easier.</p>
+<ul>
+  <li>Possible performance issues because it’s running on the Javascript thread. For our purposes now, this probably isn’t a big issue.</li>
+  <li>I’m not a fan of the docs and examples. Could use more screenshots, I found busted links, etc.</li>
+  <li>I seem to hit a lot of pitfalls that leave me frustrated.</li>
+</ul>
 
-<p>Lets get started.</p>
+<p>The folks at reactnavigation.org have even given their own pitch/anti-pitch as to why you should or shouldn’t use that library. <a href="https://reactnavigation.org/docs/pitch.html" target="_blank">React navigation pitch/anti-pitch</a>.</p>
 
-<p><code class="highlighter-rouge">yarn add react-native-vector-icons</code></p>
+<h3 id="react-native-navigation">react-native-navigation</h3>
 
-<h1 id="getting-your-native-tools-setup">Getting Your Native Tools Setup</h1>
+<p>Pros</p>
 
-<p>Getting this part started was outlined in the <a href="/react-native-blog/2018-03-08-react-native-environment-setup.html">React Native Environment article</a>. If you missed it, I suggest you read that before continuing here.</p>
+<ul>
+  <li>Native and highly performant</li>
+  <li>Seems to be fairly straightforward to get working.</li>
+  <li>Documentation is better, I found the samples concise and it got me started quick.</li>
+</ul>
+
+<p>Cons</p>
+
+<ul>
+  <li>Native, so the setup is a pain (as you’re probably well aware of after setting up the vector icons).</li>
+  <li>Also contains a number of bugs that leave me frustrated.</li>
+  <li>Maintained by a company. (wix)</li>
+  <li>Deep debugging has to be done in native environments.</li>
+</ul>
+
+<h3 id="react-native-navigation-v2">react-native-navigation v2</h3>
+
+<p>I cannot speak to this, as I haven’t tried it. I wanted to point it out because the folks at wix are encouraging folks to use it. At this stage, it’s an alpha product and has been that way for some time and I don’t really have a compelling reason to switch to v2. I may play with it some day for fun, but for our purposes, I’m going to eliminate it from the list of consideration.</p>
+
+<h2 id="my-choice-is-">My choice is …</h2>
+
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*lPYG2cGAo7Qet0nd6_szPA.png" alt="react-native-navigation" /></p>
+
+<p>React Native Navigation.</p>
+
+<p>As mentioned in the cons, the setup is a pain, but no more painful than the vector icons. It’s one and done and the samples provided make up the setup time really quickly.</p>
+
+<p>With that said, I encourage anyone who comes across this today to re-evaluate the react native navigation situation each time you’re developing a new app or refactoring an existing app.</p>
 
 <h1> Need a Full Stack React Developer?</h1>
 
 <p>I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
 way to contact me is via our company page.
-<a href="https://www.yyesoftware.com" target="_blank">Yye Software</a></p>
+<a href="https://www.yyesoftware.com" target="_blank">Yye Software</a> is an application development company based in the Atlanta metro area with offices in Kennesaw.</p>
 </div>
 
     </section>
