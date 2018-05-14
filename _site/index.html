@@ -5,7 +5,7 @@
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,maximum-scale=2">
-  <link rel="stylesheet" type="text/css" media="screen" href="/react-native-blog/assets/css/style.css?v=4553c24159b2992c24e86a2cb1c42b87b35a2ab3"> <!-- Begin Jekyll SEO tag v2.4.0 -->
+  <link rel="stylesheet" type="text/css" media="screen" href="/react-native-blog/assets/css/style.css?v=dc5b79507bcc6d194fced32a1a9852e3f1ff3f17"> <!-- Begin Jekyll SEO tag v2.4.0 -->
 <title>React Native Sports App Tutorial | Building a small sports score React Native application from the ground up.</title>
 <meta name="generator" content="Jekyll v3.7.3" />
 <meta property="og:title" content="React Native Sports App Tutorial" />
@@ -42,82 +42,133 @@
 
 <h1 class="entry-title">
    
-  <a href="/react-native-navigation-introduction.html">React Native Navigation Introduction</a>
+  <a href="/react-native-add-navigation-tabs.html">React Native Add Navigation Tabs</a>
   
 </h1>
 <div class="entry-content"><div class="PageNavigation">
   
-  <a class="prev" href="/react-native-blog/react-native-vector-icons-android.html">&laquo; React Native Vector Icons Android</a>
+  <a class="prev" href="/react-native-blog/react-native-navigation-android.html">&laquo; React Native Navigation Android</a>
    
 </div>
 <p><a href="/react-native-blog/posts.html">All Posts</a></p>
 
-<h1 id="introducing-navigation-to-our-react-native-app">Introducing Navigation to our React Native App</h1>
+<h1 id="adding-navigation-tabs">Adding Navigation Tabs</h1>
 
-<p>Navigation is a bit of a political subject at the moment. I believe the general consensus is that there are pitfalls and cons to whatever you choose. At the time of this writing, there are really 3 choices (several attempts at nav have been abandoned).</p>
+<p>If you’ve made it this far, give yourself a pat on the back. Getting these native modules working is always trying. The good news is, the fun part is now. We get to add some simple tab based navigation to the app.</p>
 
-<ul>
-  <li>react-native-navigation</li>
-  <li>react-navigation</li>
-  <li>react-native-navigation v2</li>
-</ul>
+<p>We’re going to tie together the react-native-vector-icons and the react-native-navigation components in this post. To get started, lets create a new file in the project called <code class="highlighter-rouge">createNavTabs.js</code>.</p>
 
-<p>Lets start with react-navigation. It’s big attractions to me are:</p>
+<p>We’re going to associate icons with the tabs, so we need to import the navigation and icon packages.</p>
 
-<ul>
-  <li>Simple to get installed. It’s Javascript based, so no monkeying around with Android Studio and/or Xcode to get started.</li>
-  <li>Community Supported. Commits seem to be frequent and as I’m writing this, there was a commit as recent as 3 days ago.</li>
-  <li>Platform specific components.</li>
-</ul>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Navigation</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native-navigation"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Icon</span> <span class="k">from</span> <span class="s2">"react-native-vector-icons/Ionicons"</span><span class="p">;</span>
+</code></pre></div></div>
 
-<p>Cons</p>
+<p>I’m going to pick some random icons, but feel free to look at the <a href="https://ionicframework.com/docs/ionicons/" target="_blank">link here to pick your own icons</a>.</p>
 
-<ul>
-  <li>Possible performance issues because it’s running on the Javascript thread. For our purposes now, this probably isn’t a big issue.</li>
-  <li>I’m not a fan of the docs and examples. Could use more screenshots, I found busted links, etc.</li>
-  <li>I seem to hit a lot of pitfalls that leave me frustrated.</li>
-</ul>
+<h2 id="loading-icons-asynchronously">Loading Icons Asynchronously</h2>
 
-<p>The folks at reactnavigation.org have even given their own pitch/anti-pitch as to why you should or shouldn’t use that library. <a href="https://reactnavigation.org/docs/pitch.html" target="_blank">React navigation pitch/anti-pitch</a>.</p>
+<p>When we’re not specifying an icon in the markup, we’re going to load them using the <code class="highlighter-rouge">getImageSource()</code> function. <code class="highlighter-rouge">getImageSource</code> takes two parameters, the name and the size. For our purproses, we’ll load a 30x30 icon. Paste the following below your import statements.</p>
 
-<h3 id="react-native-navigation">react-native-navigation</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">startTabs</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
+    <span class="nx">Icon</span><span class="p">.</span><span class="nx">getImageSource</span><span class="p">(</span><span class="s2">"md-home"</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+    <span class="nx">Icon</span><span class="p">.</span><span class="nx">getImageSource</span><span class="p">(</span><span class="s2">"md-menu"</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+  <span class="p">]).</span><span class="nx">then</span><span class="p">(</span><span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">Navigation</span><span class="p">.</span><span class="nx">startTabBasedApp</span><span class="p">({</span>
+      <span class="na">tabs</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="na">screen</span><span class="p">:</span> <span class="s2">"sports-app.ScoreScreen"</span><span class="p">,</span>
+          <span class="na">label</span><span class="p">:</span> <span class="s2">"Scores"</span><span class="p">,</span>
+          <span class="na">icon</span><span class="p">:</span> <span class="nx">sources</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="na">screen</span><span class="p">:</span> <span class="s2">"sports-app.Screen2"</span><span class="p">,</span>
+          <span class="na">label</span><span class="p">:</span> <span class="s2">"Screen 2"</span><span class="p">,</span>
+          <span class="na">icon</span><span class="p">:</span> <span class="nx">sources</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">};</span>
 
-<p>Pros</p>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">startTabs</span><span class="p">;</span>
+</code></pre></div></div>
 
-<ul>
-  <li>Native and highly performant</li>
-  <li>Seems to be fairly straightforward to get working.</li>
-  <li>Documentation is better, I found the samples concise and it got me started quick.</li>
-</ul>
+<p>We’re doing quite a lot in just a small space. First, we’ve kicked off an array of promises to load 2 icons from the vector icon library. When that’s completed, the success case will return an array of icons in the order that we requested them.</p>
 
-<p>Cons</p>
+<p>The good stuff happens in the <code class="highlighter-rouge">Navigation.startTabBasedApp()</code> which takes an object that contains an array of tabs and other configuration items. For now, we’ll keep it simple and create two tab items.</p>
 
-<ul>
-  <li>Native, so the setup is a pain (as you’re probably well aware of after setting up the vector icons).</li>
-  <li>Also contains a number of bugs that leave me frustrated.</li>
-  <li>Maintained by a company. (wix)</li>
-  <li>Deep debugging has to be done in native environments.</li>
-</ul>
+<p>To make this work, we’re going to do a bit of refactoring by putting our existing screen from <code class="highlighter-rouge">App.js</code> into its own screen. I’m going to organize this by creating a new <code class="highlighter-rouge">screens</code> folder off of the <code class="highlighter-rouge">src</code> folder (which is inline with our <code class="highlighter-rouge">components</code> folder).</p>
 
-<h3 id="react-native-navigation-v2">react-native-navigation v2</h3>
+<p>In there, I’m going to create a file named <code class="highlighter-rouge">ScoreScreen.js</code> and a placeholder for Screen 2 (which we haven’t developed yet) and for now we’ll call it <code class="highlighter-rouge">Screen2.js</code>.</p>
 
-<p>I cannot speak to this, as I haven’t tried it. I wanted to point it out because the folks at wix are encouraging folks to use it. At this stage, it’s an alpha product and has been that way for some time and I don’t really have a compelling reason to switch to v2. I may play with it some day for fun, but for our purposes, I’m going to eliminate it from the list of consideration.</p>
+<p>I literally gutted <code class="highlighter-rouge">App.js</code> and put nearly all of it into <code class="highlighter-rouge">ScoreScreen.js</code>. I changed the name of the class from <code class="highlighter-rouge">App</code> to <code class="highlighter-rouge">ScoreScreen</code>. <code class="highlighter-rouge">App.js</code> is now going to look like this for starters.</p>
 
-<h2 id="my-choice-is-">My choice is …</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s2">"react"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">StyleSheet</span><span class="p">,</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">View</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Icon</span> <span class="k">from</span> <span class="s2">"react-native-vector-icons/Ionicons"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Navigation</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native-navigation"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">ScoreScreen</span> <span class="k">from</span> <span class="s2">"./src/screens/ScoreScreen"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Screen2</span> <span class="k">from</span> <span class="s2">"./src/screens/Screen2"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">startTabs</span> <span class="k">from</span> <span class="s2">"./src/createNavTabs"</span><span class="p">;</span>
+</code></pre></div></div>
 
-<p><img src="https://cdn-images-1.medium.com/max/1600/1*lPYG2cGAo7Qet0nd6_szPA.png" alt="react-native-navigation" /></p>
+<p>This includes all of dependencies we need to load the tab navigation. From there, we hand off the screen display to the navigation library. So <code class="highlighter-rouge">App.js</code> becomes fairly dumb. It just provides the configuration tying screens to navigation and calls our <code class="highlighter-rouge">startTabs()</code> function.</p>
 
-<p>React Native Navigation.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Navigation</span><span class="p">.</span><span class="nx">registerComponent</span><span class="p">(</span><span class="s2">"sports-app.ScoreScreen"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">ScoreScreen</span><span class="p">);</span>
+<span class="nx">Navigation</span><span class="p">.</span><span class="nx">registerComponent</span><span class="p">(</span><span class="s2">"sports-app.Screen2"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">Screen2</span><span class="p">);</span>
 
-<p>As mentioned in the cons, the setup is a pain, but no more painful than the vector icons. It’s one and done and the samples provided make up the setup time really quickly.</p>
+<span class="nx">startTabs</span><span class="p">();</span>
+</code></pre></div></div>
 
-<p>With that said, I encourage anyone who comes across this today to re-evaluate the react native navigation situation each time you’re developing a new app or refactoring an existing app.</p>
+<h2 id="one-more-thing">One more thing!</h2>
 
-<h1> Need a Full Stack React Developer?</h1>
+<p>Since we moved the ScoreScreen into the <code class="highlighter-rouge">screens</code> folder, we have to update the paths of our <code class="highlighter-rouge">import</code> statements. Those will change like so.</p>
 
-<p>I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
-way to contact me is via our company page.
-<a href="https://www.yyesoftware.com" target="_blank">Yye Software</a> is an application development company based in the Atlanta metro area with offices in Kennesaw.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s2">"react"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">FlatList</span><span class="p">,</span> <span class="nx">StyleSheet</span><span class="p">,</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">View</span><span class="p">,</span> <span class="nx">Image</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">DatePicker</span> <span class="k">from</span> <span class="s2">"react-native-datepicker"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Toast</span> <span class="k">from</span> <span class="s2">"react-native-root-toast"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">moment</span> <span class="k">from</span> <span class="s2">"moment"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="s2">"../axios-sports"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Icon</span> <span class="k">from</span> <span class="s2">"react-native-vector-icons/Ionicons"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">ScorecardItem</span> <span class="k">from</span> <span class="s2">"../components/ScorecardItem"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>It’s really just axios and the <code class="highlighter-rouge">ScorecardItem</code> component imports that needed changing, but the entire import section is there for your copy and paste convenience.</p>
+
+<h3 id="screen-2">Screen 2</h3>
+
+<p>For <code class="highlighter-rouge">Screen2.js</code>, we’ll just add some placeholder stuff for now.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s2">"react"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">View</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">Screen2</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">View</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="k">from</span> <span class="nx">Screen</span> <span class="mi">2</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Lets fire up the app and see what it looks like.</p>
+
+<p><img src="/react-native-blog/assets/images/ios-navigation-screen1.png" alt="React Native Navigation Screen 1" /></p>
+
+<p>And then we press on the Screen 2 text at the bottom and we’ll see our second placeholder screen.</p>
+
+<p><img src="/react-native-blog/assets/images/ios-navigation-screen2.png" alt="React Native Navigation Screen 2" /></p>
+
+<p>And we’ve got it! In the next lesson we’ll add some functionality to the second screen.</p>
+
+<p>If you need some help, please check out this commit in github which contains our application up to this point.</p>
+
+<p><a href="https://github.com/bbuchanan/react-native-sports-app/tree/2f77bb8a2d0c953541299017a2c7a689545b1c9d" target="_blank">Sports App Repository up to this point.</a></p>
 </div>
 
     </section>
