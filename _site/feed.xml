@@ -1,7 +1,174 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/react-native-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/react-native-blog/" rel="alternate" type="text/html" /><updated>2018-05-14T16:39:30-04:00</updated><id>/react-native-blog/</id><title type="html">React Native Sports App Tutorial</title><subtitle>Building a small sports score React Native application from the ground up.</subtitle><entry><title type="html">React Native Add Navigation Tabs</title><link href="/react-native-blog/react-native-add-navigation-tabs.html" rel="alternate" type="text/html" title="React Native Add Navigation Tabs" /><published>2018-05-14T00:00:00-04:00</published><updated>2018-05-14T00:00:00-04:00</updated><id>/react-native-blog/react-native-add-navigation-tabs</id><content type="html" xml:base="/react-native-blog/react-native-add-navigation-tabs.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="/react-native-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/react-native-blog/" rel="alternate" type="text/html" /><updated>2018-05-18T17:23:51-04:00</updated><id>/react-native-blog/</id><title type="html">React Native Sports App Tutorial</title><subtitle>Building a small sports score React Native application from the ground up.</subtitle><entry><title type="html">React Native Sports Stats Screen</title><link href="/react-native-blog/react-native-sports-stats-screen.html" rel="alternate" type="text/html" title="React Native Sports Stats Screen" /><published>2018-05-18T00:00:00-04:00</published><updated>2018-05-18T00:00:00-04:00</updated><id>/react-native-blog/react-native-sports-stats-screen</id><content type="html" xml:base="/react-native-blog/react-native-sports-stats-screen.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+  
+  &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/react-native-add-navigation-tabs.html&quot;&gt;&amp;laquo; React Native Add Navigation Tabs&lt;/a&gt;
+   
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;adding-sports-statistics&quot;&gt;Adding Sports Statistics&lt;/h1&gt;
+
+&lt;p&gt;This next couple of posts are going to create our second screen that is a placeholder at the moment. We’re not going to learn a lot new as it pertains to React Native, but we’re setting ourselves up to have a little more fun with some third party user interface components. Consider this article a quick review as we stub out a way to display sports statistics. We’re essentially reviewing what we know and then we’re going to tie it all together with some prettiness. Lets get started …&lt;/p&gt;
+
+&lt;h2 id=&quot;housekeeping-items&quot;&gt;Housekeeping Items&lt;/h2&gt;
+
+&lt;p&gt;The first thing we’re going to do is rename &lt;code class=&quot;highlighter-rouge&quot;&gt;Screen2.js&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;StatsScreen.js&lt;/code&gt;. Some fallout tasks to that is changing the &lt;code class=&quot;highlighter-rouge&quot;&gt;createNavTabs.js&lt;/code&gt; to point to &lt;code class=&quot;highlighter-rouge&quot;&gt;StatsScreen&lt;/code&gt; now (instead of Screen2). We’ll also change the label on the tab from Screen2 to Stats.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;screen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;sports-app.StatsScreen&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Stats&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sources&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In &lt;code class=&quot;highlighter-rouge&quot;&gt;App.js&lt;/code&gt; change the import statement for Screen2 to&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;import StatsScreen from &quot;./src/screens/StatsScreen&quot;;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And change the &lt;code class=&quot;highlighter-rouge&quot;&gt;registerComponent()&lt;/code&gt; for Screen2 to&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;Navigation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;registerComponent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sports-app.StatsScreen&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;StatsScreen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The remaining pieces of work involve creating a screen that will load our sports stats.&lt;/p&gt;
+
+&lt;h2 id=&quot;sports-stats-screen---getting-data&quot;&gt;Sports Stats Screen - Getting Data&lt;/h2&gt;
+
+&lt;p&gt;If you remember back to when we first starting loading data from MySportsFeed, we set up axios to pull using our authorization key. The great thing about axios is that we were able to tuck away this authorization header and the base URL that forms every request. This
+allows us to make short work of getting additional data from MySportsFeed.&lt;/p&gt;
+
+&lt;p&gt;The screenshot below shows where we’ll be retrieving the data from.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/my-sports-api-react-native.png&quot; alt=&quot;React Native MySportFeed API Stats&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;sports-stats-screen---processing-data&quot;&gt;Sports Stats Screen - Processing Data&lt;/h2&gt;
+
+&lt;p&gt;I’ll walk through each change to the file from top to bottom, so we’ll start with the imports.&lt;/p&gt;
+
+&lt;p&gt;Open the newly renamed &lt;code class=&quot;highlighter-rouge&quot;&gt;StatsScreen.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We’re adding a Picker component which is a React Native component, just like a Text, View, etc. We’re also going to import our axios export.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;react&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Picker&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;react-native&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;../axios-sports&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, change the class name from Screen2 to StatsScreen.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;StatsScreen&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Just like our other screen, we’re going to have a local state that holds information like the current team selected, their stats, if there was an error, etc. Just inside of the class, lets initialize our state.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;currentTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;det&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;stats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hadError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;errorMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;currentTeam&lt;/code&gt; is going to hold a selection from the Picker. This will be used when we load the stats. &lt;code class=&quot;highlighter-rouge&quot;&gt;stats&lt;/code&gt; will hold our loaded stats (if loading is successful), otherwise, &lt;code class=&quot;highlighter-rouge&quot;&gt;hadError&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;errorMessage&lt;/code&gt; will become important.&lt;/p&gt;
+
+&lt;p&gt;We’re going to hook into the component lifecycle method &lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidMount&lt;/code&gt; once again to load some initial stats.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadStats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now for the heart of the functionality, our stat loading function.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;loadStats&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`cumulative_player_stats.json?team=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;currentTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;stats&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cumulativeplayerstats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;playerstatsentry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;firstName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;player&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;FirstName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;lastName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;player&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;LastName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;battingAverage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;BattingAvg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#text&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;homeruns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Homeruns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#text&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;stats&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;hadError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;errorMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;MySportsFeed really puts stuff in there good and deep, but they’re very thorough, which is why we like them. After all of that, I’m just going to pluck out the player name, his batting average and number of homeruns. You’re welcome to add any stats you’d like. Once we’re extracted what we wanted, we’re going to put the stats into the state so that they can be rendered (this will done in the next article).&lt;/p&gt;
+
+&lt;h2 id=&quot;loading-team-stats-dynamically&quot;&gt;Loading Team Stats Dynamically&lt;/h2&gt;
+
+&lt;p&gt;Our last bit of fun for this article is to add support in the user interface to change the team based on user selection. We’ll use the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Picker /&amp;gt;&lt;/code&gt; component we added to our import earlier and a &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Picker /&amp;gt;&lt;/code&gt; component exposes a &lt;code class=&quot;highlighter-rouge&quot;&gt;onValueChange&lt;/code&gt; event hook. We’ll subscribe to that with our own function which will update the state and reload the statistics based on the user’s selection. Our handler looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;teamSelectionChanged&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;currentTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadStats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It’s quick and easy, but it looks a little different than previous &lt;code class=&quot;highlighter-rouge&quot;&gt;setState&lt;/code&gt; calls because in this version, we utilize a callback that is passed in the second argument. This callback is called when the state has been updated. We could have just as easily added an argument to &lt;code class=&quot;highlighter-rouge&quot;&gt;loadStats()&lt;/code&gt; but I wanted to keep the team synchronized and in one place.&lt;/p&gt;
+
+&lt;h2 id=&quot;adding-a-react-native-picker&quot;&gt;Adding a React Native Picker&lt;/h2&gt;
+
+&lt;p&gt;Finally in our &lt;code class=&quot;highlighter-rouge&quot;&gt;render()&lt;/code&gt; function, we’re going to change our &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;View&amp;gt;&lt;/code&gt; to do a lot more than just return some dummy text. We’re going to add the &lt;code class=&quot;highlighter-rouge&quot;&gt;Picker&lt;/code&gt; with some hard coded teams. The &lt;code class=&quot;highlighter-rouge&quot;&gt;Picker&lt;/code&gt; will also wire up our &lt;code class=&quot;highlighter-rouge&quot;&gt;ValueChange&lt;/code&gt; event.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Picker&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;selectedValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;currentTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;onValueChange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamSelectionChanged&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)}&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Picker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Tigers&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;det&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Picker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Braves&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;atl&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Picker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Red Sox&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bos&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Picker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Rays&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tam&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Picker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Mariners&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sea&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Picker&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The React Native picker &lt;code class=&quot;highlighter-rouge&quot;&gt;onValueChange&lt;/code&gt; will pass two arguments. The selected value, which is what is in each &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Picker.Item&amp;gt; value&lt;/code&gt; tag and the display index. We don’t need the display index of item, but I thought I’d point it out anyway.&lt;/p&gt;
+
+&lt;p&gt;We’re only passing the &lt;code class=&quot;highlighter-rouge&quot;&gt;value&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;this.teamSelectionChanged()&lt;/code&gt; function. Since this is wired up, we should be able to see our stats. I’m going to fire up the React Native Debugger. If you haven’t heard of React Native Debugger, it’s a great tool that you really need to know about now. Stop everything and read the section &lt;a href=&quot;2018-04-20-react-native-state.md&quot;&gt;Analyzing State In the React Native Debugger&lt;/a&gt; where I give a quick overview of how to install and use React Native Debugger.&lt;/p&gt;
+
+&lt;p&gt;And here we see our hometown Atlanta Braves stats in our state. Thankfully Ronald Acuna isn’t batting 0.000 this year.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-state-sports-stats.png&quot; alt=&quot;React Native State Sports Stats&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It ain’t pretty, but we’ve done all of the heavy lifting necessary now to put a pretty face on this screen, which will happen in the next set of articles.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/bbuchanan/react-native-sports-app/tree/dd210644577f387af0513b1da31fdc7a7f62e8df&quot; target=&quot;_blank&quot;&gt;React Native Sports App Tutorial up to this point.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt; Need a Full Stack React Developer?&lt;/h1&gt;
+
+&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
+way to contact me is via our company page.
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt; is an application development company based in the Atlanta metro area with offices in Kennesaw.&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Add Navigation Tabs All Posts</summary></entry><entry><title type="html">React Native Add Navigation Tabs</title><link href="/react-native-blog/react-native-add-navigation-tabs.html" rel="alternate" type="text/html" title="React Native Add Navigation Tabs" /><published>2018-05-14T00:00:00-04:00</published><updated>2018-05-14T00:00:00-04:00</updated><id>/react-native-blog/react-native-add-navigation-tabs</id><content type="html" xml:base="/react-native-blog/react-native-add-navigation-tabs.html">&lt;div class=&quot;PageNavigation&quot;&gt;
   
   &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/react-native-navigation-android.html&quot;&gt;&amp;laquo; React Native Navigation Android&lt;/a&gt;
    
+  &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/react-native-sports-stats-screen.html&quot;&gt;React Native Sports Stats Screen &amp;raquo;&lt;/a&gt;
+  
 &lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
 
@@ -121,7 +288,7 @@
 
 &lt;p&gt;If you need some help, please check out this commit in github which contains our application up to this point.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/bbuchanan/react-native-sports-app/tree/2f77bb8a2d0c953541299017a2c7a689545b1c9d&quot; target=&quot;_blank&quot;&gt;Sports App Repository up to this point.&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Navigation Android All Posts</summary></entry><entry><title type="html">React Native Navigation Android</title><link href="/react-native-blog/react-native-navigation-android.html" rel="alternate" type="text/html" title="React Native Navigation Android" /><published>2018-05-09T00:00:00-04:00</published><updated>2018-05-09T00:00:00-04:00</updated><id>/react-native-blog/react-native-navigation-android</id><content type="html" xml:base="/react-native-blog/react-native-navigation-android.html">&lt;div class=&quot;PageNavigation&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/bbuchanan/react-native-sports-app/tree/2f77bb8a2d0c953541299017a2c7a689545b1c9d&quot; target=&quot;_blank&quot;&gt;Sports App Repository up to this point.&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Navigation Android React Native Sports Stats Screen &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Navigation Android</title><link href="/react-native-blog/react-native-navigation-android.html" rel="alternate" type="text/html" title="React Native Navigation Android" /><published>2018-05-09T00:00:00-04:00</published><updated>2018-05-09T00:00:00-04:00</updated><id>/react-native-blog/react-native-navigation-android</id><content type="html" xml:base="/react-native-blog/react-native-navigation-android.html">&lt;div class=&quot;PageNavigation&quot;&gt;
   
   &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/react-native-installing-navigation.html&quot;&gt;&amp;laquo; React Native Installing Navigation&lt;/a&gt;
    
@@ -846,175 +1013,4 @@ way to contact me is via our company page.
 
 &lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
 way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt; is an application development company based in the Atlanta metro area with offices in Kennesaw.&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Unique Key React Native Date Picker &amp;raquo; All Posts</summary></entry><entry><title type="html">React Native Unique Key</title><link href="/react-native-blog/react-native-unique-key.html" rel="alternate" type="text/html" title="React Native Unique Key" /><published>2018-04-23T00:00:00-04:00</published><updated>2018-04-23T00:00:00-04:00</updated><id>/react-native-blog/react-native-unique-key</id><content type="html" xml:base="/react-native-blog/react-native-unique-key.html">&lt;div class=&quot;PageNavigation&quot;&gt;
-  
-  &lt;a class=&quot;prev&quot; href=&quot;/react-native-blog/react-native-state.html&quot;&gt;&amp;laquo; React Native State&lt;/a&gt;
-   
-  &lt;a class=&quot;next&quot; href=&quot;/react-native-blog/react-native-props-wiring.html&quot;&gt;React Native Props Wiring &amp;raquo;&lt;/a&gt;
-  
-&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;/react-native-blog/posts.html&quot;&gt;All Posts&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;sports-app-cleanup&quot;&gt;Sports App Cleanup&lt;/h1&gt;
-
-&lt;p&gt;In the previous article, our React Native app finally got to a point where we could load data from a remote source, put that data into our component’s state, iterate over each javascript array item using the &lt;code class=&quot;highlighter-rouge&quot;&gt;map&lt;/code&gt; function and finally pass the relevant portion of each element to our child component via React props.&lt;/p&gt;
-
-&lt;p&gt;After all of that, we were left with annoying warning, ‘Warning: Each child in an array or iterator should have a unique “key” prop.’ and a less than polished scorecard.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-scorecard-output.png&quot; alt=&quot;react-native-scorecard-output&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The goal of this article is to get rid of the warning and make the scorecard look just a little bit better.&lt;/p&gt;
-
-&lt;h3 id=&quot;unique-key&quot;&gt;Unique “key”&lt;/h3&gt;
-
-&lt;p&gt;Most of the time when dealing with remote data, you’ll receive some sort of unique identifier. Fortunately for us, there seems to be an ID given for each game.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-sports-game-output.png&quot; alt=&quot;react-native-sports-game-output&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We’re going to pluck that ID and add that element to our scores array.&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scoreboard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gameScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;City&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;City&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;gameId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;And now in the &lt;code class=&quot;highlighter-rouge&quot;&gt;map()&lt;/code&gt; function call in the &lt;code class=&quot;highlighter-rouge&quot;&gt;render()&lt;/code&gt; function, we assign our &lt;code class=&quot;highlighter-rouge&quot;&gt;gameId&lt;/code&gt; to a special property called &lt;code class=&quot;highlighter-rouge&quot;&gt;key&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scoreItems&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ScorecardItem&lt;/span&gt;
-          &lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-          &lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-          &lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-          &lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-          &lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gameId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
-&lt;/span&gt;      &lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you save this file, you should notice that the warning has disappeared.&lt;/p&gt;
-
-&lt;h3 id=&quot;making-it-prettier&quot;&gt;Making it prettier&lt;/h3&gt;
-
-&lt;p&gt;A designer I am not, but I can at least make this symmetrical so we don’t have different sized scorecards. There are a couple of ways to go about this. The first method is to explore the &lt;a href=&quot;https://facebook.github.io/react-native/docs/text.html#numberoflines&quot; target=&quot;_blank&quot;&gt;numberOfLines&lt;/a&gt; prop on the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Text&amp;gt;&lt;/code&gt; component. By specifying &lt;code class=&quot;highlighter-rouge&quot;&gt;numberOfLines&lt;/code&gt; we’re telling React Native to truncate text with an ellipsis should the text get too long.&lt;/p&gt;
-
-&lt;p&gt;Since my team names seem to be the main culprit, I’m going to add the &lt;code class=&quot;highlighter-rouge&quot;&gt;numberOfLines&lt;/code&gt; prop to both the home team and the away team like this.&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numberOfLines&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;and the same to the home team.&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numberOfLines&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;teamName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Text&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Next, I’m going to modify the &lt;code class=&quot;highlighter-rouge&quot;&gt;cardItemContainer&lt;/code&gt; style which wraps the outermost portion of the component and explicitly set the height and width.&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;cardItemContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;borderRadius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;borderColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;black&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;borderWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;alignItems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;center&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;120&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-scorecard-fixed-output.png&quot; alt=&quot;react-native-scorecard-fixed-output&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We can see the text truncation is working and now my scorecards are symmetrical but I’ve introduced two more problems. First, my opinion is that truncating the team name isn’t very useful. This name is needed in its entirety. For that, I’m going to remove the truncation and make the card even wider to accommodate the long team names. I’ll set the width of the card to 150 and call it a day.&lt;/p&gt;
-
-&lt;p&gt;Which leads us to our second problem. If you’re playing with this on the simulator, you’ll notice that your scores are being clipped at the bottom and that there is no way to scroll down to see them.&lt;/p&gt;
-
-&lt;h2 id=&quot;react-native-list-views&quot;&gt;React Native List Views&lt;/h2&gt;
-
-&lt;p&gt;We have two choices for scrollable lists. The FlatList and SectionList. The FlatList component does not try and do anything to the data other than add scrolling and it’s a performant scroll (as opposed to the ScrollView component). The SectionList component, the name implies, adds sectioning to the FlatList. A SectionList would be useful for something like a contact list. Usually contact lists are sorted alphabetically and each letter is represented by a section.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/react-native-blog/assets/images/react-native-sectionlist-component.png&quot; alt=&quot;react-native-sectionlist-component&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;For our purposes, the FlatList will do. The FlatList requires a datasource, which effectively moves our previous &lt;code class=&quot;highlighter-rouge&quot;&gt;map&lt;/code&gt; work directly into the FlatList &lt;code class=&quot;highlighter-rouge&quot;&gt;renderItem&lt;/code&gt; property.&lt;/p&gt;
-
-&lt;p&gt;Our render now looks like this.&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;FlatList&lt;/span&gt;
-          &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-          &lt;span class=&quot;nx&quot;&gt;keyExtractor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gameId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-          &lt;span class=&quot;nx&quot;&gt;renderItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{({&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ScorecardItem&lt;/span&gt;
-              &lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-              &lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;awayScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-              &lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeTeam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-              &lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;homeScore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
-&lt;/span&gt;          &lt;span class=&quot;p&quot;&gt;)}&lt;/span&gt;
-        &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
-&lt;/span&gt;      &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
-&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;We move the scores null check into the container itself. If the scores are not null, we render a FlatList. We specify the scores from our state in the &lt;code class=&quot;highlighter-rouge&quot;&gt;data&lt;/code&gt; property. Our previous map logic is in the &lt;code class=&quot;highlighter-rouge&quot;&gt;renderItem&lt;/code&gt; property. One thing to note, the name of the argument must be called &lt;code class=&quot;highlighter-rouge&quot;&gt;item&lt;/code&gt;. If you want to get the index of the item, you could change the &lt;code class=&quot;highlighter-rouge&quot;&gt;renderItem&lt;/code&gt; function signature to look like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;renderItem={(item, index) =&amp;gt; }&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;a-different-way-to-do-keys&quot;&gt;A different way to do keys&lt;/h3&gt;
-
-&lt;p&gt;As with our previous list rendering where we specified a key, we must do the same or risk the dreaded ‘VirtualizedList: missing keys for items, make sure to specify a key property on each item or provide a custom keyExtractor.’.&lt;/p&gt;
-
-&lt;p&gt;This is done a little differently for FlatList. Either you have a field named ‘id’, which we don’t, or you tell React Native where to find the id via a function. We can do this inline.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;keyExtractor={item =&amp;gt; item.gameId}&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;to map our game id as the key.&lt;/p&gt;
-
-&lt;p&gt;Take a look at our now scrollable list.&lt;/p&gt;
-
-&lt;video width=&quot;640&quot; height=&quot;480&quot; controls=&quot;&quot;&gt;
-  &lt;source src=&quot;/react-native-blog/assets/videos/react-native-flatlist.mp4&quot; type=&quot;video/mp4&quot; /&gt;
-Your browser does not support the video tag.
-&lt;/video&gt;
-
-&lt;p&gt;We have now introduced another small issue. The list is not tiled as it was previously. This is due to the fact that the FlatList component is now our container. A little nuance here, the FlatList doesn’t want the &lt;code class=&quot;highlighter-rouge&quot;&gt;style&lt;/code&gt; property set, but rather something called &lt;code class=&quot;highlighter-rouge&quot;&gt;contentContainerStyle&lt;/code&gt;. Here we’ll set the style previously set on the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;View&amp;gt;&lt;/code&gt; like so:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;contentContainerStyle={styles.container}&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;After saving this however, you’ll get a warning that states, &lt;code class=&quot;highlighter-rouge&quot;&gt;flexWrap:&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;wrap&lt;/code&gt; is not supported with the &lt;code class=&quot;highlighter-rouge&quot;&gt;VirtualizedList&lt;/code&gt; components. Consider using &lt;code class=&quot;highlighter-rouge&quot;&gt;numColumns&lt;/code&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;FlatList&lt;/code&gt; instead.&lt;/p&gt;
-
-&lt;p&gt;The warning is fairly clear and we know on this particular display in portrait mode that this will fit cleanly in two columns, however, this isn’t very device friendly. Smaller or larger screen or if someone flips to landscape mode, we have a problem.&lt;/p&gt;
-
-&lt;p&gt;For now, we’ll hard code &lt;code class=&quot;highlighter-rouge&quot;&gt;numColumns&lt;/code&gt; on the &lt;code class=&quot;highlighter-rouge&quot;&gt;FlatList&lt;/code&gt; to 2, remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;flexWrap&lt;/code&gt; style from &lt;code class=&quot;highlighter-rouge&quot;&gt;conatiner&lt;/code&gt; and change &lt;code class=&quot;highlighter-rouge&quot;&gt;flexDirection&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;column&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;In the future, we’ll go into how to make device orientation and screen size decisions so that this behaves in a responsive way.&lt;/p&gt;
-
-&lt;h3 id=&quot;parting-notes&quot;&gt;Parting Notes&lt;/h3&gt;
-
-&lt;p&gt;As you can see from this clean up, it isn’t uncommon to play whack-a-mole with React Native sometimes. Fixing a problem, particularly a visual problem, can create more problems.&lt;/p&gt;
-
-&lt;p&gt;If your output isn’t matching mine, please pull this commit from my repository and compare your code to mine.&lt;/p&gt;
-
-&lt;p&gt;https://github.com/bbuchanan/react-native-sports-app/tree/3e29a52dca8717b0b0038b962c3fe836f8e62d4e&lt;/p&gt;
-
-&lt;h1&gt; Need a Full Stack React Developer?&lt;/h1&gt;
-
-&lt;p&gt;I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
-way to contact me is via our company page.
-&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt; is an application development company based in the Atlanta metro area with offices in Kennesaw.&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native State React Native Props Wiring &amp;raquo; All Posts</summary></entry></feed>
+&lt;a href=&quot;https://www.yyesoftware.com&quot; target=&quot;_blank&quot;&gt;Yye Software&lt;/a&gt; is an application development company based in the Atlanta metro area with offices in Kennesaw.&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;laquo; React Native Unique Key React Native Date Picker &amp;raquo; All Posts</summary></entry></feed>

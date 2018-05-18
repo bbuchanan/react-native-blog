@@ -5,7 +5,7 @@
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,maximum-scale=2">
-  <link rel="stylesheet" type="text/css" media="screen" href="/react-native-blog/assets/css/style.css?v=dc5b79507bcc6d194fced32a1a9852e3f1ff3f17"> <!-- Begin Jekyll SEO tag v2.4.0 -->
+  <link rel="stylesheet" type="text/css" media="screen" href="/react-native-blog/assets/css/style.css?v=4256c19aa9d98155f8695e3418a2689bcdf122a0"> <!-- Begin Jekyll SEO tag v2.4.0 -->
 <title>React Native Sports App Tutorial | Building a small sports score React Native application from the ground up.</title>
 <meta name="generator" content="Jekyll v3.7.3" />
 <meta property="og:title" content="React Native Sports App Tutorial" />
@@ -42,133 +42,175 @@
 
 <h1 class="entry-title">
    
-  <a href="/react-native-add-navigation-tabs.html">React Native Add Navigation Tabs</a>
+  <a href="/react-native-sports-stats-screen.html">React Native Sports Stats Screen</a>
   
 </h1>
 <div class="entry-content"><div class="PageNavigation">
   
-  <a class="prev" href="/react-native-blog/react-native-navigation-android.html">&laquo; React Native Navigation Android</a>
+  <a class="prev" href="/react-native-blog/react-native-add-navigation-tabs.html">&laquo; React Native Add Navigation Tabs</a>
    
 </div>
 <p><a href="/react-native-blog/posts.html">All Posts</a></p>
 
-<h1 id="adding-navigation-tabs">Adding Navigation Tabs</h1>
+<h1 id="adding-sports-statistics">Adding Sports Statistics</h1>
 
-<p>If you’ve made it this far, give yourself a pat on the back. Getting these native modules working is always trying. The good news is, the fun part is now. We get to add some simple tab based navigation to the app.</p>
+<p>This next couple of posts are going to create our second screen that is a placeholder at the moment. We’re not going to learn a lot new as it pertains to React Native, but we’re setting ourselves up to have a little more fun with some third party user interface components. Consider this article a quick review as we stub out a way to display sports statistics. We’re essentially reviewing what we know and then we’re going to tie it all together with some prettiness. Lets get started …</p>
 
-<p>We’re going to tie together the react-native-vector-icons and the react-native-navigation components in this post. To get started, lets create a new file in the project called <code class="highlighter-rouge">createNavTabs.js</code>.</p>
+<h2 id="housekeeping-items">Housekeeping Items</h2>
 
-<p>We’re going to associate icons with the tabs, so we need to import the navigation and icon packages.</p>
+<p>The first thing we’re going to do is rename <code class="highlighter-rouge">Screen2.js</code> to <code class="highlighter-rouge">StatsScreen.js</code>. Some fallout tasks to that is changing the <code class="highlighter-rouge">createNavTabs.js</code> to point to <code class="highlighter-rouge">StatsScreen</code> now (instead of Screen2). We’ll also change the label on the tab from Screen2 to Stats.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Navigation</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native-navigation"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Icon</span> <span class="k">from</span> <span class="s2">"react-native-vector-icons/Ionicons"</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>I’m going to pick some random icons, but feel free to look at the <a href="https://ionicframework.com/docs/ionicons/" target="_blank">link here to pick your own icons</a>.</p>
-
-<h2 id="loading-icons-asynchronously">Loading Icons Asynchronously</h2>
-
-<p>When we’re not specifying an icon in the markup, we’re going to load them using the <code class="highlighter-rouge">getImageSource()</code> function. <code class="highlighter-rouge">getImageSource</code> takes two parameters, the name and the size. For our purproses, we’ll load a 30x30 icon. Paste the following below your import statements.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">startTabs</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
-    <span class="nx">Icon</span><span class="p">.</span><span class="nx">getImageSource</span><span class="p">(</span><span class="s2">"md-home"</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
-    <span class="nx">Icon</span><span class="p">.</span><span class="nx">getImageSource</span><span class="p">(</span><span class="s2">"md-menu"</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-  <span class="p">]).</span><span class="nx">then</span><span class="p">(</span><span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">Navigation</span><span class="p">.</span><span class="nx">startTabBasedApp</span><span class="p">({</span>
-      <span class="na">tabs</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-          <span class="na">screen</span><span class="p">:</span> <span class="s2">"sports-app.ScoreScreen"</span><span class="p">,</span>
-          <span class="na">label</span><span class="p">:</span> <span class="s2">"Scores"</span><span class="p">,</span>
-          <span class="na">icon</span><span class="p">:</span> <span class="nx">sources</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-          <span class="na">screen</span><span class="p">:</span> <span class="s2">"sports-app.Screen2"</span><span class="p">,</span>
-          <span class="na">label</span><span class="p">:</span> <span class="s2">"Screen 2"</span><span class="p">,</span>
-          <span class="na">icon</span><span class="p">:</span> <span class="nx">sources</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="p">}</span>
-      <span class="p">]</span>
-    <span class="p">});</span>
-  <span class="p">});</span>
-<span class="p">};</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="nx">startTabs</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>We’re doing quite a lot in just a small space. First, we’ve kicked off an array of promises to load 2 icons from the vector icon library. When that’s completed, the success case will return an array of icons in the order that we requested them.</p>
-
-<p>The good stuff happens in the <code class="highlighter-rouge">Navigation.startTabBasedApp()</code> which takes an object that contains an array of tabs and other configuration items. For now, we’ll keep it simple and create two tab items.</p>
-
-<p>To make this work, we’re going to do a bit of refactoring by putting our existing screen from <code class="highlighter-rouge">App.js</code> into its own screen. I’m going to organize this by creating a new <code class="highlighter-rouge">screens</code> folder off of the <code class="highlighter-rouge">src</code> folder (which is inline with our <code class="highlighter-rouge">components</code> folder).</p>
-
-<p>In there, I’m going to create a file named <code class="highlighter-rouge">ScoreScreen.js</code> and a placeholder for Screen 2 (which we haven’t developed yet) and for now we’ll call it <code class="highlighter-rouge">Screen2.js</code>.</p>
-
-<p>I literally gutted <code class="highlighter-rouge">App.js</code> and put nearly all of it into <code class="highlighter-rouge">ScoreScreen.js</code>. I changed the name of the class from <code class="highlighter-rouge">App</code> to <code class="highlighter-rouge">ScoreScreen</code>. <code class="highlighter-rouge">App.js</code> is now going to look like this for starters.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s2">"react"</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">StyleSheet</span><span class="p">,</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">View</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Icon</span> <span class="k">from</span> <span class="s2">"react-native-vector-icons/Ionicons"</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">Navigation</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native-navigation"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">ScoreScreen</span> <span class="k">from</span> <span class="s2">"./src/screens/ScoreScreen"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Screen2</span> <span class="k">from</span> <span class="s2">"./src/screens/Screen2"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">startTabs</span> <span class="k">from</span> <span class="s2">"./src/createNavTabs"</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>This includes all of dependencies we need to load the tab navigation. From there, we hand off the screen display to the navigation library. So <code class="highlighter-rouge">App.js</code> becomes fairly dumb. It just provides the configuration tying screens to navigation and calls our <code class="highlighter-rouge">startTabs()</code> function.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Navigation</span><span class="p">.</span><span class="nx">registerComponent</span><span class="p">(</span><span class="s2">"sports-app.ScoreScreen"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">ScoreScreen</span><span class="p">);</span>
-<span class="nx">Navigation</span><span class="p">.</span><span class="nx">registerComponent</span><span class="p">(</span><span class="s2">"sports-app.Screen2"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">Screen2</span><span class="p">);</span>
-
-<span class="nx">startTabs</span><span class="p">();</span>
-</code></pre></div></div>
-
-<h2 id="one-more-thing">One more thing!</h2>
-
-<p>Since we moved the ScoreScreen into the <code class="highlighter-rouge">screens</code> folder, we have to update the paths of our <code class="highlighter-rouge">import</code> statements. Those will change like so.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s2">"react"</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">FlatList</span><span class="p">,</span> <span class="nx">StyleSheet</span><span class="p">,</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">View</span><span class="p">,</span> <span class="nx">Image</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">DatePicker</span> <span class="k">from</span> <span class="s2">"react-native-datepicker"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Toast</span> <span class="k">from</span> <span class="s2">"react-native-root-toast"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">moment</span> <span class="k">from</span> <span class="s2">"moment"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="s2">"../axios-sports"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Icon</span> <span class="k">from</span> <span class="s2">"react-native-vector-icons/Ionicons"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">ScorecardItem</span> <span class="k">from</span> <span class="s2">"../components/ScorecardItem"</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>It’s really just axios and the <code class="highlighter-rouge">ScorecardItem</code> component imports that needed changing, but the entire import section is there for your copy and paste convenience.</p>
-
-<h3 id="screen-2">Screen 2</h3>
-
-<p>For <code class="highlighter-rouge">Screen2.js</code>, we’ll just add some placeholder stuff for now.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s2">"react"</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">View</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native"</span><span class="p">;</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">Screen2</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
-  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="nx">View</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="k">from</span> <span class="nx">Screen</span> <span class="mi">2</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
-</span>      <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
-</span>    <span class="p">);</span>
-  <span class="p">}</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">screen</span><span class="p">:</span> <span class="s2">"sports-app.StatsScreen"</span><span class="p">,</span>
+  <span class="nx">label</span><span class="p">:</span> <span class="s2">"Stats"</span><span class="p">,</span>
+  <span class="nx">icon</span><span class="p">:</span> <span class="nx">sources</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Lets fire up the app and see what it looks like.</p>
+<p>In <code class="highlighter-rouge">App.js</code> change the import statement for Screen2 to</p>
 
-<p><img src="/react-native-blog/assets/images/ios-navigation-screen1.png" alt="React Native Navigation Screen 1" /></p>
+<p><code class="highlighter-rouge">import StatsScreen from "./src/screens/StatsScreen";</code></p>
 
-<p>And then we press on the Screen 2 text at the bottom and we’ll see our second placeholder screen.</p>
+<p>And change the <code class="highlighter-rouge">registerComponent()</code> for Screen2 to</p>
 
-<p><img src="/react-native-blog/assets/images/ios-navigation-screen2.png" alt="React Native Navigation Screen 2" /></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Navigation</span><span class="p">.</span><span class="nx">registerComponent</span><span class="p">(</span><span class="s2">"sports-app.StatsScreen"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">StatsScreen</span><span class="p">);</span>
+</code></pre></div></div>
 
-<p>And we’ve got it! In the next lesson we’ll add some functionality to the second screen.</p>
+<p>The remaining pieces of work involve creating a screen that will load our sports stats.</p>
 
-<p>If you need some help, please check out this commit in github which contains our application up to this point.</p>
+<h2 id="sports-stats-screen---getting-data">Sports Stats Screen - Getting Data</h2>
 
-<p><a href="https://github.com/bbuchanan/react-native-sports-app/tree/2f77bb8a2d0c953541299017a2c7a689545b1c9d" target="_blank">Sports App Repository up to this point.</a></p>
+<p>If you remember back to when we first starting loading data from MySportsFeed, we set up axios to pull using our authorization key. The great thing about axios is that we were able to tuck away this authorization header and the base URL that forms every request. This
+allows us to make short work of getting additional data from MySportsFeed.</p>
+
+<p>The screenshot below shows where we’ll be retrieving the data from.</p>
+
+<p><img src="/react-native-blog/assets/images/my-sports-api-react-native.png" alt="React Native MySportFeed API Stats" /></p>
+
+<h2 id="sports-stats-screen---processing-data">Sports Stats Screen - Processing Data</h2>
+
+<p>I’ll walk through each change to the file from top to bottom, so we’ll start with the imports.</p>
+
+<p>Open the newly renamed <code class="highlighter-rouge">StatsScreen.js</code>.</p>
+
+<p>We’re adding a Picker component which is a React Native component, just like a Text, View, etc. We’re also going to import our axios export.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s2">"react"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">View</span><span class="p">,</span> <span class="nx">Picker</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="s2">"../axios-sports"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Next, change the class name from Screen2 to StatsScreen.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">StatsScreen</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+</code></pre></div></div>
+
+<p>Just like our other screen, we’re going to have a local state that holds information like the current team selected, their stats, if there was an error, etc. Just inside of the class, lets initialize our state.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">currentTeam</span><span class="p">:</span> <span class="s2">"det"</span><span class="p">,</span>
+  <span class="na">stats</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="na">hadError</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">errorMessage</span><span class="p">:</span> <span class="s2">""</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">currentTeam</code> is going to hold a selection from the Picker. This will be used when we load the stats. <code class="highlighter-rouge">stats</code> will hold our loaded stats (if loading is successful), otherwise, <code class="highlighter-rouge">hadError</code> and <code class="highlighter-rouge">errorMessage</code> will become important.</p>
+
+<p>We’re going to hook into the component lifecycle method <code class="highlighter-rouge">componentDidMount</code> once again to load some initial stats.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">loadStats</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now for the heart of the functionality, our stat loading function.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">loadStats</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">axios</span>
+    <span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s2">`cumulative_player_stats.json?team=</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">currentTeam</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">stats</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">cumulativeplayerstats</span><span class="p">.</span><span class="nx">playerstatsentry</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">p</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+          <span class="na">firstName</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">FirstName</span><span class="p">,</span>
+          <span class="na">lastName</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">LastName</span><span class="p">,</span>
+          <span class="na">battingAverage</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">stats</span><span class="p">.</span><span class="nx">BattingAvg</span><span class="p">[</span><span class="s2">"#text"</span><span class="p">],</span>
+          <span class="na">homeruns</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">stats</span><span class="p">.</span><span class="nx">Homeruns</span><span class="p">[</span><span class="s2">"#text"</span><span class="p">]</span>
+        <span class="p">};</span>
+      <span class="p">});</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+        <span class="nx">stats</span>
+      <span class="p">});</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+        <span class="na">scores</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="na">hadError</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">errorMessage</span><span class="p">:</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>MySportsFeed really puts stuff in there good and deep, but they’re very thorough, which is why we like them. After all of that, I’m just going to pluck out the player name, his batting average and number of homeruns. You’re welcome to add any stats you’d like. Once we’re extracted what we wanted, we’re going to put the stats into the state so that they can be rendered (this will done in the next article).</p>
+
+<h2 id="loading-team-stats-dynamically">Loading Team Stats Dynamically</h2>
+
+<p>Our last bit of fun for this article is to add support in the user interface to change the team based on user selection. We’ll use the <code class="highlighter-rouge">&lt;Picker /&gt;</code> component we added to our import earlier and a <code class="highlighter-rouge">&lt;Picker /&gt;</code> component exposes a <code class="highlighter-rouge">onValueChange</code> event hook. We’ll subscribe to that with our own function which will update the state and reload the statistics based on the user’s selection. Our handler looks like this:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">teamSelectionChanged</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span>
+    <span class="p">{</span>
+      <span class="na">currentTeam</span><span class="p">:</span> <span class="nx">value</span>
+    <span class="p">},</span>
+    <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">loadStats</span><span class="p">()</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>It’s quick and easy, but it looks a little different than previous <code class="highlighter-rouge">setState</code> calls because in this version, we utilize a callback that is passed in the second argument. This callback is called when the state has been updated. We could have just as easily added an argument to <code class="highlighter-rouge">loadStats()</code> but I wanted to keep the team synchronized and in one place.</p>
+
+<h2 id="adding-a-react-native-picker">Adding a React Native Picker</h2>
+
+<p>Finally in our <code class="highlighter-rouge">render()</code> function, we’re going to change our <code class="highlighter-rouge">&lt;View&gt;</code> to do a lot more than just return some dummy text. We’re going to add the <code class="highlighter-rouge">Picker</code> with some hard coded teams. The <code class="highlighter-rouge">Picker</code> will also wire up our <code class="highlighter-rouge">ValueChange</code> event.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">View</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Picker</span>
+        <span class="nx">selectedValue</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">currentTeam</span><span class="p">}</span>
+        <span class="nx">style</span><span class="o">=</span><span class="p">{{</span> <span class="na">height</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="na">width</span><span class="p">:</span> <span class="mi">100</span> <span class="p">}}</span>
+        <span class="nx">onValueChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">teamSelectionChanged</span><span class="p">(</span><span class="nx">value</span><span class="p">)}</span>
+      <span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Picker</span><span class="p">.</span><span class="nx">Item</span> <span class="nx">label</span><span class="o">=</span><span class="s2">"Tigers"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"det"</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Picker</span><span class="p">.</span><span class="nx">Item</span> <span class="nx">label</span><span class="o">=</span><span class="s2">"Braves"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"atl"</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Picker</span><span class="p">.</span><span class="nx">Item</span> <span class="nx">label</span><span class="o">=</span><span class="s2">"Red Sox"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"bos"</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Picker</span><span class="p">.</span><span class="nx">Item</span> <span class="nx">label</span><span class="o">=</span><span class="s2">"Rays"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"tam"</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Picker</span><span class="p">.</span><span class="nx">Item</span> <span class="nx">label</span><span class="o">=</span><span class="s2">"Mariners"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"sea"</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/Picker</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The React Native picker <code class="highlighter-rouge">onValueChange</code> will pass two arguments. The selected value, which is what is in each <code class="highlighter-rouge">&lt;Picker.Item&gt; value</code> tag and the display index. We don’t need the display index of item, but I thought I’d point it out anyway.</p>
+
+<p>We’re only passing the <code class="highlighter-rouge">value</code> to the <code class="highlighter-rouge">this.teamSelectionChanged()</code> function. Since this is wired up, we should be able to see our stats. I’m going to fire up the React Native Debugger. If you haven’t heard of React Native Debugger, it’s a great tool that you really need to know about now. Stop everything and read the section <a href="2018-04-20-react-native-state.md">Analyzing State In the React Native Debugger</a> where I give a quick overview of how to install and use React Native Debugger.</p>
+
+<p>And here we see our hometown Atlanta Braves stats in our state. Thankfully Ronald Acuna isn’t batting 0.000 this year.</p>
+
+<p><img src="/react-native-blog/assets/images/react-native-state-sports-stats.png" alt="React Native State Sports Stats" /></p>
+
+<p>It ain’t pretty, but we’ve done all of the heavy lifting necessary now to put a pretty face on this screen, which will happen in the next set of articles.</p>
+
+<p><a href="https://github.com/bbuchanan/react-native-sports-app/tree/dd210644577f387af0513b1da31fdc7a7f62e8df" target="_blank">React Native Sports App Tutorial up to this point.</a></p>
+
+<h1> Need a Full Stack React Developer?</h1>
+
+<p>I’m your guy! I’ve been a contract developer for over 14 years and can help you or your company on your project. The best
+way to contact me is via our company page.
+<a href="https://www.yyesoftware.com" target="_blank">Yye Software</a> is an application development company based in the Atlanta metro area with offices in Kennesaw.</p>
 </div>
 
     </section>
