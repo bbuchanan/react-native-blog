@@ -5,7 +5,7 @@
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,maximum-scale=2">
-  <link rel="stylesheet" type="text/css" media="screen" href="/react-native-blog/assets/css/style.css?v=4256c19aa9d98155f8695e3418a2689bcdf122a0"> <!-- Begin Jekyll SEO tag v2.4.0 -->
+  <link rel="stylesheet" type="text/css" media="screen" href="/react-native-blog/assets/css/style.css?v=fb70e331faf7dd762e2ae96899c2c4fb314e61f3"> <!-- Begin Jekyll SEO tag v2.4.0 -->
 <title>React Native Sports App Tutorial | Building a small sports score React Native application from the ground up.</title>
 <meta name="generator" content="Jekyll v3.7.3" />
 <meta property="og:title" content="React Native Sports App Tutorial" />
@@ -42,169 +42,312 @@
 
 <h1 class="entry-title">
    
-  <a href="/react-native-sports-stats-screen.html">React Native Sports Stats Screen</a>
+  <a href="/react-native-nativebase.html">React Native Nativebase</a>
   
 </h1>
 <div class="entry-content"><div class="PageNavigation">
   
-  <a class="prev" href="/react-native-blog/react-native-add-navigation-tabs.html">&laquo; React Native Add Navigation Tabs</a>
+  <a class="prev" href="/react-native-blog/react-native-sports-stats-screen.html">&laquo; React Native Sports Stats Screen</a>
    
 </div>
 <p><a href="/react-native-blog/posts.html">All Posts</a></p>
 
-<h1 id="adding-sports-statistics">Adding Sports Statistics</h1>
+<h1 id="nativebase---an-introduction">NativeBase - An Introduction</h1>
 
-<p>This next couple of posts are going to create our second screen that is a placeholder at the moment. We’re not going to learn a lot new as it pertains to React Native, but we’re setting ourselves up to have a little more fun with some third party user interface components. Consider this article a quick review as we stub out a way to display sports statistics. We’re essentially reviewing what we know and then we’re going to tie it all together with some prettiness. Lets get started …</p>
+<p>I mentioned way back in the <a href="2018-04-16-react-native-hello-world.md">React Native Hello World article</a> that we would be using a 3rd party library called NativeBase. I think most will agree that React Native’s UI component support is minimal and NativeBase is one of the better attempts at rounding out that offering. They provide a number of modern UI components to greatly improve the user experience.</p>
 
-<h2 id="housekeeping-items">Housekeeping Items</h2>
+<p>On top of a good offering, the documentation is also pretty good. The examples they provide get me by most of the time. Anything that isn’t too obvious can usually be resolved by looking at the source code, which is clean and discoverable. There is also a fairly active community here: <a href="http://discuss.nativebase.io/" target="_blank">NativeBase Forum</a>.</p>
 
-<p>The first thing we’re going to do is rename <code class="highlighter-rouge">Screen2.js</code> to <code class="highlighter-rouge">StatsScreen.js</code>. Some fallout tasks to that is changing the <code class="highlighter-rouge">createNavTabs.js</code> to point to <code class="highlighter-rouge">StatsScreen</code> now (instead of Screen2). We’ll also change the label on the tab from Screen2 to Stats.</p>
+<p>It was mentioned at the end of the last article, that the goal here is to pretty up our sports statistics screen.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
-  <span class="nl">screen</span><span class="p">:</span> <span class="s2">"sports-app.StatsScreen"</span><span class="p">,</span>
-  <span class="nx">label</span><span class="p">:</span> <span class="s2">"Stats"</span><span class="p">,</span>
-  <span class="nx">icon</span><span class="p">:</span> <span class="nx">sources</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="p">}</span>
+<p>Here’s what we’re going for …</p>
+
+<video width="640" height="480" controls="">
+  <source src="/react-native-blog/assets/videos/react-native-stats.mp4" type="video/mp4" />
+Your browser does not support the video tag.
+</video>
+
+<p>As you’re probably used to by now, lets get started by installing the NativeBase package.</p>
+
+<p><code class="highlighter-rouge">yarn add native-base</code></p>
+
+<p>There are going to be a lot of changes. They’re all confined to the <code class="highlighter-rouge">StatsScreen.js</code> file, but as usually, if you get lost, grab the file from my github page for this commit. I’ll link to it at the end of the article.</p>
+
+<p>Here we go …</p>
+
+<p>Our import from <code class="highlighter-rouge">react-native</code> is going to change a bit. Replace the current import with this import.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">StyleSheet</span><span class="p">,</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">Picker</span><span class="p">,</span> <span class="nx">Image</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native"</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p>In <code class="highlighter-rouge">App.js</code> change the import statement for Screen2 to</p>
+<p>The big import is going to come from <code class="highlighter-rouge">native-base</code>. Add these lines to your import.</p>
 
-<p><code class="highlighter-rouge">import StatsScreen from "./src/screens/StatsScreen";</code></p>
-
-<p>And change the <code class="highlighter-rouge">registerComponent()</code> for Screen2 to</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Navigation</span><span class="p">.</span><span class="nx">registerComponent</span><span class="p">(</span><span class="s2">"sports-app.StatsScreen"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">StatsScreen</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span>
+  <span class="nx">Container</span><span class="p">,</span>
+  <span class="nx">Header</span><span class="p">,</span>
+  <span class="nx">View</span><span class="p">,</span>
+  <span class="nx">DeckSwiper</span><span class="p">,</span>
+  <span class="nx">Card</span><span class="p">,</span>
+  <span class="nx">CardItem</span><span class="p">,</span>
+  <span class="nx">Left</span><span class="p">,</span>
+  <span class="nx">Body</span>
+<span class="p">}</span> <span class="k">from</span> <span class="s2">"native-base"</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p>The remaining pieces of work involve creating a screen that will load our sports stats.</p>
+<p>and we’re also going to import the vector icon library.</p>
 
-<h2 id="sports-stats-screen---getting-data">Sports Stats Screen - Getting Data</h2>
-
-<p>If you remember back to when we first starting loading data from MySportsFeed, we set up axios to pull using our authorization key. The great thing about axios is that we were able to tuck away this authorization header and the base URL that forms every request. This
-allows us to make short work of getting additional data from MySportsFeed.</p>
-
-<p>The screenshot below shows where we’ll be retrieving the data from.</p>
-
-<p><img src="/react-native-blog/assets/images/my-sports-api-react-native.png" alt="React Native MySportFeed API Stats" /></p>
-
-<h2 id="sports-stats-screen---processing-data">Sports Stats Screen - Processing Data</h2>
-
-<p>I’ll walk through each change to the file from top to bottom, so we’ll start with the imports.</p>
-
-<p>Open the newly renamed <code class="highlighter-rouge">StatsScreen.js</code>.</p>
-
-<p>We’re adding a Picker component which is a React Native component, just like a Text, View, etc. We’re also going to import our axios export.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s2">"react"</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">View</span><span class="p">,</span> <span class="nx">Picker</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-native"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="s2">"../axios-sports"</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Icon</span> <span class="k">from</span> <span class="s2">"react-native-vector-icons/Ionicons"</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p>Next, change the class name from Screen2 to StatsScreen.</p>
+<p>So far all of our styles have been inline, but we’re going to break some of them out into a <code class="highlighter-rouge">StyleSheet</code>. We have a couple of items in the stats, a name and the stats themselves. I’m going to style those.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">StatsScreen</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<p>Add this:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">styles</span> <span class="o">=</span> <span class="nx">StyleSheet</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+  <span class="na">playerNameText</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">fontSize</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+    <span class="na">textAlign</span><span class="p">:</span> <span class="s2">"center"</span><span class="p">,</span>
+    <span class="na">fontWeight</span><span class="p">:</span> <span class="s2">"bold"</span>
+  <span class="p">},</span>
+  <span class="na">statText</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">fontWeight</span><span class="p">:</span> <span class="s2">"bold"</span>
+  <span class="p">}</span>
+<span class="p">});</span>
 </code></pre></div></div>
 
-<p>Just like our other screen, we’re going to have a local state that holds information like the current team selected, their stats, if there was an error, etc. Just inside of the class, lets initialize our state.</p>
+<h2 id="teams">Teams</h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">currentTeam</span><span class="p">:</span> <span class="s2">"det"</span><span class="p">,</span>
-  <span class="na">stats</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="na">hadError</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="na">errorMessage</span><span class="p">:</span> <span class="s2">""</span>
+<p>For a little bit of aesthetics, I’ve decided to associate a team logo with each team in our list. I’ve converted the selected team into an array of teams. After the <code class="highlighter-rouge">class</code> declaration, I added the following:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">teams</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s2">"Atlanta Braves"</span><span class="p">,</span>
+    <span class="na">code</span><span class="p">:</span> <span class="s2">"atl"</span><span class="p">,</span>
+    <span class="na">logo</span><span class="p">:</span>
+      <span class="s2">"https://mk0teamcolorcodtgc6i.kinstacdn.com/wp-content/uploads/2017/05/atlanta_braves_logo_2018-768x312.png"</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s2">"Detroit Tigers"</span><span class="p">,</span>
+    <span class="na">code</span><span class="p">:</span> <span class="s2">"det"</span><span class="p">,</span>
+    <span class="na">logo</span><span class="p">:</span>
+      <span class="s2">"https://mk0teamcolorcodtgc6i.kinstacdn.com/wp-content/uploads/2014/05/tigers_logo.jpg"</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s2">"Boston Red Sox"</span><span class="p">,</span>
+    <span class="na">code</span><span class="p">:</span> <span class="s2">"bos"</span><span class="p">,</span>
+    <span class="na">logo</span><span class="p">:</span>
+      <span class="s2">"https://mk0teamcolorcodtgc6i.kinstacdn.com/wp-content/uploads/2017/05/boston_red_sox_logo.png"</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s2">"Tampa Bay Rays"</span><span class="p">,</span>
+    <span class="na">code</span><span class="p">:</span> <span class="s2">"tb"</span><span class="p">,</span>
+    <span class="na">logo</span><span class="p">:</span>
+      <span class="s2">"https://mk0teamcolorcodtgc6i.kinstacdn.com/wp-content/uploads/2014/05/rays_logo.jpg"</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s2">"Seattle Mariners"</span><span class="p">,</span>
+    <span class="na">code</span><span class="p">:</span> <span class="s2">"sea"</span><span class="p">,</span>
+    <span class="na">logo</span><span class="p">:</span>
+      <span class="s2">"https://mk0teamcolorcodtgc6i.kinstacdn.com/wp-content/uploads/2014/05/mariners_logo.jpg"</span>
+  <span class="p">}</span>
+<span class="p">];</span>
+</code></pre></div></div>
+
+<p>Our <code class="highlighter-rouge">&lt;Picker /&gt;</code> is going to bind to this and update our state. When we iterate over the statistics, we’ll be able to put the team’s logo into the card.</p>
+
+<p>In our <code class="highlighter-rouge">state</code> object, I’m changing the <code class="highlighter-rouge">currentTeam</code> from “det” to <code class="highlighter-rouge">this.teams[0]</code>. This puts the first item in the teams array as the default selected item.</p>
+
+<p>Since <code class="highlighter-rouge">currentTeam</code> is now an object, we’ll need to change our get call to <code class="highlighter-rouge">axios</code> to only send the “code” item of the object.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s2">`cumulative_player_stats.json?team=</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">currentTeam</span><span class="p">.</span><span class="nx">code</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>For some additional aesthetics, I’m going to assign an image to each player. There isn’t a quick and easy way to get a player’s image, so I’ve hardcoded an action shot I found and I’m going to hardcode it for now.</p>
+
+<p>The <code class="highlighter-rouge">return</code> call for the stats object now looks like this:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">FirstName</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">LastName</span><span class="p">,</span>
+  <span class="na">battingAverage</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">stats</span><span class="p">.</span><span class="nx">BattingAvg</span><span class="p">[</span><span class="s2">"#text"</span><span class="p">],</span>
+  <span class="na">homeruns</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">stats</span><span class="p">.</span><span class="nx">Homeruns</span><span class="p">[</span><span class="s2">"#text"</span><span class="p">],</span>
+  <span class="na">image</span><span class="p">:</span>
+    <span class="s2">"https://www.gannett-cdn.com/-mm-/60c67b4da0efea761b6f18d2a7eb4c3e05ae4c7d/c=241-0-4017-2839&amp;r=x404&amp;c=534x401/local/-/media/2018/04/26/USATODAY/USATODAY/636603455387676668-AP-APTOPIX-Reds-Braves-Baseball-99453123.JPG"</span>
 <span class="p">};</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">currentTeam</code> is going to hold a selection from the Picker. This will be used when we load the stats. <code class="highlighter-rouge">stats</code> will hold our loaded stats (if loading is successful), otherwise, <code class="highlighter-rouge">hadError</code> and <code class="highlighter-rouge">errorMessage</code> will become important.</p>
+<h2 id="wiring-up-the-presentation">Wiring up the presentation</h2>
 
-<p>We’re going to hook into the component lifecycle method <code class="highlighter-rouge">componentDidMount</code> once again to load some initial stats.</p>
+<p>Scroll down to the <code class="highlighter-rouge">teamSelectionChanged</code> handler. As a reminder, this is the function that is called when the user selects a new team from the <code class="highlighter-rouge">&lt;Picker /&gt;</code> component. In a moment, you’ll see we’re going to change the binding from a simple string to a member inside of the object, so we’re only going to get the <code class="highlighter-rouge">code</code> in our <code class="highlighter-rouge">value</code> argument. Since we want our <code class="highlighter-rouge">currentTeam</code> to actually be the entire object, we’ll use Javascript’s <code class="highlighter-rouge">find</code> function to return the right object in the <code class="highlighter-rouge">team</code> array.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">loadStats</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>Now for the heart of the functionality, our stat loading function.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">loadStats</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">axios</span>
-    <span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s2">`cumulative_player_stats.json?team=</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">currentTeam</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="kd">let</span> <span class="nx">stats</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">cumulativeplayerstats</span><span class="p">.</span><span class="nx">playerstatsentry</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">p</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">{</span>
-          <span class="na">firstName</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">FirstName</span><span class="p">,</span>
-          <span class="na">lastName</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">LastName</span><span class="p">,</span>
-          <span class="na">battingAverage</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">stats</span><span class="p">.</span><span class="nx">BattingAvg</span><span class="p">[</span><span class="s2">"#text"</span><span class="p">],</span>
-          <span class="na">homeruns</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">stats</span><span class="p">.</span><span class="nx">Homeruns</span><span class="p">[</span><span class="s2">"#text"</span><span class="p">]</span>
-        <span class="p">};</span>
-      <span class="p">});</span>
-
-      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
-        <span class="nx">stats</span>
-      <span class="p">});</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
-        <span class="na">scores</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-        <span class="na">hadError</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="na">errorMessage</span><span class="p">:</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
-      <span class="p">});</span>
-    <span class="p">});</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<p>MySportsFeed really puts stuff in there good and deep, but they’re very thorough, which is why we like them. After all of that, I’m just going to pluck out the player name, his batting average and number of homeruns. You’re welcome to add any stats you’d like. Once we’re extracted what we wanted, we’re going to put the stats into the state so that they can be rendered (this will done in the next article).</p>
-
-<h2 id="loading-team-stats-dynamically">Loading Team Stats Dynamically</h2>
-
-<p>Our last bit of fun for this article is to add support in the user interface to change the team based on user selection. We’ll use the <code class="highlighter-rouge">&lt;Picker /&gt;</code> component we added to our import earlier and a <code class="highlighter-rouge">&lt;Picker /&gt;</code> component exposes a <code class="highlighter-rouge">onValueChange</code> event hook. We’ll subscribe to that with our own function which will update the state and reload the statistics based on the user’s selection. Our handler looks like this:</p>
+<p><code class="highlighter-rouge">teamSelectionChanged</code> will now look like this:</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">teamSelectionChanged</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span>
     <span class="p">{</span>
-      <span class="na">currentTeam</span><span class="p">:</span> <span class="nx">value</span>
+      <span class="na">currentTeam</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">teams</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">t</span> <span class="o">=&gt;</span> <span class="nx">t</span><span class="p">.</span><span class="nx">code</span> <span class="o">===</span> <span class="nx">value</span><span class="p">)</span>
     <span class="p">},</span>
     <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">loadStats</span><span class="p">()</span>
   <span class="p">);</span>
 <span class="p">};</span>
 </code></pre></div></div>
 
-<p>It’s quick and easy, but it looks a little different than previous <code class="highlighter-rouge">setState</code> calls because in this version, we utilize a callback that is passed in the second argument. This callback is called when the state has been updated. We could have just as easily added an argument to <code class="highlighter-rouge">loadStats()</code> but I wanted to keep the team synchronized and in one place.</p>
+<p><code class="highlighter-rouge">value</code> should be a valid <code class="highlighter-rouge">code</code>. <code class="highlighter-rouge">find</code> will return when it finds the first match. Since our codes are unique, this will work perfectly.</p>
 
-<h2 id="adding-a-react-native-picker">Adding a React Native Picker</h2>
+<h2 id="presentation-rendering">Presentation Rendering</h2>
 
-<p>Finally in our <code class="highlighter-rouge">render()</code> function, we’re going to change our <code class="highlighter-rouge">&lt;View&gt;</code> to do a lot more than just return some dummy text. We’re going to add the <code class="highlighter-rouge">Picker</code> with some hard coded teams. The <code class="highlighter-rouge">Picker</code> will also wire up our <code class="highlighter-rouge">ValueChange</code> event.</p>
+<p>At long last, we’ve reached the <code class="highlighter-rouge">render()</code> function. This is where everything is tied together.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">View</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">Picker</span>
-        <span class="nx">selectedValue</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">currentTeam</span><span class="p">}</span>
-        <span class="nx">style</span><span class="o">=</span><span class="p">{{</span> <span class="na">height</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="na">width</span><span class="p">:</span> <span class="mi">100</span> <span class="p">}}</span>
-        <span class="nx">onValueChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">teamSelectionChanged</span><span class="p">(</span><span class="nx">value</span><span class="p">)}</span>
-      <span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="nx">Picker</span><span class="p">.</span><span class="nx">Item</span> <span class="nx">label</span><span class="o">=</span><span class="s2">"Tigers"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"det"</span> <span class="o">/&gt;</span>
-        <span class="o">&lt;</span><span class="nx">Picker</span><span class="p">.</span><span class="nx">Item</span> <span class="nx">label</span><span class="o">=</span><span class="s2">"Braves"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"atl"</span> <span class="o">/&gt;</span>
-        <span class="o">&lt;</span><span class="nx">Picker</span><span class="p">.</span><span class="nx">Item</span> <span class="nx">label</span><span class="o">=</span><span class="s2">"Red Sox"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"bos"</span> <span class="o">/&gt;</span>
-        <span class="o">&lt;</span><span class="nx">Picker</span><span class="p">.</span><span class="nx">Item</span> <span class="nx">label</span><span class="o">=</span><span class="s2">"Rays"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"tam"</span> <span class="o">/&gt;</span>
-        <span class="o">&lt;</span><span class="nx">Picker</span><span class="p">.</span><span class="nx">Item</span> <span class="nx">label</span><span class="o">=</span><span class="s2">"Mariners"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"sea"</span> <span class="o">/&gt;</span>
-      <span class="o">&lt;</span><span class="sr">/Picker</span><span class="err">&gt;
-</span>    <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
-</span>  <span class="p">);</span>
-<span class="p">}</span>
+<p>The first thing I want to do is generate my <code class="highlighter-rouge">&lt;Picker /&gt;</code> items from the <code class="highlighter-rouge">teams</code> array. Before the <code class="highlighter-rouge">return</code> function in <code class="highlighter-rouge">render()</code>, I want to build a list of <code class="highlighter-rouge">&lt;Picker.Item&gt;</code>’s.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">pickerItems</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">teams</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">team</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Picker</span><span class="p">.</span><span class="nx">Item</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">team</span><span class="p">.</span><span class="nx">code</span><span class="p">}</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">team</span><span class="p">.</span><span class="nx">code</span><span class="p">}</span> <span class="nx">label</span><span class="o">=</span><span class="p">{</span><span class="nx">team</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="err">;
+</span><span class="p">});</span>
 </code></pre></div></div>
 
-<p>The React Native picker <code class="highlighter-rouge">onValueChange</code> will pass two arguments. The selected value, which is what is in each <code class="highlighter-rouge">&lt;Picker.Item&gt; value</code> tag and the display index. We don’t need the display index of item, but I thought I’d point it out anyway.</p>
+<p>We’ll bind these later on down when we declare our <code class="highlighter-rouge">&lt;Picker /&gt;</code>.</p>
 
-<p>We’re only passing the <code class="highlighter-rouge">value</code> to the <code class="highlighter-rouge">this.teamSelectionChanged()</code> function. Since this is wired up, we should be able to see our stats. I’m going to fire up the React Native Debugger. If you haven’t heard of React Native Debugger, it’s a great tool that you really need to know about now. Stop everything and read the section <a href="2018-04-20-react-native-state.md">Analyzing State In the React Native Debugger</a> where I give a quick overview of how to install and use React Native Debugger.</p>
+<p>The next set of big changes have to do with using the NativeBase components over the React Native components. By switching some of the layout components to NativeBase the components will play nicer together and map a lot better to the NativeBase examples. Although sometimes I do like to fall back on the standard <code class="highlighter-rouge">&lt;View /&gt;</code> component, the <code class="highlighter-rouge">&lt;Container /&gt;</code> component in NativeBase is usually just as good or better. However, sometimes, it can create some unexpected layout quirks, particularly in flexbox scenarios.</p>
 
-<p>And here we see our hometown Atlanta Braves stats in our state. Thankfully Ronald Acuna isn’t batting 0.000 this year.</p>
+<p>Since this is a massive chunk of code, I’m going to paste it all out there and then we’re going to go through each bit and explain what’s going on.</p>
 
-<p><img src="/react-native-blog/assets/images/react-native-state-sports-stats.png" alt="React Native State Sports Stats" /></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">Container</span>
+    <span class="nx">style</span><span class="o">=</span><span class="p">{{</span>
+      <span class="na">flex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">alignContent</span><span class="p">:</span> <span class="s2">"flex-start"</span><span class="p">,</span>
+      <span class="na">justifyContent</span><span class="p">:</span> <span class="s2">"flex-start"</span>
+    <span class="p">}}</span>
+  <span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">Picker</span>
+      <span class="nx">selectedValue</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">currentTeam</span><span class="p">.</span><span class="nx">code</span><span class="p">}</span>
+      <span class="nx">onValueChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">teamSelectionChanged</span><span class="p">(</span><span class="nx">value</span><span class="p">)}</span>
+    <span class="o">&gt;</span>
+      <span class="p">{</span><span class="nx">pickerItems</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/Picker</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="nx">View</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">stats</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">?</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">DeckSwiper</span>
+          <span class="nx">dataSource</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">stats</span><span class="p">}</span>
+          <span class="nx">renderItem</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">Card</span> <span class="nx">style</span><span class="o">=</span><span class="p">{{</span> <span class="na">elevation</span><span class="p">:</span> <span class="mi">3</span> <span class="p">}}</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="nx">CardItem</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">Left</span><span class="o">&gt;</span>
+                  <span class="o">&lt;</span><span class="nx">Image</span>
+                    <span class="nx">style</span><span class="o">=</span><span class="p">{{</span>
+                      <span class="na">resizeMode</span><span class="p">:</span> <span class="s2">"contain"</span><span class="p">,</span>
+                      <span class="na">width</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+                      <span class="na">height</span><span class="p">:</span> <span class="mi">50</span>
+                    <span class="p">}}</span>
+                    <span class="nx">source</span><span class="o">=</span><span class="p">{{</span> <span class="na">uri</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">currentTeam</span><span class="p">.</span><span class="nx">logo</span> <span class="p">}}</span>
+                  <span class="sr">/</span><span class="err">&gt;
+</span>                <span class="o">&lt;</span><span class="sr">/Left</span><span class="err">&gt;
+</span>                <span class="o">&lt;</span><span class="nx">Body</span><span class="o">&gt;</span>
+                  <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">playerNameText</span><span class="p">}</span><span class="o">&gt;</span>
+                    <span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">firstName</span><span class="p">}</span> <span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">lastName</span><span class="p">}</span>
+                  <span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>                <span class="o">&lt;</span><span class="sr">/Body</span><span class="err">&gt;
+</span>              <span class="o">&lt;</span><span class="sr">/CardItem</span><span class="err">&gt;
+</span>              <span class="o">&lt;</span><span class="nx">CardItem</span> <span class="nx">cardBody</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">Image</span>
+                  <span class="nx">style</span><span class="o">=</span><span class="p">{{</span>
+                    <span class="na">width</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+                    <span class="na">height</span><span class="p">:</span> <span class="mi">100</span>
+                  <span class="p">}}</span>
+                  <span class="nx">source</span><span class="o">=</span><span class="p">{{</span> <span class="na">uri</span><span class="p">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">image</span> <span class="p">}}</span>
+                <span class="sr">/</span><span class="err">&gt;
+</span>                <span class="o">&lt;</span><span class="nx">View</span>
+                  <span class="nx">style</span><span class="o">=</span><span class="p">{{</span>
+                    <span class="na">margin</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+                    <span class="na">alignSelf</span><span class="p">:</span> <span class="s2">"flex-start"</span><span class="p">,</span>
+                    <span class="na">flexDirection</span><span class="p">:</span> <span class="s2">"column"</span>
+                  <span class="p">}}</span>
+                <span class="o">&gt;</span>
+                  <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">statText</span><span class="p">}</span><span class="o">&gt;</span>
+                    <span class="nx">Batting</span> <span class="na">Average</span><span class="p">:</span> <span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">battingAverage</span><span class="p">}</span>
+                  <span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>                  <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">statText</span><span class="p">}</span><span class="o">&gt;</span><span class="na">Homeruns</span><span class="p">:</span> <span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">homeruns</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>                <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>              <span class="o">&lt;</span><span class="sr">/CardItem</span><span class="err">&gt;
+</span>              <span class="o">&lt;</span><span class="nx">CardItem</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="nx">Swipe</span> <span class="k">for</span> <span class="nx">Next</span> <span class="nx">Player</span> <span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>                <span class="o">&lt;</span><span class="nx">Icon</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"md-arrow-round-forward"</span> <span class="o">/&gt;</span>
+              <span class="o">&lt;</span><span class="sr">/CardItem</span><span class="err">&gt;
+</span>            <span class="o">&lt;</span><span class="sr">/Card</span><span class="err">&gt;
+</span>          <span class="p">)}</span>
+        <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="p">)</span> <span class="p">:</span> <span class="kc">null</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>  <span class="o">&lt;</span><span class="sr">/Container</span><span class="err">&gt;
+</span><span class="p">);</span>
+</code></pre></div></div>
 
-<p>It ain’t pretty, but we’ve done all of the heavy lifting necessary now to put a pretty face on this screen, which will happen in the next set of articles.</p>
+<h2 id="container">Container</h2>
 
-<p><a href="https://github.com/bbuchanan/react-native-sports-app/tree/dd210644577f387af0513b1da31fdc7a7f62e8df" target="_blank">React Native Sports App Tutorial up to this point.</a></p>
+<p>The <code class="highlighter-rouge">&lt;Container /&gt;</code> houses our entire component. We’ve introduced some flexbox stylings. I want our container to take up all the space, I want the content aligned from the top down.</p>
+
+<h2 id="picker">Picker</h2>
+
+<p>Our <code class="highlighter-rouge">&lt;Picker /&gt;</code> has been modified slightly. The <code class="highlighter-rouge">selectedValue</code> now includes the <code class="highlighter-rouge">.code</code> at the end since this is now an object. And remember the <code class="highlighter-rouge">pickerItems</code> variable we declared up top? Well, that gets injected just before our closing <code class="highlighter-rouge">&lt;/Picker&gt;</code> tag. Now we’re ready to accept changes to our teams via the picker again, the meat of the presentation is the <code class="highlighter-rouge">&lt;DeckSwiper /&gt;</code> component.</p>
+
+<h2 id="nativebase-deckswiper">NativeBase DeckSwiper</h2>
+
+<p>The <code class="highlighter-rouge">&lt;DeckSwiper /&gt;</code> component is great for displaying a logical grouping of data that all has the same layout. In our case, we could have a whole lot of sports statistics for a player, but for simplicity sake, we’re only showing a few. But if this were the real world, we may have enough to fill a screen and then some. On the Score screen, we elected to have a scrollable list of scores, but for the stats, I’m going to show all of the stats for one player at a time.</p>
+
+<p>The <code class="highlighter-rouge">&lt;DeckSwiper /&gt;</code> is merely a housing for the content. It facilitates the swiping and subsequent rendering and that’s it. For each player and the associated stats, we’re going to use a <code class="highlighter-rouge">&lt;Card&gt;</code> which is worthy of its own explanation.</p>
+
+<h2 id="nativebase-card">NativeBase Card</h2>
+
+<p>A <code class="highlighter-rouge">&lt;Card&gt;</code> is another content container, however, it provides us with some flexible options that make it a suitable choice for an array. <code class="highlighter-rouge">&lt;CardItem&gt;</code> is a child component of <code class="highlighter-rouge">Card</code> and the two work much the same as <code class="highlighter-rouge">List</code> and <code class="highlighter-rouge">ListItem</code>. We’re going to take advantage of the <code class="highlighter-rouge">renderItem()</code> function in <code class="highlighter-rouge">DeckSwiper</code> and output a <code class="highlighter-rouge">Card</code> and for each player that we receive back from our API call.</p>
+
+<p>Our <code class="highlighter-rouge">CardItem</code> is going to utilize the <code class="highlighter-rouge">Left</code> layout. <code class="highlighter-rouge">Left</code>, as you might guess, anchors the children inside of it to the left. <code class="highlighter-rouge">&lt;Body&gt;</code> would place all content between the <code class="highlighter-rouge">Left</code> and <code class="highlighter-rouge">Right</code> components and the <code class="highlighter-rouge">Right</code> anchors the content to the right hand side of the screen.</p>
+
+<p>We’re anchoring our current team logo to the left.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">Left</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">Image</span>
+    <span class="nx">style</span><span class="o">=</span><span class="p">{{</span>
+      <span class="na">resizeMode</span><span class="p">:</span> <span class="s2">"contain"</span><span class="p">,</span>
+      <span class="na">width</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+      <span class="na">height</span><span class="p">:</span> <span class="mi">50</span>
+    <span class="p">}}</span>
+    <span class="nx">source</span><span class="o">=</span><span class="p">{{</span> <span class="na">uri</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">currentTeam</span><span class="p">.</span><span class="nx">logo</span> <span class="p">}}</span>
+  <span class="sr">/</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/Left</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">&lt;Body&gt;</code> is going to contain the player name.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">Body</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">playerNameText</span><span class="p">}</span><span class="o">&gt;</span>
+    <span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">firstName</span><span class="p">}</span> <span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">lastName</span><span class="p">}</span>
+  <span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/Body</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>There is nothing we want to anchor to the right, so we’ll omit that component.</p>
+
+<p>Our <code class="highlighter-rouge">cardBody</code> will display items in a similar fashion, only this time our image will be the hardcoded image of the player and the <code class="highlighter-rouge">&lt;Body&gt;</code> will contain the player’s statistics.</p>
+
+<h3 id="renderitem">renderItem()</h3>
+
+<p>One notable standout is the <code class="highlighter-rouge">renderItem()</code> function in the <code class="highlighter-rouge">DeckSwiper</code>. This is the heart of what ties the data to the presentation layer. We can take the data and template it any way we want to. <code class="highlighter-rouge">renderItem()</code> takes an array and using ES6 fat arrow syntax, we return jsx for each item. You could literally embed any component(s) you want to render this data. Get comfortable with this way of doing things, it’s repeated a lot in various components.</p>
+
+<h2 id="wrapping-up">Wrapping Up</h2>
+
+<p>This was a pretty massive set of changes and a lot more polish was possible thanks to NativeBase. NativeBase has a pretty extensive collection of components and I highly recommend trying them out. The nice thing is that they keep to the React Native concepts very well, so what you’ve learned is transferrable and makes things much more discoverable.</p>
+
+<p>If you hung on to this article, well done! The next article will be a joyride, but NativeBase is making it easy.</p>
+
+<h2 id="a-note-about-external-resources-http-vs-https">A Note About External Resources (http: vs. https:)</h2>
+
+<p>A common stumbling block on images or videos or really anything loaded externally is that iOS (and mostly Android) require that the url be secure. Loading an image from http rather https will result in a frustrating “no load” where you don’t get an error, but you also don’t get your resource. If you think you have everything right, but nothing is showing, make sure you have https in the url.</p>
+
+<h2 id="coming-attractions">Coming Attractions</h2>
+
+<p>You might have noticed that there was a delay displaying the statistics whenever you switch teams. This can be really confusing to a user when the logo reflects one team, but stats are still reflecting the previous selection. In the next article, we’ll fix this.</p>
+
+<p><a href="https://github.com/bbuchanan/react-native-sports-app/tree/b29f09a40258904a0d37975a52ac9c71442209f9" target="_blank">React Native Sports App Tutorial up to this point.</a></p>
 
 <h1> Need a Full Stack React Developer?</h1>
 
